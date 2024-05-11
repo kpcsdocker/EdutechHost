@@ -1,0 +1,8 @@
+<form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="name" name="name" placeholder="Name">
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Email">
+    <input type="text" [(ngModel)]="grade" name="grade" placeholder="Grade">
+    <input type="text" [(ngModel)]="school" name="school" placeholder="School">
+    <input type="file" (change)="onFileSelected($event)" name="imageFile">
+    <button type="submit">Submit</button>
+  </form>

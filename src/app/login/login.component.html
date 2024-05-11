@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm" action="#">
+    <div class="row">
+        <div class="col-xl-12 col-md-12">
+            <input type = "text" formControlName="email" placeholder="Enter Email"/>
+        </div>
+        <div class="col-xl-12 col-md-12">
+            <input type = "name" formControlName="name" placeholder="Enter Name"/>
+        </div>
+        <div class="col-xl-12">
+            <button type="submit" (click)="onSubmit()">Login</button>
+        </div><br><br>
+    </div> 
+</form>
