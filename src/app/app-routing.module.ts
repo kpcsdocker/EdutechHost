@@ -7,7 +7,7 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { SignupOnboardComponent } from './signup-onboard/signup-onboard.component';
 
 const routes: Routes = [
-  {path:'signip-onboard', component: SignupOnboardComponent},
+  {path:'signup-onboard', component: SignupOnboardComponent},
   {path:'stu-dashboard', component: StudentDashboardComponent},
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},

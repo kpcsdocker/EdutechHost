@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   redirectToRegister(){
-    this.router.navigate(['/register']);
+    this.router.navigate(['/signup-onboard']);
   }
 
   redirectToLoginPage(){
