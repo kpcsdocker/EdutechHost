@@ -24,6 +24,13 @@ export class EdutechService {
     return this.httpclient.get(this.users, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
+  public postUser(user:any){
+    return this.httpclient.post(this.users, user, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
+    .pipe(
+      catchError((err:any)=>this.handleErrorPromise(err))
+    );
+}
+
   public getUsersById(){
     return this.httpclient.get(this.users+'/123e4567-e89b-12d3-a456-42661417400', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }

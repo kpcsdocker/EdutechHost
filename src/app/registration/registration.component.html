@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+<!-- <form (ngSubmit)="onSubmit()">
     <input type="text" [(ngModel)]="name" name="name" placeholder="Name">
     <input type="email" [(ngModel)]="email" name="email" placeholder="Email">
     <input type="text" [(ngModel)]="grade" name="grade" placeholder="Grade">
@@ -9,4 +9,70 @@
 
 <label for="code">Verification Code:</label>
   <input type="text" id="code" [(ngModel)]="code">
-  <button (click)="verifyCode()">Verify Code</button>
+  <button (click)="verifyCode()">Verify Code</button> -->
+
+  <form [formGroup]="registrationForm" action="#">
+    <div class="row">
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter User ID" type="text" id="user_id" formControlName="userId"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter First Name" type="text" id="first_name" formControlName="firstName"/>
+            <div class="valid" *ngIf="registrationForm.get('firstName')?.hasError('required') && registrationForm.get('firstName')?.touched">
+                Please enter your first name
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Last Name" type="text" id="last_name" formControlName="lastName"/>
+            <div class="valid" *ngIf="registrationForm.get('lastName')?.hasError('required') && registrationForm.get('lastName')?.touched">
+                Please enter your last name
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Middle Initial" type="text" id="middle_initial" formControlName="middleInitial"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Email" type="text" id="email" formControlName="email" autocomplete="nope"/>
+            <div class="valid" *ngIf="registrationForm.get('email')?.hasError('pattern') && registrationForm.get('email')?.touched">
+                Should be in correct format ex: john@gmail.com
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Date of Birth" type="date" id="date_of_birth" formControlName="dateOfBirth"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Phone Number" type="text" id="phone_number" formControlName="phoneNumber"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Address 1" type="text" id="address_1" formControlName="address1"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Address 2" type="text" id="address_2" formControlName="address2"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter City" type="text" id="city" formControlName="city"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter State" type="text" id="state" formControlName="state"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Country" type="text" id="country" formControlName="country"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Created Date Time" type="datetime-local" id="created_date_time" formControlName="createdDateTime"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Updated Date Time" type="datetime-local" id="updated_date_time" formControlName="updatedDateTime"/>
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <input placeholder="Enter Password" type="password" id="password" formControlName="password"/>
+        </div>
+        <!-- Add the remaining fields similarly -->
+    </div>
+    <!-- Add submit button and other form elements -->
+    <div class="col-xl-12">
+        <button type="submit" class="boxed_btn_orange" [disabled]="!registrationForm.valid" (click)="register()">Register</button>
+    </div>
+</form>
+
+  
