@@ -3,5 +3,15 @@
     "target": "http://localhost:8088",
     "secure": false,
     "changeOrigin": true
+  },
+  "/api/*": {
+    "target": "http://localhost:8088",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/users/*": {
+    "target": "http://localhost:8088",
+    "secure": false,
+    "changeOrigin": true
   }
 }

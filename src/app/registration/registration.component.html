@@ -5,4 +5,8 @@
     <input type="text" [(ngModel)]="school" name="school" placeholder="School">
     <input type="file" (change)="onFileSelected($event)" name="imageFile">
     <button type="submit">Submit</button>
-  </form>
+</form>
+
+<label for="code">Verification Code:</label>
+  <input type="text" id="code" [(ngModel)]="code">
+  <button (click)="verifyCode()">Verify Code</button>

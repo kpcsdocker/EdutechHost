@@ -13,6 +13,7 @@ export class RegistrationComponent implements OnInit {
   grade!: string;
   school!: string;
   imageFile!: File;
+  code!: string;
 
   constructor(private eduService: EdutechService) {}
 
@@ -27,10 +28,16 @@ export class RegistrationComponent implements OnInit {
     formData.append('grade', this.grade);
     formData.append('school', this.school);
     formData.append('profile', this.imageFile);
-    this.eduService.imageSubmit(formData).subscribe(res=>{console.log(res);});
-}
+    this.eduService.imageSubmit(formData).subscribe(res=>{this.eduService.sendMail(this.email).subscribe();console.log(res);});
+ }
   
   onFileSelected(event:any) {
     this.imageFile = event.target.files[0];
   }
+
+  verifyCode() {
+    this.eduService.verifyCode(this.email, this.code).subscribe(response => {
+      console.log(response); // Handle response from backend
+    });
+}
 }
