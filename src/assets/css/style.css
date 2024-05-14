@@ -145,8 +145,8 @@ header .navbar {
     background: linear-gradient(90deg, #2D0077 0%, #4400B3 100%);
     text-align: center;
     width: 44px;
-    height: 35px;
-    line-height: 32px;
+    height: 35px!important;
+    line-height: 35px!important;
     color: #fff !important;
     font-size: 22px;
     border-radius: 5px;
