@@ -1,17 +1,30 @@
-<!-- <form (ngSubmit)="onSubmit()">
-    <input type="text" [(ngModel)]="name" name="name" placeholder="Name">
+<form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="user_id" name="user_id" placeholder="User ID">
+    <input type="text" [(ngModel)]="first_name" name="first_name" placeholder="First Name">
+    <input type="text" [(ngModel)]="last_name" name="last_name" placeholder="Last Name">
+    <input type="text" [(ngModel)]="middle_initial" name="middle_initial" placeholder="Middle Initial">
     <input type="email" [(ngModel)]="email" name="email" placeholder="Email">
     <input type="text" [(ngModel)]="grade" name="grade" placeholder="Grade">
     <input type="text" [(ngModel)]="school" name="school" placeholder="School">
+    <input type="date" [(ngModel)]="date_of_birth" name="date_of_birth" placeholder="Date_of_birth">
+    <input type="text" [(ngModel)]="phone_number" name="phone_number" placeholder="Phone Number">
+    <input type="text" [(ngModel)]="address_1" name="address_1" placeholder="Address 1">
+    <input type="text" [(ngModel)]="address_2" name="address_2" placeholder="Address 2">
+    <input type="text" [(ngModel)]="city" name="city" placeholder="City">
+    <input type="text" [(ngModel)]="state" name="state" placeholder="State">
+    <input type="text" [(ngModel)]="country" name="country" placeholder="Country">
+    <input type="date" [(ngModel)]="created_date_time" name="created_date_time" placeholder="Created_date_time">
+    <input type="date" [(ngModel)]="updated_date_time" name="updated_date_time" placeholder="Updated_date_time">
+    <input type="secret" [(ngModel)]="password" name="password" placeholder="Password">
     <input type="file" (change)="onFileSelected($event)" name="imageFile">
     <button type="submit">Submit</button>
 </form>
 
 <label for="code">Verification Code:</label>
   <input type="text" id="code" [(ngModel)]="code">
-  <button (click)="verifyCode()">Verify Code</button> -->
+  <button (click)="verifyCode()">Verify Code</button> 
 
-  <form [formGroup]="registrationForm" action="#">
+  <!-- <form [formGroup]="registrationForm" action="#">
     <div class="row">
         <div class="col-xl-6 col-md-6">
             <input placeholder="Enter User ID" type="text" id="user_id" formControlName="userId"/>
@@ -67,12 +80,10 @@
         <div class="col-xl-6 col-md-6">
             <input placeholder="Enter Password" type="password" id="password" formControlName="password"/>
         </div>
-        <!-- Add the remaining fields similarly -->
     </div>
-    <!-- Add submit button and other form elements -->
     <div class="col-xl-12">
         <button type="submit" class="boxed_btn_orange" [disabled]="!registrationForm.valid" (click)="register()">Register</button>
     </div>
 </form>
 
-  
+   -->

@@ -11,6 +11,7 @@ export class EdutechService {
   private student: string="student";
   private mail: string = "api";
   private users: string = "users";
+  private user: string = "user";
   password!: string;
   email!: string;
   
@@ -37,7 +38,7 @@ export class EdutechService {
 
   public imageSubmit(studentData:FormData){
     console.log(studentData);
-    return this.httpclient.post(this.student+'/register', studentData, { observe: 'response' })
+    return this.httpclient.post(this.user+'/register', studentData, { observe: 'response' })
     .pipe(
       catchError((err:any)=>this.handleErrorPromise(err))
     );
