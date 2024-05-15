@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { EdutechService } from '../edutech.service';
 import { FormGroup, FormControl, FormBuilder,Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
+
+// Inside your component class
+const userId = uuidv4();
+console.log(userId); // This will log a randomly generated UUID
+
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +16,7 @@ import {Router} from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  user_id!: string;
+  user_id: string = uuidv4();
   first_name!: string;
   last_name!: string;
   middle_initial!: string;
@@ -78,7 +84,8 @@ export class RegistrationComponent implements OnInit {
     formData.append('updated_date_time', new Date(this.updated_date_time).toISOString()); // Convert date to string
     formData.append('password', this.password);
     formData.append('profile', this.imageFile);
-    this.eduService.imageSubmit(formData).subscribe(res=>{this.eduService.sendMail(this.email).subscribe();console.log(res);});
+    this.eduService.imageSubmit(formData).subscribe(res=>{console.log(res);});
+    this.eduService.postgresUserSubmit(formData).subscribe(res=>{this.eduService.sendMail(this.email).subscribe();console.log(res);});
  }
 
  register(){

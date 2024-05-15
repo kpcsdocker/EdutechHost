@@ -12,6 +12,7 @@ export class EdutechService {
   private mail: string = "api";
   private users: string = "users";
   private user: string = "user";
+  private postgres: string = "postgres";
   password!: string;
   email!: string;
   
@@ -43,10 +44,18 @@ export class EdutechService {
       catchError((err:any)=>this.handleErrorPromise(err))
     );
   }
+
+  public postgresUserSubmit(studentData:FormData){
+    console.log(studentData);
+    return this.httpclient.post(this.postgres+'/user/register', studentData, { observe: 'response' })
+    .pipe(
+    catchError((err:any)=>this.handleErrorPromise(err)));
+ }
+
   handleErrorPromise (error: Response | any) {
     console.error(error.message || error);
     return Promise.reject(error.message || error);
- }
+  }
 
  public setPassword(password:any){
   this.password=password;
