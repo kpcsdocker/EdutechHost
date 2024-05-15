@@ -14,6 +14,7 @@ export class StudentDashboardComponent implements OnInit {
   address1: any;
   city: any;
   state: any;
+  profile: any;
 
   constructor(private eduService: EdutechService) { }
 
@@ -26,6 +27,7 @@ export class StudentDashboardComponent implements OnInit {
   				this.address1=this.students[i].address1;
           this.city=this.students[i].city;
           this.state=this.students[i].state;
+          this.profile=this.students[i].profile;
         }}
     });
   }
