@@ -6,8 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 // Inside your component class
 const userId = uuidv4();
-console.log(userId); // This will log a randomly generated UUID
-
 
 @Component({
   selector: 'app-registration',
@@ -85,7 +83,7 @@ export class RegistrationComponent implements OnInit {
     formData.append('password', this.password);
     formData.append('profile', this.imageFile);
     this.eduService.mongoStudentSubmit(formData).subscribe(res=>{console.log(res);});
-    this.eduService.postgresStudentSubmit(formData).subscribe(res=>{this.eduService.sendMail(this.email).subscribe();console.log(res);});
+    this.eduService.postgresStudentSubmit(formData).subscribe(res=>{this.eduService.sendMail(this.email).subscribe();});
  }
   
   onFileSelected(event:any) {
@@ -94,7 +92,7 @@ export class RegistrationComponent implements OnInit {
 
   verifyCode() {
     this.eduService.verifyCode(this.email, this.code).subscribe(response => {
-      console.log(response); // Handle response from backend
+      this.router.navigate(['/login']);
     });
 }
 }

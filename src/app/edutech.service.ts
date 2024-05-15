@@ -22,7 +22,6 @@ export class EdutechService {
   }
 
   public mongoStudentSubmit(studentData:FormData){
-    console.log(studentData);
     return this.httpclient.post(this.mongo+'/student/register', studentData, { observe: 'response' })
     .pipe(
       catchError((err:any)=>this.handleErrorPromise(err))
@@ -30,7 +29,6 @@ export class EdutechService {
   }
 
   public postgresStudentSubmit(studentData:FormData){
-    console.log(studentData);
     return this.httpclient.post(this.postgres+'/student/register', studentData, { observe: 'response' })
     .pipe(
     catchError((err:any)=>this.handleErrorPromise(err)));
