@@ -84,17 +84,8 @@ export class RegistrationComponent implements OnInit {
     formData.append('updated_date_time', new Date(this.updated_date_time).toISOString()); // Convert date to string
     formData.append('password', this.password);
     formData.append('profile', this.imageFile);
-    this.eduService.imageSubmit(formData).subscribe(res=>{console.log(res);});
-    this.eduService.postgresUserSubmit(formData).subscribe(res=>{this.eduService.sendMail(this.email).subscribe();console.log(res);});
- }
-
- register(){
-  console.log("calling");
-  this.eduService.postUser(this.registrationForm.value).subscribe(res=>
-    {
-      this.router.navigate(['/login']);
-    },
-    error=>{console.log("error")});
+    this.eduService.mongoStudentSubmit(formData).subscribe(res=>{console.log(res);});
+    this.eduService.postgresStudentSubmit(formData).subscribe(res=>{this.eduService.sendMail(this.email).subscribe();console.log(res);});
  }
   
   onFileSelected(event:any) {

@@ -9,17 +9,12 @@
     "secure": false,
     "changeOrigin": true
   },
-  "/users/*": {
-    "target": "http://localhost:8088",
-    "secure": false,
-    "changeOrigin": true
-  },
-  "/user/*": {
-    "target": "http://localhost:8088",
-    "secure": false,
-    "changeOrigin": true
-  },
   "/postgres/*": {
+    "target": "http://localhost:8088",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/mongo/*": {
     "target": "http://localhost:8088",
     "secure": false,
     "changeOrigin": true

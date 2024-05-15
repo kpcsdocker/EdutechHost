@@ -18,7 +18,7 @@ export class StudentDashboardComponent implements OnInit {
   constructor(private eduService: EdutechService) { }
 
   ngOnInit(): void {
-    this.eduService.getUsers().subscribe(data => {this.students = data; console.log(data);
+    this.eduService.getStudents().subscribe(data => {this.students = data; console.log(data);
       this.password = this.eduService.getPassword();
       this.email = this.eduService.getEmail();
       for(var i=0; i<this.students.length; i++){

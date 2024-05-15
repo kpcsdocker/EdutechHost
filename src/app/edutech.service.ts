@@ -10,8 +10,7 @@ export class EdutechService {
 
   private student: string="student";
   private mail: string = "api";
-  private users: string = "users";
-  private user: string = "user";
+  private mongo: string = "mongo";
   private postgres: string = "postgres";
   password!: string;
   email!: string;
@@ -19,35 +18,20 @@ export class EdutechService {
   constructor(private httpclient: HttpClient) { }
 
   public getStudents(){
-    return this.httpclient.get(this.student, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.postgres+'/students', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
-  public getUsers(){
-    return this.httpclient.get(this.users, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
-  }
-
-  public postUser(user:any){
-    return this.httpclient.post(this.users, user, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
-    .pipe(
-      catchError((err:any)=>this.handleErrorPromise(err))
-    );
-}
-
-  public getUsersById(){
-    return this.httpclient.get(this.users+'/123e4567-e89b-12d3-a456-42661417400', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
-  }
-
-  public imageSubmit(studentData:FormData){
+  public mongoStudentSubmit(studentData:FormData){
     console.log(studentData);
-    return this.httpclient.post(this.user+'/register', studentData, { observe: 'response' })
+    return this.httpclient.post(this.mongo+'/student/register', studentData, { observe: 'response' })
     .pipe(
       catchError((err:any)=>this.handleErrorPromise(err))
     );
   }
 
-  public postgresUserSubmit(studentData:FormData){
+  public postgresStudentSubmit(studentData:FormData){
     console.log(studentData);
-    return this.httpclient.post(this.postgres+'/user/register', studentData, { observe: 'response' })
+    return this.httpclient.post(this.postgres+'/student/register', studentData, { observe: 'response' })
     .pipe(
     catchError((err:any)=>this.handleErrorPromise(err)));
  }

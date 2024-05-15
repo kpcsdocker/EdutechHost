@@ -18,8 +18,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   	this.buildForm();
   	this.eduService.getStudents().subscribe(data => {this.students = data;});
-    this.eduService.getUsers().subscribe(data => {this.users = data; console.log(data);
-    });
   }
 
   buildForm() {
@@ -30,8 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    for(var i=0; i<this.users.length; i++){
-      if(this.loginForm.get('email')?.value == this.users[i].email && this.loginForm.get('password')?.value == this.users[i].password){
+    for(var i=0; i<this.students.length; i++){
+      if(this.loginForm.get('email')?.value == this.students[i].email && this.loginForm.get('password')?.value == this.students[i].password){
           this.eduService.setPassword(this.loginForm.get('password')?.value);
           this.eduService.setEmail(this.loginForm.get('email')?.value);
           this.router.navigate(['/stu-dashboard']);
