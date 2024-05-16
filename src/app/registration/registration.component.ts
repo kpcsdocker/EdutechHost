@@ -32,7 +32,6 @@ export class RegistrationComponent implements OnInit {
   updated_date_time: Date = new Date;
   password!: string;
   imageFile!: File;
-  code!: string;
   registrationForm!: FormGroup;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
@@ -82,17 +81,14 @@ export class RegistrationComponent implements OnInit {
     formData.append('updated_date_time', new Date(this.updated_date_time).toISOString()); // Convert date to string
     formData.append('password', this.password);
     formData.append('profile', this.imageFile);
-    this.eduService.mongoStudentSubmit(formData).subscribe(res=>{console.log(res);});
-    this.eduService.postgresStudentSubmit(formData).subscribe(res=>{this.eduService.sendMail(this.email).subscribe();});
+    this.eduService.mongoStudentSubmit(formData).subscribe(res=>{});
+    this.eduService.postgresStudentSubmit(formData).subscribe(res=>{
+      this.eduService.sendMail(this.email).subscribe();
+      this.eduService.setVerificationEmail(this.email);
+      this.router.navigate(['/verify']);});
  }
   
   onFileSelected(event:any) {
     this.imageFile = event.target.files[0];
   }
-
-  verifyCode() {
-    this.eduService.verifyCode(this.email, this.code).subscribe(response => {
-      this.router.navigate(['/login']);
-    });
-}
 }

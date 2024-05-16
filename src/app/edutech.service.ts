@@ -14,6 +14,7 @@ export class EdutechService {
   private postgres: string = "postgres";
   password!: string;
   email!: string;
+  code!: string;
   
   constructor(private httpclient: HttpClient) { }
 
@@ -62,4 +63,21 @@ public sendMail(email:any){
 verifyCode(email: string, code: string) {
   return this.httpclient.get(this.mail+'/verifyCode/'+email+'/'+code, { responseType: 'text' });
 }
+
+public setVerificationEmail(email:any){
+  this.email=email;
+}
+
+public getVerificationEmail(){
+  return this.email;
+}
+
+public setVerificationCode(code:any){
+  this.code=code;
+}
+
+public getVerificationCode(){
+  return this.email;
+}
+
 }

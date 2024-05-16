@@ -5,12 +5,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { SignupOnboardComponent } from './signup-onboard/signup-onboard.component';
+import { VerificationComponent } from './verification/verification.component';
 
 const routes: Routes = [
   {path:'signup-onboard', component: SignupOnboardComponent},
   {path:'stu-dashboard', component: StudentDashboardComponent},
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
+  {path:'verify', component: VerificationComponent},
   {path:'', component: HomeComponent}
 ];
 

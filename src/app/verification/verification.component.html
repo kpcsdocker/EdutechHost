@@ -1,0 +1,10 @@
+<label for="code">Verification Code:</label>
+  <input type="text" id="code" [(ngModel)]="code">
+  <button (click)="verifyCode()">Verify Code</button> 
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
