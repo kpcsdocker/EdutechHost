@@ -2,8 +2,13 @@
 .get_but {
     width: 315px;
     margin-bottom: 14px;
-    height: 33px;
+    /*height: 33px;*/
     line-height: 15px;
     margin-top:15px;
 }
 .onboard .fa{padding-top: 1px;}
+label{color: #380093 !important;
+    font-size: 13px;}
+.border-box .or{color: #000;
+    font-size: 15px;
+}

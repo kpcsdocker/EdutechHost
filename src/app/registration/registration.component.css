@@ -1,0 +1,60 @@
+.navbar-brand{line-height:5px!important;}
+.get_but {
+    margin-top:10px;
+}
+.onboard .fa{padding-top: 1px;}
+
+.border-box .or{color: #000;
+    font-size: 15px;
+}
+
+
+.file-input {
+  display: inline-block;
+  text-align: left;
+  background: #fff;
+  padding: 5px;
+  width: 100%;
+  position: relative;
+  border-radius: 3px;
+}
+
+.file-input > [type='file'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.file-input > .button {
+  display: inline-block;
+  cursor: pointer;
+  background: #eee;
+  padding: 8px 16px;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+.file-input:hover > .button {
+  background: dodgerblue;
+  color: white;
+}
+
+.file-input > .label {
+  color: #333;
+  white-space: nowrap;
+  opacity: .3;
+}
+
+.file-input.-chosen > .label {
+  opacity: 1;
+}
+
+
+input[type=date]{line-height: 20px!important;}
+label{color: #380093 !important;
+    font-size: 13px;}

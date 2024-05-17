@@ -16,4 +16,25 @@
     background-color: #f8d7da;
     border-color: #f5c6cb;
   }
-  
+  .navbar-brand{line-height:5px!important;}
+  .get_but {
+    width: 315px;
+    margin-bottom: 14px;
+    height: 33px;
+    line-height: 15px;
+    margin-top:15px;
+}
+.onboard .fa{padding-top: 1px;}
+  #call-to-action-2 p{font-size: 17px;}
+
+  .border-box{text-align:center;}
+  #code{text-align: center;
+    border: 0;
+    border-bottom: 1px solid #333;
+    box-shadow: none;
+    border-radius: 0;
+    background: none;
+    width: 290px;
+    margin: 0 auto;
+    font-size: 18px;
+}
