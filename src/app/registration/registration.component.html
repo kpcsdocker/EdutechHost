@@ -40,7 +40,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logo megrim-regular" href="index.html"><</a>
+                    <a class="navbar-brand logo megrim-regular" href="index.html"></a>
                 </div>
                 <div class="text-center col-6 col-md-6 col-sm-12">
                 <a class="navbar-brand logo megrim-regular" href="index.html">A</a>
@@ -62,8 +62,12 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="border-box">
                         <p><span>Welcome Student!</span></p>
-                      <p><button type="button" class="login-with-google-btn log get_but" >Sign up with Google</button><br>
-                      <span class="or">-OR-</span></p>
+                      <!-- <p><button type="button" class="login-with-google-btn log get_but" >Sign up with Google</button><br>
+                      <span class="or">-OR-</span></p> -->
+                      <div *ngIf="user">
+                        <h1>Welcome, {{ user.name }}</h1>
+                      </div>
+                      <a (click)="login()">Login with Google</a>
  <form (ngSubmit)="onSubmit()">
     <div class="row">
         <div class="col-xl-6 col-md-6">
@@ -115,7 +119,7 @@
            </div>
        </div><br>
        <div class="col-xl-12 btnn">
-    <button type="submit" class="log get_but">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+    <button type="submit" class="log get_but" (click)="onSubmit()">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 </div>
 </div>
  

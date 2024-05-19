@@ -4,7 +4,7 @@ import { FormGroup, FormControl, FormBuilder,Validators} from '@angular/forms';
 // import { AuthService } from 'angularx-social-login';
 // import { SocialUser } from 'angularx-social-login';
 // import { GoogleLoginProvider} from 'angularx-social-login';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 
 // Inside your component class
@@ -17,6 +17,7 @@ const userId = uuidv4();
 })
 export class RegistrationComponent implements OnInit {
 
+  loginSuccess: boolean = false;
   user_id: string = uuidv4();
   first_name!: string;
   last_name!: string;
@@ -39,32 +40,43 @@ export class RegistrationComponent implements OnInit {
   registrationForm!: FormGroup;
   alreadyUser: boolean = false;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+  user:any;
 
-  constructor(private eduService: EdutechService, public fb:FormBuilder, private router:Router) {}
+  constructor(private eduService: EdutechService, public fb:FormBuilder, private router:Router,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    //this.buildForm();
+    this.buildForm();
+    this.route.queryParams.subscribe(params => {
+      if (params['login'] === 'success') {
+        this.signInWithGoogle();
+      }
+    });
   }
 
-  // buildForm() {
-  //   this.registrationForm = this.fb.group({
-  //     userId: [''], // Include if you want to allow user to enter their ID
-  //     firstName: ['', [Validators.required]],
-  //     lastName: ['', [Validators.required]],
-  //     middleInitial: [''],
-  //     email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-  //     dateOfBirth: ['', Validators.required],
-  //     phoneNumber: ['', Validators.required],
-  //     address1: [''],
-  //     address2: [''],
-  //     city: [''],
-  //     state: [''],
-  //     country: [''],
-  //     createdDateTime: [''], // You can set this value on the server side
-  //     updatedDateTime: [''], // You can set this value on the server side
-  //     password: ['', Validators.required],
-  //   });
-  // }
+  login() {
+    this.eduService.login();
+  }
+
+  buildForm() {
+    this.registrationForm = this.fb.group({
+      user_id: [''], // Include if you want to allow user to enter their ID
+      first_name: ['', [Validators.required]],
+      last_name: ['', [Validators.required]],
+      middle_initial: [''],
+      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+      date_of_birth: ['', Validators.required],
+      phone_number: ['', Validators.required],
+      address_1: [''],
+      address_2: [''],
+      city: [''],
+      state: [''],
+      country: [''],
+      created_date_time: [''], // You can set this value on the server side
+      updated_date_time: [''], // You can set this value on the server side
+      password: ['', Validators.required],
+      social_picture: ['']
+    });
+  }
   onSubmit(){
     const formData = new FormData();
     formData.append('id', " ");
@@ -97,42 +109,49 @@ export class RegistrationComponent implements OnInit {
     this.imageFile = event.target.files[0];
   }
 
-  // signInWithGoogle(): void {
-  // 	//this.alreadyUser = false; 
-  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(x => 
-  //   	{
-  //   	    this.eduService.getStudents().subscribe(data =>{this.students=data; 
-  // 		console.log(this.students);
-  // 		for(var i=0; i<this.students.length; i++){
-  // 			console.log(this.students[i].email);
-  //        if(x.email == this.students[i].email){
-  //         		console.log("already exist");
-  //         		this.alreadyUser = true; 
-  //         }
-  // 		}
-  // 		if(!this.alreadyUser){
-  //   	    this.registrationForm.setValue({
-  // 				full_name: x.name, 
-  // 				email: x.email,
-  //         phone: "",
-  //         mother_email: "",
-  //         father_email: "",
-  //         mother_phone: "",
-  //         father_phone: "",
-  // 				password: "",
-  //         conf_pswd: "",
-  //         grade: "",
-  //         recaptcha: ""
-	// 		});
-	// 		console.log(this.registrationForm.value);
-	// 		// this.eduService.register(this.registrationForm.value).subscribe(res=>
-  //     //   {
-  //     //     this.studentService.sendMail(this.email).subscribe();
-  //     //     console.log("insert");
-  //     //     this.router.navigate(['/login']);
-  //    	// 	},
-  //     //    	error=>{console.log("error")});
-  //   	}}); 
-  //   	});
-  // }
+  signInWithGoogle(): void {
+  	this.alreadyUser = false; 
+    this.eduService.getAuthUser().subscribe((x:any) => 
+    	{
+    	    this.eduService.getStudents().subscribe(data =>{this.students=data; 
+  		    console.log(x);
+  		    for(var i=0; i<this.students.length; i++){
+  			    console.log(this.students[i].email);
+            if(x.email == this.students[i].email){
+          		console.log("already exist");
+          		this.alreadyUser = true; 
+              this.router.navigate(['/verify']);
+            }
+  		    }
+          if(!this.alreadyUser){
+            this.registrationForm.setValue({
+              user_id: this.user_id,
+              first_name: x.name,
+              last_name: '',
+              middle_initial: '',
+              email: x.email,
+              date_of_birth: '',
+              phone_number: '',
+              address_1: '',
+              address_2: '',
+              city: '',
+              state: '',
+              country: '',
+              created_date_time: '', 
+              updated_date_time: '', 
+              password: '',
+              social_picture: x.picture              
+        });
+			console.log(this.registrationForm.value);
+			this.eduService.postSocialLogin(this.registrationForm.value).subscribe(res=>
+        {
+          this.eduService.sendMail(x.email).subscribe();
+          this.eduService.setVerificationEmail(x.email);
+          console.log("insert");
+          this.router.navigate(['/verify']);
+     		},
+         	error=>{console.log("error")});
+    	}}); 
+    	});
+  }
 }

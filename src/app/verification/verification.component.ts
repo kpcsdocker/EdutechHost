@@ -11,14 +11,20 @@ export class VerificationComponent implements OnInit {
 
   code!: string;
   email!: string;
+  user!: any;
   successMessage!: string;
   errorMessage!: string;
   constructor(private eduService: EdutechService, private router:Router) { }
 
   ngOnInit(): void {
+    this.eduService.getAuthUser().subscribe(user => {
+      this.user = user;
+      console.log(this.user);
+    });
   }
   
   verifyCode() {
+    console.log(this.eduService.getVerificationEmail());
     this.eduService.verifyCode(this.eduService.getVerificationEmail(), this.code).subscribe({
       next: response => {
         if(response!='Verification Failed'){

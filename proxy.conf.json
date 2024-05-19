@@ -18,5 +18,15 @@
     "target": "http://localhost:8088",
     "secure": false,
     "changeOrigin": true
+  },
+  "/auth/*": {
+    "target": "http://localhost:8088",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/oauth2/*":{
+    "target": "http://localhost:8088/",
+    "secure": false,
+    "changeOrigin": true
   }
 }

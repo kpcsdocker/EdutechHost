@@ -12,6 +12,8 @@ export class EdutechService {
   private mail: string = "api";
   private mongo: string = "mongo";
   private postgres: string = "postgres";
+  private auth: string = "auth"; 
+  private oauth2 = '/oauth2/authorization/google';
   password!: string;
   email!: string;
   code!: string;
@@ -20,6 +22,14 @@ export class EdutechService {
 
   public getStudents(){
     return this.httpclient.get(this.postgres+'/students', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  }
+
+  login(){
+    window.location.href= this.oauth2;
+  }
+
+  public getAuthUser(){
+    return this.httpclient.get(this.auth+'/user', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public mongoStudentSubmit(studentData:FormData){
@@ -60,11 +70,20 @@ public sendMail(email:any){
   return this.httpclient.get(this.mail+'/sendVerificationCode/'+email, {responseType: 'text'});
 }
 
+public postSocialLogin(student:any){
+  return this.httpclient.post(this.auth, student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
+  .pipe(
+    catchError((err:any)=>this.handleErrorPromise(err))
+  );
+}
+
 verifyCode(email: string, code: string) {
+  console.log(email,code);
   return this.httpclient.get(this.mail+'/verifyCode/'+email+'/'+code, { responseType: 'text' });
 }
 
 public setVerificationEmail(email:any){
+  console.log(email);
   this.email=email;
 }
 
