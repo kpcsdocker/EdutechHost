@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { EdutechService } from '../edutech.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class StudentDashboardComponent implements OnInit {
   state: any;
   profile: any;
 
-  constructor(private eduService: EdutechService) { }
+  constructor(private eduService: EdutechService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.eduService.getStudents().subscribe(data => {this.students = data;
@@ -27,7 +28,7 @@ export class StudentDashboardComponent implements OnInit {
   				this.address1=this.students[i].address1;
           this.city=this.students[i].city;
           this.state=this.students[i].state;
-          this.profile=this.students[i].profile;
+          this.profile=this.sanitizer.bypassSecurityTrustResourceUrl(this.students[i].profile);
         }}
     });
   }

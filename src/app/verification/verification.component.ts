@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 import { EdutechService } from '../edutech.service';
 
 @Component({
@@ -14,12 +14,16 @@ export class VerificationComponent implements OnInit {
   user!: any;
   successMessage!: string;
   errorMessage!: string;
-  constructor(private eduService: EdutechService, private router:Router) { }
+  action!: string;
+  constructor(private eduService: EdutechService, private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.eduService.getAuthUser().subscribe(user => {
       this.user = user;
-      console.log(this.user);
+    });
+    this.route.params.subscribe(params => {
+      this.action = params['action'];
+      console.log(this.action);
     });
   }
   
@@ -31,7 +35,12 @@ export class VerificationComponent implements OnInit {
           this.successMessage = 'Verification successful';
           this.errorMessage = ''; 
         setTimeout(() => {
-          this.router.navigate(['/login']);
+          if(this.action=="traditionalLogin"){
+            this.router.navigate(['/login']);
+          }
+          if(this.action=="socialLogin"){
+            this.router.navigate(['/stu-dashboard']);
+          }
         }, 3000);
         }
         else{
