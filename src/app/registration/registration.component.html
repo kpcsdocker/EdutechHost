@@ -40,7 +40,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logo megrim-regular" href="index.html"></a>
+                    <a class="navbar-brand logo megrim-regular" href="index.html"><</a>
                 </div>
                 <div class="text-center col-6 col-md-6 col-sm-12">
                 <a class="navbar-brand logo megrim-regular" href="index.html">A</a>
@@ -65,13 +65,13 @@
  <form (ngSubmit)="onSubmit()">
     <div class="row">
         <div class="col-xl-6 col-md-6">
-            <label for="exampleFormControlInput1" class="form-label">your full name</label>
+            <label for="exampleFormControlInput1" class="form-label">Your Full Name</label>
             <input type="text" [(ngModel)]="first_name" class="form-control" name="first_name">
         </div>
     <!-- <input type="text" [(ngModel)]="last_name" name="last_name" placeholder="Last Name">
     <input type="text" [(ngModel)]="middle_initial" name="middle_initial" placeholder="Middle Initial"> -->
     <div class="col-xl-6 col-md-6">
-            <label for="exampleFormControlInput1" class="form-label">your e-mail address</label><br>
+            <label for="exampleFormControlInput1" class="form-label">Your e-mail Address</label><br>
     <input type="email" [(ngModel)]="email" class="form-control" name="email">
     </div>
     <div class="col-xl-6 col-md-6">
@@ -108,12 +108,14 @@
             <label for="exampleFormControlInput1" class="form-label">Choose Profile Picture</label>
             <div class='file-input'>
     <input type="file" (change)="onFileSelected($event)" name="imageFile">
-    <span class='button'>Choose</span>
-             <span class='label' data-js-label>No file selected</span>
+    <!-- <span class='button'>Choose</span>
+             <span class='label' data-js-label>No file selected</span> -->
            </div>
        </div><br>
        <div class="col-xl-12 btnn">
-    <button type="submit" class="log get_but" (click)="onSubmit()">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+    <button type="submit" class="log get_but" (click)="onSubmit()">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button><br>
+
+<span style="text-align: center;">Already have an account? <a href="/login">Login Here</a></span>
 </div>
 </div>
  
