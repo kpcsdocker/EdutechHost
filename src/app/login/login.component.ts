@@ -78,9 +78,11 @@ export class LoginComponent implements OnInit {
   		    for(var i=0; i<this.students.length; i++){
   			    console.log(this.students[i].email);
             if(x.email == this.students[i].email){
-          		console.log("already exist");
+              console.log("exist");
+          		this.eduService.sendMail(x.email).subscribe();
+              this.eduService.setVerificationEmail(x.email);
+              this.router.navigate(['/verify'], { queryParams: { action: 'socialLogin' } });
           		this.alreadyUser = true; 
-              this.router.navigate(['/verify']);
             }
   		    }
           if(!this.alreadyUser){

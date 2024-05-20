@@ -70,6 +70,10 @@ public sendMail(email:any){
   return this.httpclient.get(this.mail+'/sendVerificationCode/'+email, {responseType: 'text'});
 }
 
+public getSocialLogin(){
+  return this.httpclient.get(this.auth, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+}
+
 public postSocialLogin(student:any){
   return this.httpclient.post(this.auth, student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
   .pipe(
