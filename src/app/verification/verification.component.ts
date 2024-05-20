@@ -21,7 +21,7 @@ export class VerificationComponent implements OnInit {
     this.eduService.getAuthUser().subscribe(user => {
       this.user = user;
     });
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       this.action = params['action'];
       console.log(this.action);
     });
