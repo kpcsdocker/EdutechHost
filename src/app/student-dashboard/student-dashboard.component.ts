@@ -14,7 +14,7 @@ export class StudentDashboardComponent implements OnInit {
   password: any;
   social_picture: any;
   email: any;
-  address1: any;
+  name: any;
   city: any;
   state: any;
   profile: any;
@@ -34,7 +34,7 @@ export class StudentDashboardComponent implements OnInit {
         for(var i=0; i<this.students.length; i++){
       		if(this.students[i].email == this.email){
             console.log(this.students[i]);
-      			this.address1=this.students[i].address1;
+      			this.name=this.students[i].first_name;
             this.city=this.students[i].city;
             this.state=this.students[i].state;
             this.profile=this.students[i].profile;
@@ -48,7 +48,7 @@ export class StudentDashboardComponent implements OnInit {
         for(var i=0; i<this.students.length; i++){
           if(this.students[i].email == this.email){
             console.log(this.students[i]);
-            this.address1=this.students[i].address1;
+            this.name=this.students[i].first_name;
             this.city=this.students[i].city;
             this.state=this.students[i].state;
             this.social_picture=this.students[i].social_picture;
