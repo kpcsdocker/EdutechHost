@@ -1566,6 +1566,7 @@ border-color: none;
 background: #000000;
 }
 .navbar-default .navbar-toggle .icon-bar {background-color: #868686;border-radius: 0;}
+.navbar-toggle{display:block!important;}
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
 background-color: rgba(221, 221, 221, 0);
 }
