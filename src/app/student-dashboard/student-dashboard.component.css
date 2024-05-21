@@ -1,0 +1,23 @@
+.navbar-brand{line-height:5px!important;}
+.welcome_note{background: linear-gradient(59.12deg, #DBE1FF 8.07%, #ADACFF 93.03%);
+    position: absolute;
+    top: 11px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #4C00C8;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+.navbar-default .navbar-toggle .icon-bar{background:#4C00C8!important;}
+.get_but{width: 100%;
+    position: absolute;
+    top: 320px;}
+.text-right .navbar-brand{width: auto;
+    /* margin: 0 auto; */
+    float: right;}
+ .navbar-toggle{display:block!important;background: linear-gradient(255.7deg, #DBE1FF 8.56%, #ADACFF 93.43%);
+}

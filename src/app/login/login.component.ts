@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
           this.eduService.sendMail(x.email).subscribe();
           this.eduService.setVerificationEmail(x.email);
           console.log("insert");
-          this.router.navigate(['/verify'], { queryParams: { action: 'socialLogin' } });
+          this.router.navigate(['/verify'], { queryParams: { action: 'register' } });
      		},
          	error=>{console.log("error")});
     	}}); 

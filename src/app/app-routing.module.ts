@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { SignupOnboardComponent } from './signup-onboard/signup-onboard.component';
 import { VerificationComponent } from './verification/verification.component';
+import { StudentUpdateComponent } from './student-update/student-update.component';
 
 const routes: Routes = [
   {path:'signup-onboard', component: SignupOnboardComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
   {path:'verify', component: VerificationComponent},
+  {path:'update', component:StudentUpdateComponent},
   {path:'', component: HomeComponent}
 ];
 

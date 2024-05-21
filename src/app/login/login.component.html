@@ -69,13 +69,16 @@
                           </div>
                          <div class="col-xl-12 col-md-12">
                             <label for="exampleFormControlInput1" class="form-label">Password</label>
-                             <input type = "secret" formControlName="password" class="form-control"/>
+                             <input type ="password" formControlName="password" class="form-control"/>
                           </div><br><br>
-                         <div class="col-xl-12 text-center">
+                         <div class="col-xl-12 btnn">
                             <button type="submit" class="log get_but" (click)="onSubmit()">Login <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                         </div>
+                         
                          <p><span class="or">-OR-</span><br>
                          <button type="button" class="login-with-google-btn log get_but" (click)="login()">Sign in with Google</button></p>
+                        
+                         <span style="text-align: center;"><a href="/register">Create an account?</a></span>
+                     </div>
                       </div> 
                    </form>
                 </div>

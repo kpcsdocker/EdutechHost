@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { SignupOnboardComponent } from './signup-onboard/signup-onboard.component';
 import { VerificationComponent } from './verification/verification.component';
+import { StudentUpdateComponent } from './student-update/student-update.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { VerificationComponent } from './verification/verification.component';
     HomeComponent,
     StudentDashboardComponent,
     SignupOnboardComponent,
-    VerificationComponent
+    VerificationComponent,
+    StudentUpdateComponent
   ],
   imports: [
     BrowserModule,
