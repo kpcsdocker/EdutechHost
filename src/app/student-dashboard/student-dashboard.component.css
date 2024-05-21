@@ -19,5 +19,74 @@
 .text-right .navbar-brand{width: auto;
     /* margin: 0 auto; */
     float: right;}
- .navbar-toggle{display:block!important;background: linear-gradient(255.7deg, #DBE1FF 8.56%, #ADACFF 93.43%);
+ .navbar-toggle{display:block!important;background: linear-gradient(255.7deg, #DBE1FF 8.56%, #ADACFF 93.43%);}
+ .navbar-collapse.collapse{display: none!important;text-align: center!important;}
+ .navbar-default .navbar-collapse{
+border-color: none;
+background: #000000;text-align:center!important;
 }
+.navbar-default .navbar-toggle .icon-bar {background-color: #868686;border-radius: 0;}
+.navbar-toggle{display:block!important;}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+background-color: rgba(221, 221, 221, 0);
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+margin-top: 45px;
+    position: absolute;
+    width: 100%;
+}
+.navbar-nav {
+        border-top: none;
+        float: none!important;
+        width: 100%;
+        margin-top: 0px!important;
+    padding: 10px;
+    }
+header .navbar-nav > li > a{border: 0 !important;
+    border-radius: 0px !important;}
+.navbar-nav>li{float:none!important;}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover {
+background: none;
+font-weight: 700;
+color: #FFFFFF;
+}
+    header .navbar-nav > li {
+padding-bottom: 2px;
+padding-top: 3px;
+margin-left:0!important;
+}
+    header .nav li .dropdown-menu  {
+        margin-top: 0;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 0;
+      left: 40px;
+      z-index: 1000;
+      display: none;
+      float: left;
+      min-width: 160px;
+      padding: 5px 0;
+      margin: 2px 0 0;
+      font-size: 13px;
+      list-style: none;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #f5f5f5;
+      border: 1px solid rgba(0, 0, 0, .15);
+      border-radius: 0;
+      -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+              box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    }
+    
+
+    
+    li.active  {
+        border: none;
+        overflow: hidden;
+        background:#4400B3;
+}
+
+
+
