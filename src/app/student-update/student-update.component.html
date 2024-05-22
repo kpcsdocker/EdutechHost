@@ -1,4 +1,5 @@
-<form [formGroup]="editForm" (ngSubmit)="editStudentFormSubmit()">
+
+<!-- <form [formGroup]="editForm" (ngSubmit)="editStudentFormSubmit()">
     <input type="text" formControlName="first_name" placeholder="First Name">
     <input type="email" formControlName="email" placeholder="Email">
     <input type="text" formControlName="grade" placeholder="Grade">
@@ -7,5 +8,112 @@
     <input type="text" formControlName="phone_number" placeholder="Phone Number">
     <input type="text" formControlName="address_1" placeholder="Address">
     <button type="submit">Submit</button>
-  </form>
+  </form> -->
   
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!-- css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<!--font-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+ 
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div id="wrapper" class="home-page">
+    <!-- start header -->
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header col-6 col-md-6 col-sm-6">
+                    <a class="navbar-brand logo megrim-regular" href="index.html">A</a>
+                </div>
+                <!-- <div class="text-center col-4 col-md-4 col-sm-4">
+                <p class="welcome_note"><img [src]="profile" height="25"> Welcome {{name}}!</p>
+             </div> -->
+                <div class="text-right col-6 col-md-6 col-sm-6">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="home.html">Home</a></li> 
+                                    <li><a href="about.html">About</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                </div>
+                </div>
+            </div>
+    </header>
+    <!-- end header -->
+     <section id="call-to-action-2" class="onboard">
+        <div class="container">
+            <div class="row">
+               <div class="col-md-3 col-sm-12"></div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="border-box">
+                        <p><span><img [src]="profile" height="25"> Welcome {{name}}!</span></p>
+<form [formGroup]="editForm" (ngSubmit)="editStudentFormSubmit()">
+    <div class="row">
+        <div class="col-xl-6 col-md-6">
+            <label for="first_name" class="form-label">Full Name</label>
+            <input type="text" formControlName="first_name" class="form-control">
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <label for="email" class="form-label">e-mail Address</label>
+            <input type="email" formControlName="email" class="form-control">
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <label for="exampleFormControlInput1" class="form-label">Grade</label><br>
+            <input type="text" formControlName="grade" class="form-control">
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <label for="exampleFormControlInput1" class="form-label">School</label><br>
+            <input type="text" formControlName="school" class="form-control">
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <label for="exampleFormControlInput1" class="form-label">Date of birth</label><br>
+            <input type="date" formControlName="date_of_birth" class="form-control">
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <label for="exampleFormControlInput1" class="form-label">Phone Number</label><br>
+            <input type="text" formControlName="phone_number" class="form-control">
+        </div>
+        <div class="col-xl-6 col-md-6">
+            <label for="exampleFormControlInput1" class="form-label">Address</label><br>
+            <input type="text" formControlName="address_1" class="form-control">
+        </div><br><br>
+        <div class="col-xl-12 btnn">
+    <button type="submit" class="log get_but">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+</div>
+
+
+
+ 
+            
+            <div class="col-md-3 col-sm-12"></div>
+
