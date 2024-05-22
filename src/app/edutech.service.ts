@@ -74,6 +74,14 @@ public getSocialLogin(){
   return this.httpclient.get(this.auth, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
 }
 
+public getSocialLoginById(id:any){
+  return this.httpclient.get(this.auth+"/students/"+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+}
+
+public updateSocialLogin(id:any,student:any){
+  return this.httpclient.put(this.auth+"/students/"+id,student,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+}
+
 public postSocialLogin(student:any){
   return this.httpclient.post(this.auth, student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
   .pipe(
