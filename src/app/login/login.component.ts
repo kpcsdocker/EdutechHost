@@ -74,13 +74,9 @@ export class LoginComponent implements OnInit {
     this.eduService.getAuthUser().subscribe((x:any) => 
     	{
     	    this.eduService.getStudents().subscribe(data =>{this.students=data; 
-  		    console.log(x);
   		    for(var i=0; i<this.students.length; i++){
-  			    console.log(this.students[i].email);
             if(x.email == this.students[i].email){
-              console.log("exist");
-          		this.eduService.sendMail(x.email).subscribe();
-              this.eduService.setVerificationEmail(x.email);
+              this.eduService.setEmail(x.email);
               this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'socialLogin' } });
           		this.alreadyUser = true; 
             }
@@ -109,7 +105,6 @@ export class LoginComponent implements OnInit {
         {
           this.eduService.sendMail(x.email).subscribe();
           this.eduService.setVerificationEmail(x.email);
-          console.log("insert");
           this.router.navigate(['/verify'], { queryParams: { action: 'register' } });
      		},
          	error=>{console.log("error")});

@@ -1,10 +1,11 @@
-<form (ngSubmit)="editStudentFormSubmit(studentById.user_id)">
-    <input type="text" [(ngModel)]="studentById.first_name" name="first_name" placeholder="First Name">
-    <input type="email" [(ngModel)]="studentById.email" name="email" placeholder="Email">
-    <input type="text" [(ngModel)]="studentById.grade" name="grade" placeholder="Grade">
-    <input type="text" [(ngModel)]="studentById.school" name="school" placeholder="School">
-    <input type="date" [(ngModel)]="studentById.date_of_birth" name="date_of_birth" placeholder="Date_of_birth">
-    <input type="text" [(ngModel)]="studentById.phone_number" name="phone_number" placeholder="Phone Number">
-    <input type="text" [(ngModel)]="studentById.address_1" name="address_1" placeholder="Address">
+<form [formGroup]="editForm" (ngSubmit)="editStudentFormSubmit()">
+    <input type="text" formControlName="first_name" placeholder="First Name">
+    <input type="email" formControlName="email" placeholder="Email">
+    <input type="text" formControlName="grade" placeholder="Grade">
+    <input type="text" formControlName="school" placeholder="School">
+    <input type="date" formControlName="date_of_birth" placeholder="Date of Birth">
+    <input type="text" formControlName="phone_number" placeholder="Phone Number">
+    <input type="text" formControlName="address_1" placeholder="Address">
     <button type="submit">Submit</button>
-</form>
+  </form>
+  
