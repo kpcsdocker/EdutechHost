@@ -853,7 +853,7 @@ form#commentform textarea {
   text-align: center;
   margin-top:10px;
 }
-#call-to-action-2 p span {color:#4C00C8;font-weight:bold;font-family: "League Spartan", sans-serif;}
+#call-to-action-2 p span {color:#4C00C8;font-weight:bold;font-family: "League Spartan", sans-serif;font-size:20px;}
 #call-to-action-2 .btnn{text-align: center;margin-top:40px;}
 .log,.reg{background: #fff;
     border: 1px solid #C1C1C1;

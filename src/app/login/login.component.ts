@@ -74,8 +74,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'treditionalLogin' } });
       }
       else{
-        this.errorMessage="In correct Username or Password";
         this.autoCloseSuccessMessage(5000);
+        this.errorMessage="Sorry We could'nt find an account with the Username/Password";
       }
   }}
 
