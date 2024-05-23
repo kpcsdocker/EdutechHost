@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       }
       if (params['action'] === 'success') {
         this.successMessage="Registered Successful, Now you can login";
+        this.autoCloseSuccessMessage(5000);
       }
     });
   }
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit {
       }
       else{
         this.errorMessage="In correct Username or Password";
+        this.autoCloseSuccessMessage(5000);
       }
   }}
 
@@ -125,5 +127,12 @@ export class LoginComponent implements OnInit {
   isEmailInvalid() {
     const emailControl = this.loginForm.get('email');
     return emailControl?.hasError('pattern') && (emailControl.touched || emailControl.dirty);
+  }
+
+  autoCloseSuccessMessage(duration: number) {
+    setTimeout(() => {
+      this.successMessage = '';
+      this.errorMessage = '';
+    }, duration);
   }
 }
