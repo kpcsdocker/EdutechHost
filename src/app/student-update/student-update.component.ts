@@ -39,6 +39,8 @@ export class StudentUpdateComponent implements OnInit {
       address_2: [''],
       city: [''],
       state: [''],
+      school: [''],
+      grade: [''],
       country: [''],
       created_date_time: [''],
       updated_date_time: [''],

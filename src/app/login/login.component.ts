@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   registrationForm!: FormGroup;
   alreadyUser: boolean = false;
+  successMessage!: string;
+  errorMessage!: string;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   constructor(public fb:FormBuilder, private eduService: EdutechService, private router:Router,private route: ActivatedRoute) { }
 
@@ -25,6 +27,9 @@ export class LoginComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params['login'] === 'success') {
         this.signInWithGoogle();
+      }
+      if (params['action'] === 'success') {
+        this.successMessage="Registered Successful, Now you can login";
       }
     });
   }
@@ -48,6 +53,8 @@ export class LoginComponent implements OnInit {
       phone_number: ['', Validators.required],
       address_1: [''],
       address_2: [''],
+      school: [''],
+      grade: [''],
       city: [''],
       state: [''],
       country: [''],
@@ -86,6 +93,8 @@ export class LoginComponent implements OnInit {
               user_id: this.user_id,
               first_name: x.name,
               last_name: '',
+              school: '',
+              grade: '',
               middle_initial: '',
               email: x.email,
               date_of_birth: '',

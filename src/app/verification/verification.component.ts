@@ -36,7 +36,7 @@ export class VerificationComponent implements OnInit {
           this.errorMessage = ''; 
         setTimeout(() => {
           if(this.action=="traditionalLogin"){
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'], { queryParams: { action: 'success' } });
           }
           if(this.action=="socialLogin"){
             this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'socialLogin' } });

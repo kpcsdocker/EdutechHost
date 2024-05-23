@@ -85,4 +85,9 @@
             </div>
             <div class="col-md-3 col-sm-12"></div>
         </div>
-    
+        <div *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>   
