@@ -55,3 +55,12 @@ label{color: #380093 !important;
     margin: 0 auto;
     font-size: 18px;
 }
+.invalid-feedback {
+    color: red;
+    font-size: 0.875em;
+  }
+  
+  input.ng-invalid.ng-touched {
+    border-color: red;
+  }
+  

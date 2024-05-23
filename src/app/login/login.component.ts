@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.loginForm = this.fb.group({
-      email: ['',Validators.required],
-      password:['',Validators.required]
+      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+      password: ['', Validators.required]
     });
     this.registrationForm = this.fb.group({
       user_id: [''], // Include if you want to allow user to enter their ID
@@ -120,5 +120,10 @@ export class LoginComponent implements OnInit {
          	error=>{console.log("error")});
     	}}); 
     	});
+  }
+
+  isEmailInvalid() {
+    const emailControl = this.loginForm.get('email');
+    return emailControl?.hasError('pattern') && (emailControl.touched || emailControl.dirty);
   }
 }
