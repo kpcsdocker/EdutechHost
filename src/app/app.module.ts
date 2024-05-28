@@ -11,6 +11,7 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { SignupOnboardComponent } from './signup-onboard/signup-onboard.component';
 import { VerificationComponent } from './verification/verification.component';
 import { StudentUpdateComponent } from './student-update/student-update.component';
+import { AuthGuard, RegistrationGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { StudentUpdateComponent } from './student-update/student-update.componen
     HttpClientModule,
     FormsModule,ReactiveFormsModule
   ],
+  providers: [AuthGuard, RegistrationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

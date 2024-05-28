@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard, RegistrationGuard, SocialLoginGuard} from './auth.guard';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -14,8 +14,8 @@ const routes: Routes = [
   {path:'stu-dashboard', component: StudentDashboardComponent, canActivate: [AuthGuard] },
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
-  {path:'verify', component: VerificationComponent},
-  {path:'update', component: StudentUpdateComponent},
+  {path:'verify', component: VerificationComponent, canActivate: [RegistrationGuard] },
+  {path:'update', component: StudentUpdateComponent, canActivate: [SocialLoginGuard] },
   {path:'', component: HomeComponent}
 ];
 

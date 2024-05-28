@@ -39,9 +39,11 @@ export class VerificationComponent implements OnInit {
             this.router.navigate(['/login'], { queryParams: { action: 'success' } });
           }
           if(this.action=="socialLogin"){
+            this.eduService.checkSocialLogin("yes");
             this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'socialLogin' } });
           }
           if(this.action=="register"){
+            this.eduService.checkSocialLogin("yes");
             this.router.navigate(['/update']);
           }
         }, 3000);

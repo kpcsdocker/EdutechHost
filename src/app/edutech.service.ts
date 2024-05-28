@@ -15,6 +15,8 @@ export class EdutechService {
   private auth: string = "auth"; 
   private oauth2 = '/oauth2/authorization/google';
   private isLoggedInValue: string ="";
+  private isRegistered: string ="";
+  private isSocialLogedin: string = "";
   password!: string;
   email!: string;
   code!: string;
@@ -120,8 +122,20 @@ export class EdutechService {
     return this.isLoggedInValue;
   }
 
-  clearToken(): void {
-    localStorage.removeItem('authToken');
+  checkIsRegistered(isRegistered: string){
+    this.isRegistered = isRegistered;
+  }
+
+  isRegistrationComplete(): string | null {
+    return this.isRegistered;
+  }
+
+  checkSocialLogin(isSocialLogedin: string){
+    this.isSocialLogedin = isSocialLogedin;
+  }
+
+  isSocialLogin(): string | null{
+    return this.isSocialLogedin;
   }
 }
   

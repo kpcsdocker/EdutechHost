@@ -116,11 +116,11 @@ export class LoginComponent implements OnInit {
               password: '',
               social_picture: x.picture              
         });
-			console.log(this.registrationForm.value);
 			this.eduService.postSocialLogin(this.registrationForm.value).subscribe(res=>
-        {
+        { 
           this.eduService.sendMail(x.email).subscribe();
           this.eduService.setVerificationEmail(x.email);
+          this.eduService.checkSocialLogin("yes");
           this.router.navigate(['/verify'], { queryParams: { action: 'register' } });
      		},
          	error=>{console.log("error")});

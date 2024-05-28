@@ -11,7 +11,39 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.authService.getIsLoggedInStatus()=="yes") { 
-      console.log(this.authService.getIsLoggedInStatus());
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RegistrationGuard implements CanActivate {
+  constructor(private eduService: EdutechService, private router: Router) {}
+
+  canActivate(): boolean {
+    console.log(this.eduService.isSocialLogin());
+    if (this.eduService.isRegistrationComplete()=="yes" || this.eduService.isSocialLogin()=="yes") {
+      return true;
+    } else {
+      this.router.navigate(['']);
+      return false;
+    }
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SocialLoginGuard implements CanActivate {
+  constructor(private eduService: EdutechService, private router: Router) {}
+
+  canActivate(): boolean {
+    if(this.eduService.isSocialLogin()=="yes") {
       return true;
     } else {
       this.router.navigate(['/login']);

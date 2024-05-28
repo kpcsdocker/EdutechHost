@@ -77,6 +77,7 @@ export class RegistrationComponent implements OnInit {
         this.eduService.postgresStudentSubmit(formData).subscribe(res => {
         this.eduService.sendMail(this.registrationForm.get('email')?.value).subscribe();
         this.eduService.setVerificationEmail(this.registrationForm.get('email')?.value);
+        this.eduService.checkIsRegistered("yes");
         this.router.navigate(['/verify'], { queryParams: { action: 'traditionalLogin' } });
       });
     } else {

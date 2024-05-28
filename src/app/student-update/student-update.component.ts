@@ -76,7 +76,9 @@ export class StudentUpdateComponent implements OnInit {
         this.editForm.value.first_name = this.name;
         this.editForm.value.email= this.email;
         this.eduService.updateSocialLogin(this.editForm.value.user_id, this.editForm.value).subscribe(res => {
-        this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'socialLogin' } });
-        console.log("updated");});
+          const isLoggedIn = "yes";
+          this.eduService.checkIsLoggedIn(isLoggedIn);
+          this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'socialLogin' } });
+          console.log("updated");});
   }
 }
