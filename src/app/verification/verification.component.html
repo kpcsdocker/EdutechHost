@@ -66,7 +66,7 @@
 <label for="code"></label>
   <input type="text" id="code" [(ngModel)]="code" class="form-control" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="\d{6}">
   <button (click)="verifyCode()" class="log get_but">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button> 
-
+  <a (click)="ResendMail()">Resend Code</a>
   <div *ngIf="successMessage" class="alert alert-success">
     {{ successMessage }}
   </div>

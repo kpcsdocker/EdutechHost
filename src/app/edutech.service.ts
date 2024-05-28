@@ -14,6 +14,7 @@ export class EdutechService {
   private postgres: string = "postgres";
   private auth: string = "auth"; 
   private oauth2 = '/oauth2/authorization/google';
+  private isLoggedInValue: string ="";
   password!: string;
   email!: string;
   code!: string;
@@ -50,65 +51,78 @@ export class EdutechService {
     return Promise.reject(error.message || error);
   }
 
- public setPassword(password:any){
-  this.password=password;
-}
+  public setPassword(password:any){
+   this.password=password;
+  }
 
-public getPassword(){
-  return this.password;
-}
+  public getPassword(){
+    return this.password;
+  }
 
-public setEmail(email:any){
-  this.email=email;
-}
+  public setEmail(email:any){
+    this.email=email;
+  }
+  
+  public getEmail(){
+    return this.email;
+  }
+  
+  public sendMail(email:any){
+    return this.httpclient.get(this.mail+'/sendVerificationCode/'+email, {responseType: 'text'});
+  }
+  
+  public getSocialLogin(){
+    return this.httpclient.get(this.auth, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  }
+  
+  public getSocialLoginById(id:any){
+    return this.httpclient.get(this.auth+"/students/"+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  }
+  
+  public updateSocialLogin(id:any,student:any){
+    return this.httpclient.put(this.auth+"/students/"+id,student,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  }
+  
+  public postSocialLogin(student:any){
+    return this.httpclient.post(this.auth, student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
+    .pipe(
+      catchError((err:any)=>this.handleErrorPromise(err))
+    );
+  }
+  
+  verifyCode(email: string, code: string) {
+    console.log(email,code);
+    return this.httpclient.get(this.mail+'/verifyCode/'+email+'/'+code, { responseType: 'text' });
+  }
+  
+  public setVerificationEmail(email:any){
+    console.log(email);
+    this.email=email;
+  }
+  
+  public getVerificationEmail(){
+    return this.email;
+  }
+  
+  public setVerificationCode(code:any){
+    this.code=code;
+  }
+  
+  public getVerificationCode(){
+    return this.email;
+  }
+  
+  checkIsLoggedIn(isLoggedIn: string): void {
+     this.isLoggedInValue = isLoggedIn;
+  }
 
-public getEmail(){
-  return this.email;
-}
+  getIsLoggedInStatus(): string | null {
+    return this.isLoggedInValue;
+  }
 
-public sendMail(email:any){
-  return this.httpclient.get(this.mail+'/sendVerificationCode/'+email, {responseType: 'text'});
+  clearToken(): void {
+    localStorage.removeItem('authToken');
+  }
 }
-
-public getSocialLogin(){
-  return this.httpclient.get(this.auth, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
-}
-
-public getSocialLoginById(id:any){
-  return this.httpclient.get(this.auth+"/students/"+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
-}
-
-public updateSocialLogin(id:any,student:any){
-  return this.httpclient.put(this.auth+"/students/"+id,student,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
-}
-
-public postSocialLogin(student:any){
-  return this.httpclient.post(this.auth, student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
-  .pipe(
-    catchError((err:any)=>this.handleErrorPromise(err))
-  );
-}
-
-verifyCode(email: string, code: string) {
-  console.log(email,code);
-  return this.httpclient.get(this.mail+'/verifyCode/'+email+'/'+code, { responseType: 'text' });
-}
-
-public setVerificationEmail(email:any){
-  console.log(email);
-  this.email=email;
-}
-
-public getVerificationEmail(){
-  return this.email;
-}
-
-public setVerificationCode(code:any){
-  this.code=code;
-}
-
-public getVerificationCode(){
-  return this.email;
-}
-
-}
+  
+ 

@@ -71,6 +71,8 @@ export class LoginComponent implements OnInit {
       if(this.loginForm.get('email')?.value == this.students[i].email && this.loginForm.get('password')?.value == this.students[i].password){
           this.eduService.setPassword(this.loginForm.get('password')?.value);
           this.eduService.setEmail(this.loginForm.get('email')?.value);
+          const isLoggedIn = "yes";
+          this.eduService.checkIsLoggedIn(isLoggedIn);
           this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'treditionalLogin' } });
       }
       else{
@@ -87,6 +89,8 @@ export class LoginComponent implements OnInit {
   		    for(var i=0; i<this.students.length; i++){
             if(x.email == this.students[i].email){
               this.eduService.setEmail(x.email);
+              const isLoggedIn = "yes";
+              this.eduService.checkIsLoggedIn(isLoggedIn);
               this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'socialLogin' } });
           		this.alreadyUser = true; 
             }

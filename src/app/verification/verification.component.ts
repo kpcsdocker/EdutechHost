@@ -53,4 +53,8 @@ export class VerificationComponent implements OnInit {
       }
     });
   }
+
+  ResendMail(){
+    this.eduService.sendMail(this.eduService.getVerificationEmail()).subscribe();
+  }
 }
