@@ -40,7 +40,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand logo megrim-regular" href="index.html"><</a>
+                    <a class="navbar-brand logo megrim-regular" href="index.html"></a>
                 </div>
                 <div class="text-center col-6 col-md-6 col-sm-12">
                 <a class="navbar-brand logo megrim-regular" href="index.html">A</a>
@@ -62,37 +62,40 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="border-box">
                         <p><span>Welcome Student!</span></p>
- <form (ngSubmit)="onSubmit()">
+ <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class="row">
         <div class="col-xl-6 col-md-6">
             <label for="first_name" class="form-label">Your Full Name</label>
-            <input type="text" [(ngModel)]="first_name" class="form-control" name="first_name">
+            <input type="text" formControlName="first_name" class="form-control" name="first_name">
         </div>
     <!-- <input type="text" [(ngModel)]="last_name" name="last_name" placeholder="Last Name">
     <input type="text" [(ngModel)]="middle_initial" name="middle_initial" placeholder="Middle Initial"> -->
     <div class="col-xl-6 col-md-6">
             <label for="email" class="form-label">Your e-mail Address</label><br>
-    <input type="email" [(ngModel)]="email" class="form-control" name="email">
+    <input type="email" formControlName="email" class="form-control" name="email">
+    <div class="invalid-feedback" *ngIf="isEmailInvalid()">
+        Should be in correct format.
+      </div>
     </div>
     <div class="col-xl-6 col-md-6">
             <label for="grade" class="form-label">Grade</label><br>
-    <input type="text" [(ngModel)]="grade" name="grade" class="form-control">
+    <input type="text" formControlName="grade" name="grade" class="form-control">
     </div>
     <div class="col-xl-6 col-md-6">
             <label for="organization" class="form-label">Select Your organization</label>
-    <input type="text" [(ngModel)]="school" name="school" class="form-control">
+    <input type="text" formControlName="school" name="school" class="form-control">
     </div>
     <div class="col-xl-6 col-md-6">
             <label for="dob" class="form-label">Date  of Birth</label><br>
-    <input type="date" [(ngModel)]="date_of_birth" name="date_of_birth" class="form-control">
+    <input type="date" formControlName="date_of_birth" name="date_of_birth" class="form-control">
     </div>
     <div class="col-xl-6 col-md-6">
             <label for="phone" class="form-label">Phone Number</label>
-    <input type="text" [(ngModel)]="phone_number" name="phone_number" class="form-control">
+    <input type="text" formControlName="phone_number" name="phone_number" class="form-control">
     </div>
     <div class="col-xl-6 col-md-6">
             <label for="address" class="form-label">Address</label><br>
-    <input type="text" [(ngModel)]="address_1" name="address_1" class="form-control">
+    <input type="text" formControlName="address_1" name="address_1" class="form-control">
     </div>
     <!-- <input type="text" [(ngModel)]="address_2" name="address_2" placeholder="Address 2">
     <input type="text" [(ngModel)]="city" name="city" placeholder="City">
@@ -102,18 +105,18 @@
     <input type="date" [(ngModel)]="updated_date_time" name="updated_date_time" placeholder="Updated_date_time"> -->
      <div class="col-xl-6 col-md-6">
             <label for="password" class="form-label">Password</label>
-    <input type="password" [(ngModel)]="password" name="password" class="form-control">
+    <input type="password" formControlName="password" name="password" class="form-control">
     </div>
     <div class="col-xl-12 col-md-12">
             <label for="profile" class="form-label">Choose Profile Picture</label>
             <div class='file-input'>
-    <input type="file" (change)="onFileSelected($event)" name="imageFile">
+    <input type="file" (change)="onFileSelected($event)" formControlName="profile" name="imageFile">
     <!-- <span class='button'>Choose</span>
              <span class='label' data-js-label>No file selected</span> -->
            </div>
        </div><br>
        <div class="col-xl-12 btnn">
-    <button type="submit" class="log get_but" (click)="onSubmit()">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button><br>
+    <button type="submit" class="log get_but" [disabled]="!registrationForm.valid" (click)="onSubmit()">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button><br>
 
 <span style="text-align: center;">Already have an account? <a href="/login">Login Here</a></span>
 </div>

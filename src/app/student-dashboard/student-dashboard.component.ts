@@ -25,32 +25,25 @@ export class StudentDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.action = params['action'];
-      console.log(this.action);
     });
     if(this.action=="treditionalLogin"){
       this.eduService.getStudents().subscribe(data => {this.students = data;
-        this.password = this.eduService.getPassword();
         this.email = this.eduService.getEmail();
         for(var i=0; i<this.students.length; i++){
       		if(this.students[i].email == this.email){
             console.log(this.students[i]);
       			this.name=this.students[i].first_name;
-            this.city=this.students[i].city;
-            this.state=this.students[i].state;
             this.profile=this.students[i].profile;
           }}
       });
     }
     if(this.action=="socialLogin"){
-      console.log(this.action);
       this.eduService.getSocialLogin().subscribe(data => {this.students = data;
-        this.password = this.eduService.getPassword();
+        console.log(this.eduService.getEmail());
         this.email = this.eduService.getEmail();
         for(var i=0; i<this.students.length; i++){
           if(this.students[i].email == this.email){
             this.name=this.students[i].first_name;
-            this.city=this.students[i].city;
-            this.state=this.students[i].state;
             this.social_picture=this.students[i].social_picture;
           }}
       });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EdutechService } from '../edutech.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-student-update',
@@ -19,7 +20,8 @@ export class StudentUpdateComponent implements OnInit {
   profile: any;
   editForm!: FormGroup;
 
-  constructor(private eduService: EdutechService, public fb: FormBuilder) { }
+  constructor(private eduService: EdutechService, public fb: FormBuilder, private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -29,10 +31,10 @@ export class StudentUpdateComponent implements OnInit {
   buildForm() {
     this.editForm = this.fb.group({
       user_id: [''],
-      first_name: ['', [Validators.required]],
+      first_name: [{value: '', disabled: true}, [Validators.required]],
       last_name: ['', [Validators.required]],
       middle_initial: [''],
-      email: ['', [Validators.required, Validators.email]],
+      email: [{value: '', disabled: true}, [Validators.required, Validators.email]],
       date_of_birth: ['', Validators.required],
       phone_number: ['', Validators.required],
       address_1: [''],
@@ -58,10 +60,9 @@ export class StudentUpdateComponent implements OnInit {
 
       const student = this.students.find((student: any) => student.email === this.email);
       if (student) {
-        console.log(student.user_id);
+        this.name = student.first_name;
         this.eduService.getSocialLoginById(student.user_id).subscribe(data => {
           this.studentById = data;
-          console.log(this.studentById);
           if (this.studentById) {
             this.editForm.patchValue(this.studentById);
           }
@@ -71,8 +72,11 @@ export class StudentUpdateComponent implements OnInit {
   }
 
   editStudentFormSubmit(): void {
-      console.log(this.editForm.value);
-      this.eduService.updateSocialLogin(this.editForm.value.user_id, this.editForm.value).subscribe(res => {
+        this.eduService.setEmail(this.email);
+        this.editForm.value.first_name = this.name;
+        this.editForm.value.email= this.email;
+        this.eduService.updateSocialLogin(this.editForm.value.user_id, this.editForm.value).subscribe(res => {
+        this.router.navigate(['/stu-dashboard'], { queryParams: { action: 'socialLogin' } });
         console.log("updated");});
   }
 }

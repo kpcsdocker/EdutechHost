@@ -66,3 +66,12 @@ input::file-selector-button {
 input[type=date]{line-height: 20px!important;}
 label{color: #380093 !important;
     font-size: 13px;}
+
+.invalid-feedback {
+    color: red;
+    font-size: 0.875em;
+  }
+  
+  input.ng-invalid.ng-touched {
+    border-color: red;
+  }
