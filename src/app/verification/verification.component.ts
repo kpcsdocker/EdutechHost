@@ -57,6 +57,13 @@ export class VerificationComponent implements OnInit {
   }
 
   ResendMail(){
-    this.eduService.sendMail(this.eduService.getVerificationEmail()).subscribe();
+    this.eduService.sendMail(this.eduService.getVerificationEmail()).subscribe(data=>
+      {this.successMessage = 'Please check your mail';
+      setTimeout(() => {
+        this.successMessage = '';
+        this.errorMessage = '';
+      }, 5000);
+      }
+    );
   }
 }
