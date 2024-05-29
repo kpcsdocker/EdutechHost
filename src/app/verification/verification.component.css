@@ -25,6 +25,7 @@
     line-height: 15px;
     margin-top:15px;
     text-transform: capitalize;
+    cursor:pointer;
 }
 .onboard .fa{padding-top: 1px!important;float: none;}
   #call-to-action-2 p{font-size: 17px;}
