@@ -19,13 +19,14 @@
   }*/
   .navbar-brand{line-height:5px!important;}
   .get_but {
-    width: 315px;
+    width: 200px;
     margin-bottom: 14px;
-    height: 33px;
+   /* height: 33px;*/
     line-height: 15px;
     margin-top:15px;
+    text-transform: capitalize;
 }
-.onboard .fa{padding-top: 1px;}
+.onboard .fa{padding-top: 1px!important;float: none;}
   #call-to-action-2 p{font-size: 17px;}
 
   .border-box{text-align:center;}

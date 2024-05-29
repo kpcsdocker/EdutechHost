@@ -32,7 +32,7 @@ export class VerificationComponent implements OnInit {
     this.eduService.verifyCode(this.eduService.getVerificationEmail(), this.code).subscribe({
       next: response => {
         if(response!='Verification Failed'){
-          this.successMessage = 'Verification successful';
+          this.successMessage = 'Successfully Verified Your Account';
           this.errorMessage = ''; 
         setTimeout(() => {
           if(this.action=="traditionalLogin"){
@@ -49,7 +49,7 @@ export class VerificationComponent implements OnInit {
         }, 3000);
         }
         else{
-          this.errorMessage = 'Incorrect code';
+          this.errorMessage = 'Incorrect  Verification Code';
           this.successMessage = ''; 
         }
       }
