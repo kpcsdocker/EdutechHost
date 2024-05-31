@@ -13,6 +13,7 @@ export class EdutechService {
   private mongo: string = "mongo";
   private postgres: string = "postgres";
   private auth: string = "auth"; 
+  private authmongo: string = "auth/mongo"; 
   private oauth2 = '/oauth2/authorization/google';
   private isLoggedInValue: string ="";
   private isRegistered: string ="";
@@ -90,6 +91,17 @@ export class EdutechService {
     .pipe(
       catchError((err:any)=>this.handleErrorPromise(err))
     );
+  }
+
+  public postMongoSocialLogin(student:any){
+    return this.httpclient.post(this.authmongo+"/students", student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
+    .pipe(
+      catchError((err:any)=>this.handleErrorPromise(err))
+    );
+  }
+
+  public updateMongoSocialLogin(id:any,student:any){
+    return this.httpclient.put(this.authmongo+"/students/"+id,student,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
   
   verifyCode(email: string, code: string) {

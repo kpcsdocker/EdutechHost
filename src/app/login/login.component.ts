@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
       created_date_time: [''], // You can set this value on the server side
       updated_date_time: [''], // You can set this value on the server side
       password: ['', Validators.required],
+      profile: [''],
       social_picture: ['']
     });
   }
@@ -114,10 +115,12 @@ export class LoginComponent implements OnInit {
               created_date_time: '', 
               updated_date_time: '', 
               password: '',
+              profile: '',
               social_picture: x.picture              
         });
 			this.eduService.postSocialLogin(this.registrationForm.value).subscribe(res=>
         { 
+          this.eduService.postMongoSocialLogin(this.registrationForm.value).subscribe();
           this.eduService.sendMail(x.email).subscribe();
           this.eduService.setVerificationEmail(x.email);
           this.eduService.checkSocialLogin("yes");
