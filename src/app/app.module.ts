@@ -12,6 +12,7 @@ import { SignupOnboardComponent } from './signup-onboard/signup-onboard.componen
 import { VerificationComponent } from './verification/verification.component';
 import { StudentUpdateComponent } from './student-update/student-update.component';
 import { AuthGuard, RegistrationGuard } from './auth.guard';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthGuard, RegistrationGuard } from './auth.guard';
     StudentDashboardComponent,
     SignupOnboardComponent,
     VerificationComponent,
-    StudentUpdateComponent
+    StudentUpdateComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

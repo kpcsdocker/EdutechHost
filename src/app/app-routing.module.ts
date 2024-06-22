@@ -8,12 +8,14 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { SignupOnboardComponent } from './signup-onboard/signup-onboard.component';
 import { VerificationComponent } from './verification/verification.component';
 import { StudentUpdateComponent } from './student-update/student-update.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {path:'signup-onboard', component: SignupOnboardComponent},
   {path:'stu-dashboard', component: StudentDashboardComponent, canActivate: [AuthGuard] },
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
+  { path: 'about', component: AboutComponent },
   {path:'verify', component: VerificationComponent, canActivate: [RegistrationGuard] },
   {path:'update', component: StudentUpdateComponent, canActivate: [SocialLoginGuard] },
   {path:'', component: HomeComponent}
