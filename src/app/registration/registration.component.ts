@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit {
       school: ['', Validators.required],
       date_of_birth: [''],
       phone_number: ['', Validators.required],
-      address_1: ['', Validators.required],
+      address_1: [''],
       address_2: [''],
       city: [''],
       state: [''],
@@ -60,7 +60,12 @@ export class RegistrationComponent implements OnInit {
       formData.append('email', this.registrationForm.get('email')?.value);
       formData.append('grade', this.registrationForm.get('grade')?.value);
       formData.append('school', this.registrationForm.get('school')?.value);
-      formData.append('date_of_birth', new Date(this.registrationForm.get('date_of_birth')?.value).toISOString());
+      const dateOfBirth = this.registrationForm.get('date_of_birth')?.value;
+      if (dateOfBirth) {
+          formData.append('date_of_birth', dateOfBirth.toISOString());
+      } else {
+        formData.append('date_of_birth', ''); 
+      }
       formData.append('phone_number', this.registrationForm.get('phone_number')?.value);
       formData.append('address_1', this.registrationForm.get('address_1')?.value);
       formData.append('address_2', this.registrationForm.get('address_2')?.value);
@@ -73,15 +78,17 @@ export class RegistrationComponent implements OnInit {
       if (this.imageFile) {
         formData.append('profile', this.imageFile);
       }
-        this.eduService.mongoStudentSubmit(formData).subscribe(res => {});
-        this.eduService.postgresStudentSubmit(formData).subscribe(res => {
-        this.eduService.sendMail(this.registrationForm.get('email')?.value).subscribe();
-        this.eduService.setVerificationEmail(this.registrationForm.get('email')?.value);
-        this.eduService.checkIsRegistered("yes");
-        this.router.navigate(['/verify'], { queryParams: { action: 'traditionalLogin' } });
+      else {
+        formData.append('profile', new Blob([])); // Append an empty Blob if no file is selected
+      }
+      console.log("printing"+this.imageFile);
+      this.eduService.mongoStudentSubmit(formData).subscribe(res => {});
+      this.eduService.postgresStudentSubmit(formData).subscribe(res => {
+            this.eduService.sendMail(this.registrationForm.get('email')?.value).subscribe();
+            this.eduService.setVerificationEmail(this.registrationForm.get('email')?.value);
+            this.eduService.checkIsRegistered("yes");
+            this.router.navigate(['/verify'], { queryParams: { action: 'traditionalLogin' } });
       });
-    } else {
-      console.log('Form is invalid');
     }
   }
 
