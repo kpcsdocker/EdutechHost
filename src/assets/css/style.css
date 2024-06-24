@@ -1822,3 +1822,16 @@ height:100px;}
     font-size: 17px;
     font-family: 'League Spartan';
     font-weight: 500;}
+.required:after {
+  content:" *";
+  color: red;
+}
+
+/*Responsive*/
+  @media (min-width: 320px) and (max-width: 460px) {
+#call-to-action-2 h3 span.title1,#call-to-action-2 h3 span.title2{
+	
+  }
+}
+
+/*Responsive*/

@@ -65,7 +65,8 @@ input::file-selector-button {
 
 input[type=date]{line-height: 20px!important;}
 label{color: #380093 !important;
-    font-size: 13px;}
+    font-size: 13px;
+    margin-top:5px;margin-bottom: 3px;}
 
 .invalid-feedback {
     color: red;

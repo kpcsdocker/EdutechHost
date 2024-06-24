@@ -64,14 +64,14 @@
                     <form [formGroup]="loginForm" action="#">
                       <div class="">
                          <div class="col-xl-12 col-md-12">
-                            <label for="exampleFormControlInput1" class="form-label">Email</label>
+                            <label for="exampleFormControlInput1" class="form-label required">Email</label>
                              <input type = "text" formControlName="email" class="form-control"/>
                              <div class="invalid-feedback" *ngIf="isEmailInvalid()">
                                 Should be in correct format, e.g., john@gmail.com
                               </div>
                           </div>
                          <div class="col-xl-12 col-md-12">
-                            <label for="exampleFormControlInput1" class="form-label">Password</label>
+                            <label for="exampleFormControlInput1" class="form-label required">Password</label>
                              <input type ="password" formControlName="password" class="form-control"/>
                           </div><br><br>
                          <div class="col-xl-12 btnn">

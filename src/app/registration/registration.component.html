@@ -65,24 +65,24 @@
  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class="row">
         <div class="col-xl-6 col-md-6">
-            <label for="first_name" class="form-label">Your Full Name</label>
+            <label for="first_name" class="form-label required">Your Full Name</label>
             <input type="text" formControlName="first_name" class="form-control" name="first_name">
         </div>
     <!-- <input type="text" [(ngModel)]="last_name" name="last_name" placeholder="Last Name">
     <input type="text" [(ngModel)]="middle_initial" name="middle_initial" placeholder="Middle Initial"> -->
     <div class="col-xl-6 col-md-6">
-            <label for="email" class="form-label">Your e-mail Address</label><br>
+            <label for="email" class="form-label required">Your e-mail Address</label>
     <input type="email" formControlName="email" class="form-control" name="email">
     <div class="invalid-feedback" *ngIf="isEmailInvalid()">
         Should be in correct format.
       </div>
     </div>
     <div class="col-xl-6 col-md-6">
-            <label for="grade" class="form-label">Grade</label><br>
+            <label for="grade" class="form-label required">Grade</label>
     <input type="text" formControlName="grade" name="grade" class="form-control">
     </div>
     <div class="col-xl-6 col-md-6">
-            <label for="organization" class="form-label">Select Your organization</label>
+            <label for="organization" class="form-label required">Select Your organization</label>
     <input type="text" formControlName="school" name="school" class="form-control">
     </div>
     <div class="col-xl-6 col-md-6">
@@ -90,7 +90,7 @@
     <input type="date" formControlName="date_of_birth" name="date_of_birth" class="form-control">
     </div>
     <div class="col-xl-6 col-md-6">
-            <label for="phone" class="form-label">Phone Number</label>
+            <label for="phone" class="form-label required">Phone Number</label>
     <input type="text" formControlName="phone_number" name="phone_number" class="form-control">
     </div>
     <div class="col-xl-6 col-md-6">
@@ -104,11 +104,11 @@
     <input type="date" [(ngModel)]="created_date_time" name="created_date_time" placeholder="Created_date_time">
     <input type="date" [(ngModel)]="updated_date_time" name="updated_date_time" placeholder="Updated_date_time"> -->
      <div class="col-xl-6 col-md-6">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label required">Password</label>
     <input type="password" formControlName="password" name="password" class="form-control">
     </div>
     <div class="col-xl-12 col-md-12">
-            <label for="profile" class="form-label">Choose Profile Picture</label>
+            <label for="profile" class="form-label required">Choose Profile Picture</label>
             <div class='file-input'>
     <input type="file" (change)="onFileSelected($event)" formControlName="profile" name="imageFile">
     <!-- <span class='button'>Choose</span>
