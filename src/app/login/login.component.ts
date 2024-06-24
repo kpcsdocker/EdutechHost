@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   alreadyUser: boolean = false;
   successMessage!: string;
   errorMessage!: string;
+  isPasswordVisible: boolean = false;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   constructor(public fb:FormBuilder, private eduService: EdutechService, private router:Router,private route: ActivatedRoute) { }
 
@@ -141,5 +142,9 @@ export class LoginComponent implements OnInit {
       this.successMessage = '';
       this.errorMessage = '';
     }, duration);
+  }
+
+  togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 }
