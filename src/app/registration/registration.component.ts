@@ -17,6 +17,7 @@ export class RegistrationComponent implements OnInit {
   alreadyUser: boolean = false;
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   imageFile!: File;
+  alert!: string;
 
   constructor(
     private eduService: EdutechService,
@@ -41,7 +42,7 @@ export class RegistrationComponent implements OnInit {
       state: [''],
       country: [''],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      profile: [null]
+      profile: [null, Validators.required]
     });
   }
 
@@ -99,5 +100,9 @@ export class RegistrationComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.imageFile = event.target.files[0];
+  }
+
+  alertMessage(){
+      this.alert="please enter all mandatory fields";
   }
 }

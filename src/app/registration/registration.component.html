@@ -116,8 +116,11 @@
            </div>
        </div><br>
        <div class="col-xl-12 btnn">
-    <button type="submit" class="log get_but" [disabled]="!registrationForm.valid" (click)="onSubmit()">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button><br>
-
+    <button type="submit" class="log get_but" *ngIf="registrationForm.valid" (click)="onSubmit()">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button><br>
+    <button type="submit" class="log get_but" *ngIf="!registrationForm.valid" (click)="alertMessage()">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button><br>
+    <div *ngIf="alert&&!registrationForm.valid" class="alert-danger">
+        {{ alert }}
+    </div>
 <span style="text-align: center;">Already have an account? <a href="/login">Login Here</a></span>
 </div>
 </div>
