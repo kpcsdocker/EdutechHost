@@ -63,7 +63,7 @@ export class RegistrationComponent implements OnInit {
       formData.append('school', this.registrationForm.get('school')?.value);
       const dateOfBirth = this.registrationForm.get('date_of_birth')?.value;
       if (dateOfBirth) {
-          formData.append('date_of_birth', dateOfBirth.toISOString());
+        formData.append('date_of_birth', new Date(this.registrationForm.get('date_of_birth')?.value).toISOString());
       } else {
         formData.append('date_of_birth', ''); 
       }
