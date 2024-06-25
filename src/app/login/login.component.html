@@ -33,15 +33,15 @@
     <header>
         <div class="navbar navbar-default navbar-static-top">
             <div class="container">
-                <div class="navbar-header col-6 col-md-6 col-sm-12">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <div class="text-left mob_right col-6 col-md-6 col-sm-6">
+                    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
+                    </button> -->
                     <a class="navbar-brand logo megrim-regular" href="index.html"><</a>
                 </div>
-                <div class="text-center col-6 col-md-6 col-sm-12">
+                <div class="text-center col-6 col-md-6 col-sm-6">
                 <a class="navbar-brand logo megrim-regular" href="index.html">A</a>
                 </div>
                 <!-- <div class="navbar-collapse collapse ">
@@ -76,7 +76,7 @@
                                 <input [type]="isPasswordVisible ? 'text' : 'password'" formControlName="password" class="form-control"/>
                                 <i class="fa" [ngClass]="{'fa-eye': !isPasswordVisible, 'fa-eye-slash': isPasswordVisible}" (click)="togglePasswordVisibility()" aria-hidden="true"></i>
                             </div>
-                         </div><br><br>
+                         </div>
                          <div class="col-xl-12 btnn">
                             <button type="submit" class="log get_but" (click)="onSubmit()">Login <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                          
