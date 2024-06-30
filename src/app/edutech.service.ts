@@ -157,6 +157,10 @@ export class EdutechService {
   getVideoFileUrl(id: string){
     return this.httpclient.get(this.api+'/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
+
+  getVideoFile(id: string): string {
+    return `${this.api}/video/${id}/file`;
+  }
 }
   
  

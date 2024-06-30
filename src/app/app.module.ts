@@ -14,6 +14,7 @@ import { StudentUpdateComponent } from './student-update/student-update.componen
 import { AuthGuard, RegistrationGuard } from './auth.guard';
 import { AboutComponent } from './about/about.component';
 import { CourseListComponent } from './student-dashboard/course-list/course-list.component';
+import { VideoPlayerComponent } from './student-dashboard/video-player/video-player.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CourseListComponent } from './student-dashboard/course-list/course-list
     VerificationComponent,
     StudentUpdateComponent,
     AboutComponent,
-    CourseListComponent
+    CourseListComponent,
+    VideoPlayerComponent
   ],
   imports: [
     BrowserModule,

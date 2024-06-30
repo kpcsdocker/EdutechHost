@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router  } from '@angular/router';
 import { EdutechService } from '../../edutech.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class CourseListComponent implements OnInit {
   social_picture: any;
   videos!: any;
 
-  constructor(private eduService: EdutechService,private route: ActivatedRoute) { }
+  constructor(private eduService: EdutechService,private route: ActivatedRoute,private router: Router,) { }
 
   ngOnInit(): void {
     this.students = history.state.studentDetails;
@@ -45,5 +45,9 @@ export class CourseListComponent implements OnInit {
         break;
       }
     }
+  }
+
+  selectCourse(video: any): void {
+    this.router.navigate(['/stu-dashboard/video-player'], { state: { video } });
   }
 }
