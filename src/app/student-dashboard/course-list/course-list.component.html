@@ -1,0 +1,12 @@
+<div *ngIf="videos && videos.length > 0">
+    <h2>Courses for {{ email }}</h2>
+    <div *ngFor="let video of videos" class="course-item">
+      <h3>{{ video.course_name }}</h3>
+      <p>{{ video.description }}</p>
+      <p>Category: {{ video.category_name }}</p>
+    </div>
+  </div>
+  <div *ngIf="!videos || videos.length === 0">
+    <p>No courses available.</p>
+  </div>
+  

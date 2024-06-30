@@ -13,6 +13,7 @@ import { VerificationComponent } from './verification/verification.component';
 import { StudentUpdateComponent } from './student-update/student-update.component';
 import { AuthGuard, RegistrationGuard } from './auth.guard';
 import { AboutComponent } from './about/about.component';
+import { CourseListComponent } from './student-dashboard/course-list/course-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AboutComponent } from './about/about.component';
     SignupOnboardComponent,
     VerificationComponent,
     StudentUpdateComponent,
-    AboutComponent
+    AboutComponent,
+    CourseListComponent
   ],
   imports: [
     BrowserModule,

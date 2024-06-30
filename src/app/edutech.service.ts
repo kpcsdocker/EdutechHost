@@ -9,7 +9,7 @@ import {catchError, retry} from 'rxjs/operators';
 export class EdutechService {
 
   private student: string="student";
-  private mail: string = "api";
+  private api: string = "api";
   private mongo: string = "mongo";
   private postgres: string = "postgres";
   private auth: string = "auth"; 
@@ -71,7 +71,7 @@ export class EdutechService {
   }
   
   public sendMail(email:any){
-    return this.httpclient.get(this.mail+'/sendVerificationCode/'+email, {responseType: 'text'});
+    return this.httpclient.get(this.api+'/sendVerificationCode/'+email, {responseType: 'text'});
   }
   
   public getSocialLogin(){
@@ -106,7 +106,7 @@ export class EdutechService {
   
   verifyCode(email: string, code: string) {
     console.log(email,code);
-    return this.httpclient.get(this.mail+'/verifyCode/'+email+'/'+code, { responseType: 'text' });
+    return this.httpclient.get(this.api+'/verifyCode/'+email+'/'+code, { responseType: 'text' });
   }
   
   public setVerificationEmail(email:any){
@@ -148,6 +148,14 @@ export class EdutechService {
 
   isSocialLogin(): string | null{
     return this.isSocialLogedin;
+  }
+
+  getVideosForStudent(studentId: string){
+    return this.httpclient.get(this.api+'/videos/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  }
+
+  getVideoFileUrl(id: string){
+    return this.httpclient.get(this.api+'/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 }
   

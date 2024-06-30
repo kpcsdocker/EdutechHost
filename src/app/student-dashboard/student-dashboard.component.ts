@@ -19,8 +19,9 @@ export class StudentDashboardComponent implements OnInit {
   state: any;
   profile: any;
   action!: string;
+  videos!: any;
 
-  constructor(private eduService: EdutechService, private sanitizer: DomSanitizer, private route: ActivatedRoute) { }
+  constructor(private eduService: EdutechService, private sanitizer: DomSanitizer, private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -31,7 +32,6 @@ export class StudentDashboardComponent implements OnInit {
         this.email = this.eduService.getEmail();
         for(var i=0; i<this.students.length; i++){
       		if(this.students[i].email == this.email){
-            console.log(this.students[i]);
       			this.name=this.students[i].first_name;
             this.profile=this.students[i].profile;
           }}
@@ -48,6 +48,10 @@ export class StudentDashboardComponent implements OnInit {
           }}
       });
     }
+  }
+
+  redirectToCourseList(): void {
+    this.router.navigate(['/stu-dashboard/courses'], { state: { studentDetails: this.students, email: this.email } });
   }
 
 }

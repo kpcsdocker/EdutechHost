@@ -9,10 +9,12 @@ import { SignupOnboardComponent } from './signup-onboard/signup-onboard.componen
 import { VerificationComponent } from './verification/verification.component';
 import { StudentUpdateComponent } from './student-update/student-update.component';
 import { AboutComponent } from './about/about.component';
+import { CourseListComponent } from './student-dashboard/course-list/course-list.component';
 
 const routes: Routes = [
   {path:'signup-onboard', component: SignupOnboardComponent},
-  {path:'stu-dashboard', component: StudentDashboardComponent, canActivate: [AuthGuard] },
+  {path:'stu-dashboard', component: StudentDashboardComponent, canActivate: [AuthGuard] },      
+  { path: 'stu-dashboard/courses', component: CourseListComponent, canActivate: [AuthGuard] },
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
   { path: 'about', component: AboutComponent },
