@@ -15,7 +15,7 @@
 .navbar-default .navbar-toggle .icon-bar{background:#4C00C8!important;}
 .get_but{width: 100%;
     position: absolute;
-    top: 320px;}
+    top: 320px;font-size: 30px;height:50px;}
 .text-right .navbar-brand{width: auto;
     /* margin: 0 auto; */
     float: right;}

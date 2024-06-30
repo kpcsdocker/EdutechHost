@@ -27,7 +27,7 @@ body {
 	line-height:1.6em;
 	color:#656565;
 	font-size: 1.4em;
-  background: linear-gradient(180deg, #FFFFFF 39.16%, #ADACFF 100%);
+  background: #fff;
    width: 100%;
     height: 100%;
     background-attachment: fixed;
@@ -154,6 +154,7 @@ header .navbar {
     color: #fff !important;
     font-size: 22px;
     border-radius: 5px;
+    font-family:"Megrim", system-ui;
   }
 
 .navbar-default .navbar-brand{
@@ -1806,6 +1807,24 @@ padding-top: 3px;
     cursor: not-allowed;
   }
 }
+
+.welcome_note {
+    background: linear-gradient(59.12deg, #DBE1FF 8.07%, #ADACFF 93.03%);
+    position: absolute;
+    top: 11px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #4C00C8;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-transform: uppercase;
+}
+
+
 .box1{    text-align: center;
     background: #fff;
     width: 30%;

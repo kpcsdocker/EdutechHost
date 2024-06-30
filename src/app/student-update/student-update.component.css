@@ -1,3 +1,4 @@
+body{background: linear-gradient(180deg, #FFFFFF 39.16%, #ADACFF 100%);height: -webkit-fill-available;}
 .navbar-brand{line-height:5px!important;}
 .welcome_note{background: linear-gradient(59.12deg, #DBE1FF 8.07%, #ADACFF 93.03%);
     position: absolute;

@@ -1,0 +1,92 @@
+
+        body{background:none!important;height: 100%;}
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align: center;
+  box-shadow: -7px 4px 4px 0px #00000040;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  background: #ddd;
+  margin: 20px 0;
+    border-radius: 5px;
+}
+
+.sidenav a:hover {
+  color: #4400B3;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background: none;
+  margin-top:0;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.openav{font-size: 25px;
+    cursor: pointer;
+    background: linear-gradient(255.7deg, #DBE1FF 8.56%, #ADACFF 93.43%);
+    padding: 0 10px;
+    position: relative;
+    top: 18px;
+    border-radius: 5px;
+}
+.course_box{border: 1px solid #C1C1C1;
+    overflow: hidden;
+    border-radius: 25px;vertical-align: top;height:160px; /*230px;*/
+    margin-bottom: 20px;width:100%;cursor:pointer;
+}
+.left_box{background: linear-gradient(180deg, #4400B3 0%, #1D004D 100%);
+    text-align: center;
+    color: #fff;
+    font-size: 55px;
+    padding: 20px;
+    height: -webkit-fill-available;
+    line-height: 135px;
+    font-family: 'League Spartan';
+    font-weight: 600;
+}
+.right_box{color: #4400B3;
+    font-family: "League Spartan", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 20px;
+}
+.right_box p{font-size: 20px!important;
+    text-align: left!important;
+    color: black!important;
+    text-transform: capitalize!important;font-family: 'League Spartan';}
+.right_box h6{margin-bottom:6px;}
+.right_box ul li label{text-transform: capitalize;font-size: 12px;vertical-align:bottom;font-weight: normal;
+    font-family: 'League Spartan';}
+.right_box ul{margin:0;padding:0;}
+.right_box ul li{list-style: none;line-height: 0;}
+#file{width: 100%;
+    height: 30px;}
+.progress{margin-top: 25px;border-radius: 30px;}
+.progress-bar{background: #4C00C8;}
+.get_but{font-size: 30px;color: #4C00C8;width: 100%;
+    }
