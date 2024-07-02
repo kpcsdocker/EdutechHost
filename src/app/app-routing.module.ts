@@ -11,12 +11,14 @@ import { StudentUpdateComponent } from './student-update/student-update.componen
 import { AboutComponent } from './about/about.component';
 import { CourseListComponent } from './student-dashboard/course-list/course-list.component';
 import { VideoPlayerComponent } from './student-dashboard/video-player/video-player.component';
+import { AssignmentsComponent } from './student-dashboard/assignments/assignments.component';
 
 const routes: Routes = [
   {path:'signup-onboard', component: SignupOnboardComponent},
   {path:'stu-dashboard', component: StudentDashboardComponent, canActivate: [AuthGuard] },      
   {path: 'stu-dashboard/courses', component: CourseListComponent, canActivate: [AuthGuard] },
-  {path: 'stu-dashboard/video-player', component: VideoPlayerComponent, canActivate: [AuthGuard]  },
+  {path: 'stu-dashboard/video-player', component: VideoPlayerComponent},
+  {path: 'stu-dashboard/assignments', component: AssignmentsComponent, canActivate: [AuthGuard]  },
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
   {path: 'about', component: AboutComponent },

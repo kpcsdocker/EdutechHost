@@ -15,6 +15,7 @@ import { AuthGuard, RegistrationGuard } from './auth.guard';
 import { AboutComponent } from './about/about.component';
 import { CourseListComponent } from './student-dashboard/course-list/course-list.component';
 import { VideoPlayerComponent } from './student-dashboard/video-player/video-player.component';
+import { AssignmentsComponent } from './student-dashboard/assignments/assignments.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { VideoPlayerComponent } from './student-dashboard/video-player/video-pla
     StudentUpdateComponent,
     AboutComponent,
     CourseListComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    AssignmentsComponent
   ],
   imports: [
     BrowserModule,
