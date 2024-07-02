@@ -48,6 +48,6 @@ export class CourseListComponent implements OnInit {
   }
 
   selectCourse(video: any): void {
-    this.router.navigate(['/stu-dashboard/video-player'], { state: { video } });
+    this.router.navigate(['/stu-dashboard/assignments'], { state: { video } });
   }
 }

@@ -42,26 +42,7 @@
       <a>String manipulation Video</a>
       <a>String Slicing Video</a>
       <a>Week 6</a>
-  </div>
-    <section id="call-to-action-2" class="onboard">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div id="mainContent" class="border_box" *ngIf="selectedVideoUrl">
-                        <video controls width="100%" height="400">
-                            <source [src]="selectedVideoUrl" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="border_box">
-                        <h2>{{selectedVideo.fileName}}</h2>
-                        <p>taught by Ravi Sessesty</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Chat Box -->
+      <!-- Chat Box -->
     <button class="open-button" onclick="openForm()"><img src="assets/images/ravi_chat.png"></button>
 
     <div class="chat-popup" id="myForm">
@@ -81,6 +62,25 @@
         </form>
     </div>
     <!-- End Chat Box -->
+  </div>
+    <section id="call-to-action-2" class="onboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div id="mainContent" class="border_box" *ngIf="selectedVideoUrl">
+                        <video controls width="100%" height="400">
+                            <source [src]="selectedVideoUrl" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="border_box">
+                        <h2>{{selectedVideo.fileName}}</h2>
+                        <p>taught by Ravi Sessesty</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 </body>
 </html>
