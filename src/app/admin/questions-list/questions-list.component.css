@@ -1,0 +1,42 @@
+.navbar-brand{line-height:5px!important;}
+.get_but{width: 100%;
+    position: absolute;
+    top: 320px;}
+    table td ul li{list-style: none;}
+
+        table td{margin: 0;
+   padding: 10px;
+    text-align: center;
+   }
+table th{text-align: center;text-transform: capitalize;}
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+table.table th:last-child {
+    width: 100px;
+}
+table.table td a {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+    min-width: 24px;
+}    
+table.table td a.edit {
+    color: #4400B3;
+}
+table.table td a.delete {
+    color: #E34724;
+}
+table.table td i {
+    font-size: 19px;
+}
+table.table td a.add i {
+    font-size: 24px;
+    margin-right: -1px;
+    position: relative;
+    top: 3px;
+} 
+.border-box {overflow:hidden;
+}   

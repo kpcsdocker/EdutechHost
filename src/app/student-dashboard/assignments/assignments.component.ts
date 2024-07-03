@@ -11,11 +11,13 @@ export class AssignmentsComponent implements OnInit {
   isNavOpen = false;
   isNavOpen1 = false;
   selectedVideo: any;
+  name: any;
 
   constructor(private eduService: EdutechService,private route: ActivatedRoute,private router: Router,) { }
 
   ngOnInit(): void {
     this.selectedVideo = history.state.video;
+    this.name = history.state.name;
   }
 
   videoPlay(video: any): void {

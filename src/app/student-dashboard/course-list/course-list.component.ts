@@ -20,7 +20,6 @@ export class CourseListComponent implements OnInit {
   ngOnInit(): void {
     this.students = history.state.studentDetails;
     this.email = history.state.email;
-    console.log("list",history.state.studentDetails);
     this.loadCourses();
   }
 
@@ -48,6 +47,6 @@ export class CourseListComponent implements OnInit {
   }
 
   selectCourse(video: any): void {
-    this.router.navigate(['/stu-dashboard/assignments'], { state: { video } });
+    this.router.navigate(['/stu-dashboard/assignments'], { state: { video , name : this.name} });
   }
 }

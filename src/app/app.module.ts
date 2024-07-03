@@ -16,6 +16,11 @@ import { AboutComponent } from './about/about.component';
 import { CourseListComponent } from './student-dashboard/course-list/course-list.component';
 import { VideoPlayerComponent } from './student-dashboard/video-player/video-player.component';
 import { AssignmentsComponent } from './student-dashboard/assignments/assignments.component';
+import { QuestionUploadComponent } from './admin/question-upload/question-upload.component';
+import { QuestionsListComponent } from './admin/questions-list/questions-list.component';
+import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
+import { LessonsComponent } from './admin/lessons/lessons.component';
+import { LessonsListComponent } from './admin/lessons-list/lessons-list.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +35,16 @@ import { AssignmentsComponent } from './student-dashboard/assignments/assignment
     AboutComponent,
     CourseListComponent,
     VideoPlayerComponent,
-    AssignmentsComponent
+    AssignmentsComponent,
+    LessonsComponent,
+    LessonsListComponent,
+    QuestionUploadComponent,
+    QuestionsListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ConfirmDialogModule,
     HttpClientModule,
     FormsModule,ReactiveFormsModule
   ],

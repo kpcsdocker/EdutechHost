@@ -12,6 +12,10 @@ import { AboutComponent } from './about/about.component';
 import { CourseListComponent } from './student-dashboard/course-list/course-list.component';
 import { VideoPlayerComponent } from './student-dashboard/video-player/video-player.component';
 import { AssignmentsComponent } from './student-dashboard/assignments/assignments.component';
+import { QuestionUploadComponent } from './admin/question-upload/question-upload.component';
+import { QuestionsListComponent } from './admin/questions-list/questions-list.component';
+import { LessonsComponent } from './admin/lessons/lessons.component';
+import { LessonsListComponent } from './admin/lessons-list/lessons-list.component';
 
 const routes: Routes = [
   {path:'signup-onboard', component: SignupOnboardComponent},
@@ -24,6 +28,10 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent },
   {path:'verify', component: VerificationComponent, canActivate: [RegistrationGuard] },
   {path:'update', component: StudentUpdateComponent, canActivate: [SocialLoginGuard] },
+  {path:'upload', component: QuestionUploadComponent, canActivate: [AuthGuard]},
+  {path:'list', component: QuestionsListComponent, canActivate: [AuthGuard]},
+  {path:'lessons', component: LessonsComponent},
+  {path:'lessonsList', component: LessonsListComponent},
   {path:'', component: HomeComponent}
 ];
 

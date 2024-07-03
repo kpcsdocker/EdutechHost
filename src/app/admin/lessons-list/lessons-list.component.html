@@ -1,0 +1,166 @@
+<app-confirm-dialog></app-confirm-dialog>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!-- css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<!--font-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+
+ 
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div id="wrapper" class="home-page">
+    <!-- start header -->
+    <header>
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header col-6 col-md-6 col-sm-6">
+                    <a class="navbar-brand logo megrim-regular" href="index.html">A</a>
+                </div>
+                <div class="text-right col-6 col-md-6 col-sm-6">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="login">Logout</a></li> 
+                    </ul>
+                </div>
+                </div>
+                </div>
+            </div>
+    </header>
+    <!-- end header -->
+    
+    <section *ngIf="!isEditClick" id="call-to-action-2" class="onboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                  <div class="grades_table">
+                    <h2>Lessons List</h2>
+                    <table border="1" class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>File Name</th>
+                          <th>File Type</th>
+                          <th>Course</th>
+                          <th>Category</th>
+                          <th>Subcategory</th>
+                          <th>Student</th>
+                          <th>Description</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let video of videos">
+                          <td>{{ video.fileName }}</td>
+                          <td>{{ video.fileType }}</td>
+                          <td>{{ video.course_name }}</td>
+                          <td>{{ video.category_name }}</td>
+                          <td>{{ video.subcategory_name }}</td>
+                          <td>{{ video.student_name }}</td>
+                          <td>{{ video.description }}</td>
+                          <td><a class="edit"  (click)="edit(video.id)" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                             <a class="delete" (click)="deleteVideo(video.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button routerLink="/lessons" type="submit">Lesson Upload<i class="fa fa-arrow-right" aria-hidden="true"></i></button>             
+    </section>
+    <!-- Edit Section-->
+    <section *ngIf="isEditClick" id="edit-section" class="onboard">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="border-box">
+              <p><span>Edit Video</span></p>
+              <form [formGroup]="editVideoForm" (ngSubmit)="onEditSubmit()">
+                <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                  <label for="edit-course" class="form-label">Course:</label>
+                  <select id="edit-course" formControlName="course" (change)="onEditCourseChange()" class="form-control">
+                    <option *ngFor="let course of courses" [ngValue]="course">{{ course.courseName }}</option>
+                  </select>
+                </div>
+                <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                  <label for="edit-category" class="form-label">Category:</label>
+                  <select id="edit-category" formControlName="category" (change)="onEditCategoryChange()" class="form-control">
+                    <option *ngFor="let category of categories" [ngValue]="category">{{ category.categoryName }}</option>
+                  </select>
+                </div>
+                <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                  <label for="edit-subcategory" class="form-label">Subcategory:</label>
+                  <select id="edit-subcategory" formControlName="subcategory" class="form-control">
+                    <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">{{ subcategory.subcategoryName }}</option>
+                  </select>
+                </div>
+                <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                  <label for="edit-student" class="form-label">Select Students:</label>
+                  <input type="text" placeholder="Search..." (input)="onSearch($event)" class="form-control mb-2" />
+                  <div class="dropdown-container">
+                    <div *ngIf="filteredStudents.length > 0; else noStudents">
+                      <div class="dropdown-options">
+                        <div *ngFor="let student of filteredStudents" class="form-check">
+                          <input type="checkbox" class="form-check-input" [id]="student.user_id" [value]="student"
+                            (change)="onStudentSelect($event, student)" [checked]="isStudentSelected(student.user_id)">
+                          <label class="form-check-label" [for]="student.user_id">{{ student.first_name }}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <ng-template #noStudents>
+                      <p>No students found</p>
+                    </ng-template>
+                  </div>
+                </div>
+                <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                  <label for="edit-description" class="form-label">Description:</label>
+                  <textarea id="edit-description" formControlName="description" class="form-control"></textarea>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                  <label for="edit-video" class="form-label">Video Upload</label>
+                  <div class='file-input'>
+                    <input type="file" id="edit-video" (change)="onFileChange($event)" class="form-control">
+                  </div>
+                  <div *ngIf="currentFileName" class="mt-2">
+                    <strong>Current file:</strong> {{ currentFileName }}
+                  </div>
+                </div>
+                <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                  <button type="submit">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                  <button type="button" (click)="cancelEdit()">Cancel <i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+              </form> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  

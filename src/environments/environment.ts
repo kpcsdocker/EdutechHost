@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  studentUrl: 'http://localhost:8088/student',
+  apiUrl: 'http://localhost:8088/api',
+  mongoUrl: 'http://localhost:8088/mongo',
+  postgresUrl: 'http://localhost:8088/postgres',
+  authUrl: 'http://localhost:8088/auth',
+  authMongoUrl: 'http://localhost:8088/auth/mongo',
+  oauth2Url: 'http://localhost:8088/oauth2/authorization/google',
+  questions: 'http://localhost:8088/questions'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
