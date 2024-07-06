@@ -131,17 +131,12 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
     this.isEditQuestionSelected = true;
     this.service.getQuestionById(id).subscribe((res: any) => {
       this.questionById = res;
-      console.log("courses",this.courses);
-      console.log("categories",this.categories);
-      console.log("subcategory",this.subcategories);
       const selectedCourse = this.courses.find(course => course.courseName === res.course_name);
       const selectedCategory = this.categories.find(category => category.categoryName === res.category_name);
       const selectedSubcategory = this.subcategories.find(subcategory => subcategory.subcategoryName === res.subcategory_name);
       const studentNames = res.student_name;
       const selectedStudents = this.students.filter((student: any) => studentNames.includes(student.first_name));
       this.selectedStudents = selectedStudents;
-      console.log("category",selectedCategory);
-      console.log("Subcategory",selectedSubcategory);
        // Enable the form controls before patching
        this.editForm.get('category')?.enable();
        this.editForm.get('subcategory')?.enable();

@@ -97,31 +97,37 @@ export class LessonsListComponent implements OnInit {
       const selectedCourse = this.courses.find(course => course.courseName === video.course_name);
       const selectedCategory = this.categories.find(category => category.categoryName === video.category_name);
       const selectedSubcategory = this.subcategories.find(subcategory => subcategory.subcategoryName === video.subcategory_name);
+      const studentNames = video.student_name;
+      const selectedStudents = this.students.filter((student: any) => studentNames.includes(student.first_name));
+      this.selectedStudents = selectedStudents;
+      // let studentNames: string[];
+      // try {
+      //   studentNames = JSON.parse(video.student_name);
+      //   if (!Array.isArray(studentNames)) {
+      //     studentNames = [studentNames];
+      //   }
+      // } catch (e) {
+      //   studentNames = [video.student_name];
+      // }
   
-      let studentNames: string[];
-      try {
-        studentNames = JSON.parse(video.student_name);
-        if (!Array.isArray(studentNames)) {
-          studentNames = [studentNames];
-        }
-      } catch (e) {
-        studentNames = [video.student_name];
-      }
+      // console.log('studentNames:', studentNames);
+      // console.log('this.students:', this.students);
   
-      console.log('studentNames:', studentNames);
-      console.log('this.students:', this.students);
+      // this.selectedStudents = this.students.filter((student: any) => studentNames.includes(student.first_name));
   
-      this.selectedStudents = this.students.filter((student: any) => studentNames.includes(student.first_name));
-  
-      console.log('selectedStudents:', this.selectedStudents);
+      // console.log('selectedStudents:', this.selectedStudents);
   
       this.editVideoForm.patchValue({
         course: selectedCourse,
         category: selectedCategory,
         subcategory: selectedSubcategory,
-        student: this.selectedStudents.map(s => s.first_name).join(', '),
+        student: selectedStudents,
         description: video.description,
         video: video.fileName
+      });
+      // Check checkboxes for selected students
+      this.filteredStudents.forEach((student:any) => {
+        student.checked = this.isStudentSelected(student);
       });
       this.currentFileName = video.fileName;
       console.log(this.editVideoForm.value);
@@ -210,8 +216,15 @@ export class LessonsListComponent implements OnInit {
     formData.append('category_name', this.editVideoForm.get('category')?.value.categoryName);
     formData.append('subcategory_id', this.editVideoForm.get('subcategory')?.value.subcategoryId);
     formData.append('subcategory_name', this.editVideoForm.get('subcategory')?.value.subcategoryName);
-    formData.append('student_id', JSON.stringify(this.selectedStudents.map(s => s.user_id)));
-    formData.append('student_name', JSON.stringify(this.selectedStudents.map(s => s.first_name)));
+    // Append student_id as array of strings
+    this.selectedStudents.forEach(student => {
+      formData.append('student_id', student.user_id);
+  });
+
+  // Append student_name as array of strings
+  this.selectedStudents.forEach(student => {
+      formData.append('student_name', student.first_name);
+  });
     formData.append('description', this.editVideoForm.get('description')?.value);
     formData.append('video', this.editVideoForm.get('video')?.value);
     console.log("success");
@@ -227,6 +240,13 @@ export class LessonsListComponent implements OnInit {
 
   cancelEdit() {
     this.isEditClick = false;
+    this.editVideoForm.reset();
+    this.selectedStudents = [];
+    this.filteredStudents = this.students;
+    this.fetchSubcategories();
+    this.fetchCategories();
+    this.fetchCourses();
+    this.fetchCourseSubcategories();
   }
 
   deleteVideo(id:any){
