@@ -59,22 +59,37 @@
                       <p><span>Questions Upload</span></p>
                       <form [formGroup]="questionForm">
                       <div class="">
+                        <!-- Course Selection -->
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                         <label for="course" class="form-label required">Choose Course:</label>
-                           <select name="course" id="course" formControlName="subject" class="form-control">
-                             <option value="course1">course1</option>
-                             <option value="course2">course2</option>
-                             <option value="course3">course3</option>
-                             <option value="course4">course4</option>
-                           </select>
+                          <label for="course" class="form-label required">Choose Course:</label>
+                          <select id="course" formControlName="course" (change)="onCourseChange()" class="form-control">
+                            <option *ngFor="let course of courses" [ngValue]="course">{{ course.courseName }}</option>
+                          </select>
                         </div>
+                        
+                        <!-- Category Selection -->
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                          <label for="exampleFormControlInput1" class="form-label">Enter Category:</label>
-                           <textarea id="cat"  formControlName="cat" class="form-control" cols="20"></textarea>
+                          <label for="category" class="form-label required">Choose Category:</label>
+                          <select id="category" formControlName="category" (change)="onCategoryChange()" class="form-control" [disabled]="categories.length === 0">
+                            <option *ngFor="let category of categories" [ngValue]="category">{{ category.categoryName }}</option>
+                          </select>
                         </div>
+                        
+                        <!-- Subcategory Selection -->
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                          <label for="exampleFormControlInput1" class="form-label">Enter Sub Category:</label>
-                           <textarea id="subcat" formControlName="subcat" class="form-control" cols="20"></textarea>
+                          <label for="subcategory" class="form-label required">Choose Subcategory:</label>
+                          <select id="subcategory" formControlName="subcategory" class="form-control" [disabled]="subcategories.length === 0">
+                            <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">{{ subcategory.subcategoryName }}</option>
+                          </select>
+                        </div>
+                        
+                        <!-- Students Selection -->
+                        <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                          <label for="student" class="form-label required">Choose Students:</label>
+                          <input type="text" class="form-control" placeholder="Search students..." (input)="onSearch($event)">
+                          <div *ngFor="let student of filteredStudents">
+                            <input type="checkbox" [checked]="isStudentSelected(student.user_id)" (change)="onStudentSelect($event, student)"> {{ student.first_name }}
+                          </div>
                         </div>
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
                           <label for="course" class="form-label">Difficulty:</label>
@@ -83,6 +98,13 @@
                               <option value="2">2</option>
                               <option value="3">3</option>
                               <option value="4">4</option>
+                            </select>
+                         </div>
+                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                          <label for="assignment" class="form-label required">Assignment Type:</label>
+                            <select name="assignment" id="assignment" formControlName="assignment" class="form-control">
+                              <option value="hw">HomeWork</option>
+                              <option value="qz">Quiz</option>
                             </select>
                          </div>
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">

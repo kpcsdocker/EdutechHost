@@ -70,12 +70,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.loginForm.get('email')?.value == "admin@gmail.com" && this.loginForm.get('password')?.value == "edutech@2024"){
-      console.log("all right");
       this.eduService.setLoggedinStatus("yes");
       this.router.navigate(['/upload']);
    }
    else{
-    console.log("calling");
     for(var i=0; i<this.students.length; i++){
       if(this.loginForm.get('email')?.value == this.students[i].email && this.loginForm.get('password')?.value == this.students[i].password){
           this.eduService.setPassword(this.loginForm.get('password')?.value);

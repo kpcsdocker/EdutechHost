@@ -72,6 +72,7 @@
                           <th>Subject</th>
                           <th>Category</th>
                           <th>Subcategory</th>
+                          <th>Student Names</th>
                           <th>Difficulty</th>
                           <th>Actions</th>
                         </tr>
@@ -87,9 +88,10 @@
                             </ul>
                           </td>
                           <td>{{ question.q_ans }}</td>
-                          <td>{{ question.subject }}</td>
-                          <td>{{ question.cat }}</td>
-                          <td>{{ question.subcat }}</td>
+                          <td>{{ question.course_name }}</td>
+                          <td>{{ question.category_name }}</td>
+                          <td>{{ question.subcategory_name }}</td>
+                          <td>{{ question.student_name }}</td>
                           <td>{{ question.diff }}</td>
                           <td><a class="edit" (click)="editQuestion(question.id)" title="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                           <a class="delete" (click)="deleteQuestion(question.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
@@ -112,21 +114,40 @@
               <form [formGroup]="editForm">
                 <div class="">
                   <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                    <label for="course" class="form-label required">Course:</label>
-                    <select name="course" id="course" formControlName="subject" class="form-control">
-                      <option value="course1">course1</option>
-                      <option value="course2">course2</option>
-                      <option value="course3">course3</option>
-                      <option value="course4">course4</option>
+                    <label for="edit-course" class="form-label">Course:</label>
+                    <select id="edit-course" formControlName="course" (change)="onEditCourseChange()" class="form-control">
+                      <option *ngFor="let course of courses" [ngValue]="course">{{ course.courseName }}</option>
                     </select>
                   </div>
                   <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                    <label for="exampleFormControlInput1" class="form-label">Category:</label>
-                    <textarea id="cat" formControlName="cat" class="form-control" cols="20"></textarea>
+                    <label for="edit-category" class="form-label">Category:</label>
+                    <select id="edit-category" formControlName="category" (change)="onEditCategoryChange()" class="form-control">
+                      <option *ngFor="let category of categories" [ngValue]="category">{{ category.categoryName }}</option>
+                    </select>
                   </div>
                   <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                    <label for="exampleFormControlInput1" class="form-label">Sub Category:</label>
-                    <textarea id="subcat" formControlName="subcat" class="form-control" cols="20"></textarea>
+                    <label for="edit-subcategory" class="form-label">Subcategory:</label>
+                    <select id="edit-subcategory" formControlName="subcategory" class="form-control">
+                      <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">{{ subcategory.subcategoryName }}</option>
+                    </select>
+                  </div>
+                  <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                    <label for="edit-student" class="form-label">Select Students:</label>
+                    <input type="text" placeholder="Search..." (input)="onSearch($event)" class="form-control mb-2" />
+                    <div class="dropdown-container">
+                      <div *ngIf="filteredStudents.length > 0; else noStudents">
+                        <div class="dropdown-options">
+                          <div *ngFor="let student of filteredStudents" class="form-check">
+                            <input type="checkbox" class="form-check-input" [id]="student.user_id" [value]="student"
+                              (change)="onStudentSelect($event, student)" [checked]="isStudentSelected(student.user_id)">
+                            <label class="form-check-label" [for]="student.user_id">{{ student.first_name }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <ng-template #noStudents>
+                        <p>No students found</p>
+                      </ng-template>
+                    </div>
                   </div>
                   <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
                     <label for="course" class="form-label">Difficulty:</label>
@@ -161,8 +182,8 @@
                     <textarea id="questions" name="questions" formControlName="q_ans" rows="3" class="form-control" cols="20"></textarea>
                   </div>
                   <div class="col-xl-12 btnn">
-                    <button (click)="onSubmit()" *ngIf="editForm.valid" type="submit" class="reg">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                    <button (click)="backToListPage()" *ngIf="editForm.valid" type="submit" class="reg">Back<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                    <button (click)="onSubmit()" type="submit" class="reg">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                    <button (click)="backToListPage()" type="submit" class="reg">Back<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                   </div>
                 </div>
                 <div *ngIf="alert" class="alert-danger">
