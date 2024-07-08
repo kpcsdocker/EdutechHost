@@ -154,6 +154,10 @@ export class EdutechService {
     return this.isSocialLogedin;
   }
 
+  getQuestionsForStudent(studentId: string){
+    return this.httpclient.get(this.questions+'/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  }
+
   getVideosForStudent(studentId: string){
     return this.httpclient.get(this.api+'/videos/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }

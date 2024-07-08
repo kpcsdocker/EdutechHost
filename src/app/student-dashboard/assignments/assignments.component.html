@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
  
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -47,21 +47,14 @@
                     </button> -->
                 
                     <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <a href="#">Home</a>
   <a href="#">About</a>
   <a href="#">Pricing</a>
   <a href="#">Contact</a>
 </div>
-<span class="openav" onclick="openNav()">&#9776;</span>
+<span class="openav" (click)="openNav()">&#9776;</span>
 </div>
-                    <!-- <div class="navbar-collapse collapse ">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="home.html">Home</a></li> 
-                                    <li><a href="about.html">About</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                    </ul>
-                </div> -->
                 </div>
                 </div>
     </header>
@@ -69,7 +62,7 @@
     <div id="mySidenav1" class="sidenav1">
         <a href="javascript:void(0)" (click)="closeNav1()">&times;</a>
         <a>Week 6</a>
-        <a (click)="videoPlay(selectedVideo)">String manipulation Video</a>
+        <a (click)="videoPlay(selectedCourse)">String manipulation Video</a>
         <a>String Slicing Video</a>
         <a>Week 6</a>
         <!-- Chat Box -->
@@ -92,84 +85,63 @@
         </form>
     </div>
     <!-- End Chat Box -->
-    </div>
-    <section id="call-to-action-2" class="onboard">
-        <div class="container">
-            <div class="row">
-                <div id="mainContent" class="col-md-12 col-sm-12">
-                    <div class="border_box">
-                        <div class="col-md-10 col-sm-12">
-                            <img src="./images/user.jpg">
-                            <h2>Welcome {{name}}</h2><span>Grade:Undergarduate</span>
-                            <p>this week's Progress (1/7)</p>
-                            <div class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-      <span class="sr-only">70% Complete</span>
-    </div>
   </div>
-                             <!-- <progress id="file" value="30" max="100">  </progress> -->
-                        </div>
-                        <div class="col-md-2 col-sm-12">
-                            <div class="missing_assign">
-                                2<br><span>missing assignments</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grades_table">
-                        <h3>Your Grades</h3>
-                    <table class="table table-bordered">
-  <tbody>
-    <tr>
-      <td align="center"><i class='fa fa-pencil'></i></td>
-      <td>Week 1</td>
-      <td>Introduction to variables in python Homework <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
-      <td>4/5</td>
-    </tr>
-    <tr>
-      <td align="center"><i class='fa fa-pencil'></i></td>
-      <td>Week 1</td>
-      <td>Syntax in Python Homework <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
-      <td>0/5</td>
-    </tr>
-    <tr>
-      <td align="center"><i class='fa fa-pencil'></i></td>
-      <td>Week 2</td>
-      <td>If statement Quiz <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
-      <td>10/10</td>
-    </tr>
-    <tr>
-      <td align="center"><i class='fa fa-clock-o'></i></td>
-      <td>Week 2</td>
-      <td>If Statements and controls homework <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
-      <td>5/6</td>
-    </tr>
-    <tr>
-      <td align="center"><i class='fa fa-book'></i></td>
-      <td>Week 2</td>
-      <td>If statement Quiz <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
-      <td>10/10</td>
-    </tr>
-    <tr>
-      <td align="center"><i class='fa fa-clock-o'></i></td>
-      <td>Week 2</td>
-      <td>If Statements and controls homework <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
-      <td>5/6</td>
-    </tr>
-    <tr>
-      <td align="center"><i class='fa fa-pencil'></i></td>
-      <td>Week 2</td>
-      <td>If statement Quiz <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
-      <td>10/10</td>
-    </tr>
-  </tbody>
-</table>
-           </div>     </div>
-            
+  <section id="call-to-action-2" class="onboard">
+      <div class="container">
+          <div class="row">
+              <div id="mainContent" class="col-md-12 col-sm-12">
+                  <div class="border_box">
+                      <div class="col-md-10 col-sm-12">
+                          <img src="./images/user.jpg">
+                          <h2>Welcome {{name}}</h2><span>Grade:Undergarduate</span>
+                          <p>this week's Progress (1/7)</p>
+                          <div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+    <span class="sr-only">70% Complete</span>
+  </div>
+</div>
+                           <!-- <progress id="file" value="30" max="100">  </progress> -->
+                      </div>
+                      <div class="col-md-2 col-sm-12">
+                          <div class="missing_assign">
+                              2<br><span>missing assignments</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="grades_table">
+                      <h3>Your Grades</h3>
+                  <table class="table table-bordered">
+                      <tbody>
+                        <tr *ngFor="let key of assignmentKeys()" (click)="selectSubcategoryAndType(key.split(' ')[0], key.split(' ')[1])">
+                          <td align="center"><i class='fa fa-pencil'></i></td>
+                          <td>{{ key.split(' ')[0] }}</td>
+                          <td>{{ key.split(' ')[1] }} <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
+                          <td>{{ groupedAssignments[key].length }}/5</td>
+                        </tr>
+                      </tbody>
+                  </table>
+         </div>     
         </div>
-    
+          
+      </div>
+  
 
 </div>
-    </section>
-    </div>
+  </section>
+  <section id="assignments-section" class="assignments" *ngIf="selectedAssignmentType && selectedSubcategory">
+      <div class="container">
+          <div class="row">
+              <div id="assignmentDetails" class="col-md-12 col-sm-12">
+                  <h3>Assignments for {{ selectedSubcategory }} {{ selectedAssignmentType }}</h3>
+                  <ul class="list-group">
+                      <li *ngFor="let assignment of filteredAssignments" class="list-group-item">
+                          {{ assignment.q }} ({{ assignment.q_type }})
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>
 </body>
 </html>

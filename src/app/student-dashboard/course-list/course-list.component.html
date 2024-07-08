@@ -67,11 +67,11 @@
         <div class="container">
             <div class="row">
                <div class="col-md-1 col-sm-12"></div>
-               <div class="course_box" *ngFor="let video of videos" (click)="selectCourse(video)">
+               <div class="course_box" *ngFor="let course of courses" (click)="selectCourse(course)">
                        <div class="col-md-1 col-sm-12 left_box">1</div>
                        <div class="col-md-11 col-sm-12 right_box">
-      {{ video.course_name }}
-      <p>No of Assignments</p>
+      {{ course.course_name }}
+      <p>No of Assignments: {{ course.assignmentCount }}</p>
 
 
                         <!-- <h6>To do:</h6>
@@ -91,9 +91,9 @@
                         <!-- <progress id="file" value="65" max="100">  </progress> -->
                      </div>
                     </div>
-                    <div *ngIf="!videos || videos.length === 0">
+                    <!-- <div *ngIf="!videos || videos.length === 0">
     <p>No courses available.</p>
-  </div>
+  </div> -->
    <button type="button" class="log get_but">+</button>
                     <div class="col-md-1 col-sm-12"></div>
              </div>
