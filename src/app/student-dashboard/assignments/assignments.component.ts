@@ -24,7 +24,6 @@ export class AssignmentsComponent implements OnInit {
     this.selectedCourse = history.state.course;
     this.name = history.state.name;
     this.assignments = history.state.assignments;
-    console.log("assignment page", this.assignments);
     this.groupAssignmentsBySubcategoryAndType();
   }
 
@@ -32,7 +31,6 @@ export class AssignmentsComponent implements OnInit {
     this.assignments.forEach((assignment: any) => {
       if (assignment.assignment && (assignment.assignment === 'qz' || assignment.assignment === 'hw')) {
         const key = `${assignment.subcategory_name}:${assignment.assignment}`;
-        console.log("key",key);
         if (!this.groupedAssignments[key]) {
           this.groupedAssignments[key] = [];
         }
