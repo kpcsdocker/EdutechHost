@@ -110,16 +110,18 @@
                   </div>
                   <div class="grades_table">
                       <h3>Your Grades</h3>
-                  <table class="table table-bordered">
-                      <tbody>
-                        <tr *ngFor="let key of assignmentKeys()" (click)="selectSubcategoryAndType(key.split(' ')[0], key.split(' ')[1])">
-                          <td align="center"><i class='fa fa-pencil'></i></td>
-                          <td>{{ key.split(' ')[0] }}</td>
-                          <td>{{ key.split(' ')[1] }} <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
-                          <td>{{ groupedAssignments[key].length }}/5</td>
-                        </tr>
-                      </tbody>
-                  </table>
+                      <table class="table table-bordered">
+                        <tbody>
+                          <ng-container *ngFor="let key of assignmentKeys()">
+                            <tr (click)="viewAssignmentDetails(groupedAssignments[key])">
+                              <td align="center"><i class='fa fa-pencil'></i></td>
+                              <td>{{ key.split(' ')[0] }}</td>
+                              <td>{{ key.split(' ')[1] }} <span style="float:right;"><i class='fa fa-long-arrow-right'></i></span></td>
+                              <td>{{ groupedAssignments[key].length }}/5</td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                      </table>
          </div>     
         </div>
           
@@ -128,7 +130,7 @@
 
 </div>
   </section>
-  <section id="assignments-section" class="assignments" *ngIf="selectedAssignmentType && selectedSubcategory">
+  <!-- <section id="assignments-section" class="assignments" *ngIf="selectedAssignmentType && selectedSubcategory">
       <div class="container">
           <div class="row">
               <div id="assignmentDetails" class="col-md-12 col-sm-12">
@@ -141,7 +143,7 @@
               </div>
           </div>
       </div>
-  </section>
+  </section> -->
 </div>
 </body>
 </html>

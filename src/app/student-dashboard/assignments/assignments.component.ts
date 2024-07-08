@@ -54,7 +54,11 @@ export class AssignmentsComponent implements OnInit {
   videoPlay(video: any): void {
     this.router.navigate(['/stu-dashboard/video-player'], { state: { video } });
   }
-
+  
+  viewAssignmentDetails(assignment: any): void {
+    this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment } });
+  }
+  
   openNav1() {
     this.isNavOpen1 = true;
     document.getElementById("mySidenav1")!.classList.add('open');

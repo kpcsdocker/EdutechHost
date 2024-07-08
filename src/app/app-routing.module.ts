@@ -12,6 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { CourseListComponent } from './student-dashboard/course-list/course-list.component';
 import { VideoPlayerComponent } from './student-dashboard/video-player/video-player.component';
 import { AssignmentsComponent } from './student-dashboard/assignments/assignments.component';
+import { AssignmentDetailComponent } from './student-dashboard/assignment-detail/assignment-detail.component';
 import { QuestionUploadComponent } from './admin/question-upload/question-upload.component';
 import { QuestionsListComponent } from './admin/questions-list/questions-list.component';
 import { LessonsComponent } from './admin/lessons/lessons.component';
@@ -21,8 +22,9 @@ const routes: Routes = [
   {path:'signup-onboard', component: SignupOnboardComponent},
   {path:'stu-dashboard', component: StudentDashboardComponent, canActivate: [AuthGuard] },      
   {path: 'stu-dashboard/courses', component: CourseListComponent, canActivate: [AuthGuard] },
-  {path: 'stu-dashboard/video-player', component: VideoPlayerComponent},
+  {path: 'stu-dashboard/video-player', component: VideoPlayerComponent, canActivate: [AuthGuard]  },
   {path: 'stu-dashboard/assignments', component: AssignmentsComponent, canActivate: [AuthGuard]  },
+  { path: 'stu-dashboard/assignment-detail', component: AssignmentDetailComponent, canActivate: [AuthGuard]   },
   {path:'register', component: RegistrationComponent},
   {path:'login', component: LoginComponent},
   {path: 'about', component: AboutComponent },

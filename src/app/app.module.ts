@@ -21,6 +21,7 @@ import { QuestionsListComponent } from './admin/questions-list/questions-list.co
 import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
 import { LessonsComponent } from './admin/lessons/lessons.component';
 import { LessonsListComponent } from './admin/lessons-list/lessons-list.component';
+import { AssignmentDetailComponent } from './student-dashboard/assignment-detail/assignment-detail.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LessonsListComponent } from './admin/lessons-list/lessons-list.componen
     LessonsComponent,
     LessonsListComponent,
     QuestionUploadComponent,
-    QuestionsListComponent
+    QuestionsListComponent,
+    AssignmentDetailComponent
   ],
   imports: [
     BrowserModule,
