@@ -166,6 +166,13 @@
                     </select>
                   </div>
                   <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
+                    <label for="atype" class="form-label required">Assignment Type:</label>
+                    <select name="atype" id="atype" formControlName="assignment" class="form-control">
+                      <option value="hw">Homework</option>
+                      <option value="qz">Quiz</option>
+                    </select>
+                  </div>
+                  <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
                     <label for="exampleFormControlInput1" class="form-label required">Question</label>
                     <textarea id="questions" name="questions" rows="3" formControlName="q" class="form-control" cols="20"></textarea>
                   </div>

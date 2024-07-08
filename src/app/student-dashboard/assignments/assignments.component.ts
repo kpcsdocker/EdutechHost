@@ -31,7 +31,8 @@ export class AssignmentsComponent implements OnInit {
   groupAssignmentsBySubcategoryAndType(): void {
     this.assignments.forEach((assignment: any) => {
       if (assignment.assignment && (assignment.assignment === 'qz' || assignment.assignment === 'hw')) {
-        const key = `${assignment.subcategory_name} ${assignment.assignment}`;
+        const key = `${assignment.subcategory_name}:${assignment.assignment}`;
+        console.log("key",key);
         if (!this.groupedAssignments[key]) {
           this.groupedAssignments[key] = [];
         }
@@ -44,12 +45,12 @@ export class AssignmentsComponent implements OnInit {
     return Object.keys(this.groupedAssignments);
   }
 
-  selectSubcategoryAndType(subcategory: string, type: string): void {
-    this.selectedSubcategory = subcategory;
-    this.selectedAssignmentType = type;
-    const key = `${subcategory} ${type}`;
-    this.filteredAssignments = this.groupedAssignments[key] || [];
-  }
+  // selectSubcategoryAndType(subcategory: string, type: string): void {
+  //   this.selectedSubcategory = subcategory;
+  //   this.selectedAssignmentType = type;
+  //   const key = `${subcategory} ${type}`;
+  //   this.filteredAssignments = this.groupedAssignments[key] || [];
+  // }
 
   videoPlay(video: any): void {
     this.router.navigate(['/stu-dashboard/video-player'], { state: { video } });
