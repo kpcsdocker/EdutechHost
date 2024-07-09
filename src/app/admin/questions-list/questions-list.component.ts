@@ -29,6 +29,7 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
   students: any = [];
   filteredStudents: any = []; 
   selectedStudents: any[] = [];
+  selectedCourse: any;
 
   constructor(public fb: FormBuilder,public service: EdutechService, private router: Router, private confirmDialogService: ConfirmDialogService) { 
     this.mathJaxObject = MathJax;
@@ -115,6 +116,8 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
   editQuestion(id: any) {
     this.isEditQuestionSelected = true;
     this.service.getQuestionById(id).subscribe((res: any) => {
+      console.log("getting questions",res);
+      console.log("categories",this.categories);
       this.questionById = res;
       const selectedCourse = this.courses.find(course => course.course_name === res.course_name);
       const selectedCategory = this.categories.find(category => category.category_name === res.category_name);
@@ -154,30 +157,25 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
   isStudentSelected(studentId: any) {
     return this.selectedStudents.some(student => student.user_id === studentId);
   }
+
   
   onEditCourseChange() {
-    const selectedCourse = this.editForm.get('course')?.value;
+    const selectedCourseId = this.editForm.get('course')?.value;
     this.editForm.get('category')?.reset();
-    this.editForm.get('subcategory')?.reset();
     this.categories = [];
-
-    if (selectedCourse) {
-      this.service.getCategories().pipe(
-        switchMap(categories => {
-          this.categories = categories.filter(category =>
-            this.courses.some(cs =>
-              cs.course_id === selectedCourse.courseId
-            )
-          );
-          this.editForm.get('category')?.enable();
-          return of(categories);
-        }),
-        )}
-        else {
+    if (selectedCourseId) {
+      this.selectedCourse = this.courses.find(course => course.course_id === selectedCourseId.course_id);
+      if (this.selectedCourse) {
+        this.categories = this.selectedCourse.categories;
+        this.editForm.get('category')?.enable();
+      }
+    } else {
+      this.selectedCourse = null;
+      this.categories = [];
       this.editForm.get('category')?.disable();
     }
   }
-
+  
   onSearch(event: any) {
     const searchTerm = event.target.value.toLowerCase();
     this.filteredStudents = this.students.filter((student: any) =>
@@ -233,7 +231,6 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
 
   onSubmit() {
     const formValue = this.editForm.value;
-    console.log("formValue",formValue);
     // Extract the necessary fields from nested objects and arrays
     const transformedValue = {
       id: formValue.id,
@@ -243,12 +240,10 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
       q: formValue.q,
       diff: formValue.diff,
       options: formValue.options,
-      course_id: formValue.course.courseId,
-      category_id: formValue.category.categoryId,
-      subcategory_id: formValue.subcategory.subcategoryId,
-      course_name: formValue.course.courseName,
-      category_name: formValue.category.categoryName,
-      subcategory_name: formValue.subcategory.subcategoryName,
+      course_id: formValue.course.course_id,
+      category_id: formValue.category.category_id,
+      course_name: formValue.course.course_name,
+      category_name: formValue.category.category_name,
       student_id: formValue.student.map((stu: any) => stu.user_id),
       student_name: formValue.student.map((stu: any) => stu.first_name)
     };

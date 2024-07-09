@@ -14,7 +14,7 @@ export class AssignmentsComponent implements OnInit {
   assignments: any;
   name: any;
   groupedAssignments: any = {};
-  selectedSubcategory: string | null = null;
+  selectedCategory: string | null = null;
   selectedAssignmentType: string | null = null;
   filteredAssignments: any[] = [];
 
@@ -24,13 +24,13 @@ export class AssignmentsComponent implements OnInit {
     this.selectedCourse = history.state.course;
     this.name = history.state.name;
     this.assignments = history.state.assignments;
-    this.groupAssignmentsBySubcategoryAndType();
+    this.groupAssignmentsByCategoryAndType();
   }
 
-  groupAssignmentsBySubcategoryAndType(): void {
+  groupAssignmentsByCategoryAndType(): void {
     this.assignments.forEach((assignment: any) => {
       if (assignment.assignment && (assignment.assignment === 'qz' || assignment.assignment === 'hw')) {
-        const key = `${assignment.subcategory_name}:${assignment.assignment}`;
+        const key = `${assignment.category_name}:${assignment.assignment}`;
         if (!this.groupedAssignments[key]) {
           this.groupedAssignments[key] = [];
         }
@@ -42,13 +42,6 @@ export class AssignmentsComponent implements OnInit {
   assignmentKeys(): string[] {
     return Object.keys(this.groupedAssignments);
   }
-
-  // selectSubcategoryAndType(subcategory: string, type: string): void {
-  //   this.selectedSubcategory = subcategory;
-  //   this.selectedAssignmentType = type;
-  //   const key = `${subcategory} ${type}`;
-  //   this.filteredAssignments = this.groupedAssignments[key] || [];
-  // }
 
   videoPlay(video: any): void {
     this.router.navigate(['/stu-dashboard/video-player'], { state: { video } });

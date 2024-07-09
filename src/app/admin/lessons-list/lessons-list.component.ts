@@ -24,6 +24,7 @@ export class LessonsListComponent implements OnInit {
   students: any = [];
   filteredStudents: any = [];
   selectedStudents: any[] = [];
+  selectedCourse:any;
 
   constructor(private service: EdutechService, public fb: FormBuilder,  private confirmDialogService: ConfirmDialogService) { }
 
@@ -39,7 +40,6 @@ export class LessonsListComponent implements OnInit {
     this.editVideoForm = this.fb.group({
       course: [{ value: '', disabled: true }, Validators.required],
       category: [{ value: '', disabled: true }, Validators.required],
-      subcategory: [{ value: '', disabled: true }, Validators.required],
       student: [{ value: [], disabled: true }, Validators.required],
       description: ['', Validators.required],
       video: ['', Validators.required]
@@ -101,24 +101,18 @@ export class LessonsListComponent implements OnInit {
   } 
 
   onEditCourseChange() {
-    const selectedCourse = this.editVideoForm.get('course')?.value;
+    const selectedCourseId = this.editVideoForm.get('course')?.value;
     this.editVideoForm.get('category')?.reset();
-    this.editVideoForm.get('subcategory')?.reset();
     this.categories = [];
-
-    if (selectedCourse) {
-      this.service.getCategories().pipe(
-        switchMap(categories => {
-          this.categories = categories.filter(category =>
-            this.courses.some(cs =>
-              cs.course_id === selectedCourse.courseId
-            )
-          );
-          this.editVideoForm.get('category')?.enable();
-          return of(categories);
-        }),
-      )
+    if (selectedCourseId) {
+      this.selectedCourse = this.courses.find(course => course.course_id === selectedCourseId.course_id);
+      if (this.selectedCourse) {
+        this.categories = this.selectedCourse.categories;
+        this.editVideoForm.get('category')?.enable();
+      }
     } else {
+      this.selectedCourse = null;
+      this.categories = [];
       this.editVideoForm.get('category')?.disable();
     }
   }
@@ -151,12 +145,10 @@ export class LessonsListComponent implements OnInit {
 
   onEditSubmit() {
     const formData = new FormData();
-    formData.append('course_id', this.editVideoForm.get('course')?.value.courseId);
-    formData.append('course_name', this.editVideoForm.get('course')?.value.courseName);
-    formData.append('category_id', this.editVideoForm.get('category')?.value.categoryId);
-    formData.append('category_name', this.editVideoForm.get('category')?.value.categoryName);
-    formData.append('subcategory_id', this.editVideoForm.get('subcategory')?.value.subcategoryId);
-    formData.append('subcategory_name', this.editVideoForm.get('subcategory')?.value.subcategoryName);
+    formData.append('course_id', this.editVideoForm.get('course')?.value.course_id);
+    formData.append('course_name', this.editVideoForm.get('course')?.value.course_name);
+    formData.append('category_id', this.editVideoForm.get('category')?.value.category_id);
+    formData.append('category_name', this.editVideoForm.get('category')?.value.category_name);
     // Append student_id as array of strings
     this.selectedStudents.forEach(student => {
       formData.append('student_id', student.user_id);

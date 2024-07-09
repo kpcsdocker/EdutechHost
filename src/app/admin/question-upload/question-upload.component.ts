@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { EdutechService } from '../../edutech.service';
 import { Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators'; // Import map from 'rxjs/operators'
 import { of } from 'rxjs';
-import { Category, Course} from '../../models';
+import { Category, Course } from '../../models'; // Make sure the models are correctly imported
 
 @Component({
   selector: 'app-question-upload',
@@ -22,6 +22,7 @@ export class QuestionUploadComponent implements OnInit {
   filteredStudents: any = [];
   selectedStudents: any[] = [];
   errorMessage: any;
+  selectedCourse: any;
 
   constructor(public fb: FormBuilder, public service: EdutechService, private router: Router) {}
 
@@ -74,22 +75,16 @@ export class QuestionUploadComponent implements OnInit {
   }
 
   onCourseChange() {
-    const selectedCourse = this.questionForm.get('course')?.value;
-    this.questionForm.get('category')?.reset();
-    this.categories = [];
-
-    if (selectedCourse) {
-      this.service.getCategories().pipe(
-        switchMap(categories => {
-          this.categories = categories.filter(category =>
-            this.courses.some(cs =>
-              cs.course_id === selectedCourse.courseId 
-            )
-          );
-          this.questionForm.get('category')?.enable();
-          return of(categories);
-        }),
-    )} else {
+    const selectedCourseId = this.questionForm.get('course')?.value;
+    if (selectedCourseId) {
+      this.selectedCourse = this.courses.find(course => course.course_id === selectedCourseId.course_id);
+      if (this.selectedCourse) {
+        this.categories = this.selectedCourse.categories;
+        this.questionForm.get('category')?.enable();
+      }
+    } else {
+      this.selectedCourse = null;
+      this.categories = [];
       this.questionForm.get('category')?.disable();
     }
   }
@@ -114,7 +109,6 @@ export class QuestionUploadComponent implements OnInit {
   }
 
   isStudentSelected(studentId: number): boolean {
-    console.log("selected");
     return this.selectedStudents.some(student => student.user_id === studentId);
   }
 
@@ -162,7 +156,6 @@ export class QuestionUploadComponent implements OnInit {
 
   onSubmit() {
     const formValue = this.questionForm.value;
-  
     // Extract the necessary fields from nested objects and arrays
     const transformedValue = {
       id: formValue.id,
@@ -172,12 +165,10 @@ export class QuestionUploadComponent implements OnInit {
       q: formValue.q,
       diff: formValue.diff,
       options: formValue.options,
-      course_id: formValue.course.courseId,
-      category_id: formValue.category.categoryId,
-      subcategory_id: formValue.subcategory.subcategoryId,
-      course_name: formValue.course.courseName,
-      category_name: formValue.category.categoryName,
-      subcategory_name: formValue.subcategory.subcategoryName,
+      course_id: formValue.course.course_id,
+      category_id: formValue.category.category_id,
+      course_name: formValue.course.course_name,
+      category_name: formValue.category.category_name,
       student_id: formValue.student.map((stu: any) => stu.user_id),
       student_name: formValue.student.map((stu: any) => stu.first_name)
     };
@@ -191,7 +182,6 @@ export class QuestionUploadComponent implements OnInit {
       }
     );
   }
-  
 
   get options(): FormArray {
     return this.questionForm.get('options') as FormArray;
