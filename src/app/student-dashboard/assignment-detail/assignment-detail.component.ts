@@ -10,6 +10,7 @@ declare var MathJax: any; // Declare MathJax
 })
 export class AssignmentDetailComponent implements OnInit {
   assignments: any;
+  isNavOpen = false;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -27,5 +28,17 @@ export class AssignmentDetailComponent implements OnInit {
 
   isMCQ(qType: string): boolean {
     return qType.toLowerCase() === 'mcq';
+  }
+
+  openNav() {
+    this.isNavOpen = true;
+    document.getElementById("mySidenav")!.classList.add('open');
+    document.getElementById("mainContent")!.classList.add('shift-right');
+  }
+
+  closeNav() {
+    this.isNavOpen = false;
+    document.getElementById("mySidenav")!.classList.remove('open');
+    document.getElementById("mainContent")!.classList.remove('shift-right');
   }
 }

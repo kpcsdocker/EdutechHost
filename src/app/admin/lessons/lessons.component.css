@@ -1,6 +1,6 @@
 .navbar-brand{line-height:5px!important;}
 .get_but {
-    width: 315px;
+    width: 220px;
     margin-bottom: 14px;
     /*height: 33px;*/
     line-height: 15px;
@@ -10,9 +10,21 @@
 .onboard .fa{padding-top: 1px;}
 label{color: #380093 !important;
     font-size: 13px;}
-.border-box {overflow:hidden;
+.border-box {
+    overflow-y: scroll;
+    height: 455px;
 }
-a.reg{cursor: pointer;text-decoration:none;}
+a.reg{margin: 0 auto;
+    text-align: center;
+    /* position: relative; */
+    display: block;
+    width: 250px;
+    text-decoration: none;
+    cursor: pointer;}
+.get_but:hover,.get_but:hover i,a.reg:hover {
+  background-color: #4C00C8;
+  color: white;
+}
 .btnn p{line-height:0;}
 .alert {
     padding: 15px;
@@ -35,13 +47,6 @@ a.reg{cursor: pointer;text-decoration:none;}
     border-color: #f5c6cb;
   }*/
   .navbar-brand{line-height:5px!important;}
-  .get_but {
-    width: 315px;
-    margin-bottom: 14px;
-    /*height: 33px;*/
-    line-height: 15px;
-    margin-top:15px;
-}
 .onboard .fa{padding-top: 1px;}
   #call-to-action-2 p{font-size: 17px;}
 

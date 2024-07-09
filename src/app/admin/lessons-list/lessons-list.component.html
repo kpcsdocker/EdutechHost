@@ -56,13 +56,13 @@
     </header>
     <!-- end header -->
     
-    <section *ngIf="!isEditClick" id="call-to-action-2" class="onboard">
+    <section *ngIf="!isEditClick" id="call-to-action-2" class="onboard"> 
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                  <div class="grades_table">
-                    <h2>Lessons List</h2>
-                    <table border="1" class="table table-bordered">
+                  <div class="grades_table border-box">
+                    <p><span>Lessons List</span></p>
+                    <table border="1" id="data-table" class="table table-bordered">
                       <thead>
                         <tr>
                           <th>File Name</th>
@@ -89,12 +89,25 @@
                         </tr>
                       </tbody>
                     </table>
+                     <button routerLink="/lessons" type="submit" class="log">Lesson Upload<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                      <div class="pagination">
+  <a href="#">&laquo;</a>
+  <a href="#">1</a>
+  <a href="#" class="active">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">&raquo;</a>
+</div>
                   </div>
                 </div>
               </div>
             </div>
-            <button routerLink="/lessons" type="submit">Lesson Upload<i class="fa fa-arrow-right" aria-hidden="true"></i></button>             
     </section>
+    
+    
+
     <!-- Edit Section-->
     <section *ngIf="isEditClick" id="edit-section" class="onboard">
       <div class="container">
@@ -152,9 +165,9 @@
                     <strong>Current file:</strong> {{ currentFileName }}
                   </div>
                 </div>
-                <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                  <button type="submit">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                  <button type="button" (click)="cancelEdit()">Cancel <i class="fa fa-times" aria-hidden="true"></i></button>
+                <div class="col-xl-12 col-md-12 btnn">
+                  <button type="submit" class="log get_but">Submit <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                  <button type="button" (click)="cancelEdit()" class="log get_but">Cancel <i class="fa fa-times" aria-hidden="true"></i></button>
                 </div>
               </form> 
             </div>

@@ -1,0 +1,8 @@
+.right-container .navbar-brand{width: 18px;
+    height: 20px !important;
+    line-height: 10px !important;
+    margin-top: 0;
+    padding: 5px;
+    font-size: 9px;}
+
+ul{list-style:none;}

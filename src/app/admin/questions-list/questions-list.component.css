@@ -1,7 +1,4 @@
 .navbar-brand{line-height:5px!important;}
-.get_but{width: 100%;
-    position: absolute;
-    top: 320px;}
     table td ul li{list-style: none;}
 
         table td{margin: 0;
@@ -38,5 +35,18 @@ table.table td a.add i {
     position: relative;
     top: 3px;
 } 
-.border-box {overflow:hidden;
-}   
+.border-box {
+    overflow-y: scroll;
+    height: 455px;
+}
+a.reg{margin: 0 auto;
+    text-align: center;
+    /* position: relative; */
+    display: block;
+    width: 250px;
+    text-decoration: none;
+    cursor: pointer;}
+.get_but:hover,.get_but:hover i,a.reg:hover {
+  background-color: #4C00C8;
+  color: white;
+}

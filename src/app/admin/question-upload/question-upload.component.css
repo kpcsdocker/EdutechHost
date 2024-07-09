@@ -1,16 +1,21 @@
 .navbar-brand{line-height:5px!important;}
-.get_but {
-    width: 315px;
+.get_but,.reg{
+    width: 220px;
     margin-bottom: 14px;
     /*height: 33px;*/
     line-height: 15px;
     margin-top:15px;
     cursor:pointer;
 }
-.onboard .fa{padding-top: 1px;}
+ .get_but:hover,.get_but:hover i,a.reg:hover {
+  background-color: #4C00C8;
+  color: white;
+}
 label{color: #380093 !important;
     font-size: 13px;}
-.border-box {overflow:hidden;
+.border-box {
+    overflow-y: scroll;
+    height: 455px;
 }
 a.reg{cursor: pointer;text-decoration:none;}
 .btnn p{line-height:0;}
@@ -35,14 +40,14 @@ a.reg{cursor: pointer;text-decoration:none;}
     border-color: #f5c6cb;
   }*/
   .navbar-brand{line-height:5px!important;}
-  .get_but {
-    width: 315px;
+  /*.get_but {
+    width: 220px;
     margin-bottom: 14px;
-    /*height: 33px;*/
+    /*height: 33px;/
     line-height: 15px;
     margin-top:15px;
-}
-.onboard .fa{padding-top: 1px;}
+}*/
+.onboard .fa{padding-top: 0px;}
   #call-to-action-2 p{font-size: 17px;}
 
   /*.border-box{text-align:center;}*/
@@ -69,4 +74,6 @@ a.reg{cursor: pointer;text-decoration:none;}
     content: "*";
     color: red;
   }
-  
+  .onboard {
+    padding: 50px 0 0 0 !important;
+}
