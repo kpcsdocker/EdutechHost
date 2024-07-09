@@ -34,18 +34,12 @@
          <div class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header col-4 col-md-4 col-sm-4">
-                    <span class="navbar-brand logo megrim-regular openav" (click)="openNav1()"><</span>
+                    <!-- <span class="navbar-brand logo megrim-regular openav" (click)="openNav1()"><</span> -->
                 </div>
              <div class="text-center col-4 col-md-4 col-sm-4">
                  <p class="welcome_note">INTRODUCTION TO PROGRAMMING</p>
              </div>
                 <div class="text-right col-4 col-md-4 col-sm-4">
-                    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button> -->
-                
                     <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <a href="#">Home</a>
@@ -59,33 +53,43 @@
                 </div>
     </header>
     <!-- end header -->
-    <div id="mySidenav1" class="sidenav1">
-        <a href="javascript:void(0)" (click)="closeNav1()">&times;</a>
-        <a>Week 6</a>
-        <a (click)="videoPlay(selectedCourse)">String manipulation Video</a>
-        <a>String Slicing Video</a>
-        <a>Week 6</a>
-        <!-- Chat Box -->
-    <button class="open-button" onclick="openForm()"><img src="assets/images/ravi_chat.png"></button>
+    <div id="page-content">
+        <div class="left-container" id="leftContainer">
+    <div class="toggle-btn" onclick="toggleLeftContainer()"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+    <ul>
+        <li class="title"><h4>Week 6</h4></li>
+        <label class="filterby">Filter By:</label>
 
-    <div class="chat-popup" id="myForm">
-        <form action="" class="form-container">
-            <div class="card">
-                <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
-                <div id="message-section">
-                    <div class="message"><span id="bot-response"><img src="assets/images/ravi_chat.png"><br>hi, my name is ravi uncle.<br> how can i help you today?</span></div>
-                </div>
-                <div id="input-section">
-                    <input id="input" type="text" placeholder="" autocomplete="off" autofocus="autofocus" />
-                    <button class="send" onclick="sendMessage()">
-                        <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <!-- End Chat Box -->
-  </div>
+<select>
+  <option>None</option>
+  <option>Pending Tasks</option>
+  <option>Completed Tasks</option>
+</select>
+
+        <li class="active"><a (click)="videoPlay(selectedCourse)"><i class="fa fa-youtube-play left_icon" aria-hidden="true"></i>&nbsp;&nbsp;String Manipulation Video <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+            <div id="progressbar">
+             <div></div>
+           </div></a>
+        </li>
+        <li><a href="#"><i class="fa fa-youtube-play left_icon" aria-hidden="true"></i>&nbsp;&nbsp;String Slicing Video <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+        <div id="progressbar">
+             <div></div>
+           </div></li>
+        <li><a href="#"><i class="fa fa-clock-o left_icon" aria-hidden="true"></i>&nbsp;&nbsp;Timed Coding Assigment <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+        <li><a href="#"><i class="fa fa-align-left left_icon" aria-hidden="true"></i>&nbsp;&nbsp;For / While Loops Lesson <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+        <li><a href="#"><i class="fa fa-pencil left_icon" aria-hidden="true"></i>&nbsp;&nbsp;Iteration Homework <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+        <!-- <li><a href="#"><i class="fa fa-pencil left_icon" aria-hidden="true"></i>&nbsp;&nbsp;String Slicing Homework <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+        <li><a href="#"><i class="fa fa-align-left left_icon" aria-hidden="true"></i>&nbsp;&nbsp;Creating Variables Lesson <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span><br><span>Completed</span></a></li> -->
+    </ul>
+</div>
+ <div class="right-container" id="rightContainer">
+    <div class="center-container" id="centerContainer">
+        <label class="toggle-arrow">
+  <input type="checkbox" class="real-checkbox">
+  <div class="toggle-button" onclick="togglecenterContainer()"></div>
+</label>
+   <!-- <i class="fa fa-angle-left" aria-hidden="true" ></i> -->
+</div>
   <section id="call-to-action-2" class="onboard">
       <div class="container">
           <div class="row">
@@ -130,6 +134,32 @@
 
 </div>
   </section>
+</div>
+<!--chat-box-->
+<div class="popup-container" id="popupContainer">
+    <div class="toggle-btn" onclick="togglepopupContainer()">
+       <button class="open-button" onclick="openForm()"><img src="assets/images/ravi_chat.png"></button>
+    </div>
+    <div class="chat-popup" id="myForm">
+       <form action="" class="">  
+          <div class="card">
+              <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
+              <div id="message-section">
+                 <div class="message"><span id="bot-response"><img src="assets/images/ravi_chat.png"><br>hi, my name is ravi uncle.<br> how can i help you today?</span></div>
+              </div>
+              <div id="input-section">
+                 <input id="input" type="text" placeholder="" autocomplete="off" autofocus="autofocus" />
+                 <button class="send" onclick="sendMessage()">
+                    <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
+                 </button>
+               </div>
+            </div>
+     </form>
+    </div>
+</div>
+  <!--chat-box-->
+
+</div>
   <!-- <section id="assignments-section" class="assignments" *ngIf="selectedAssignmentType && selectedSubcategory">
       <div class="container">
           <div class="row">
