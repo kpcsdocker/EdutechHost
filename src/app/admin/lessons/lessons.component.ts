@@ -4,7 +4,7 @@ import { EdutechService } from '../../edutech.service';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { Category, Subcategory, Course, CourseSubcategory } from '../../models';
+import { Category, Course} from '../../models';
 
 @Component({
   selector: 'app-lessons',
@@ -14,11 +14,9 @@ import { Category, Subcategory, Course, CourseSubcategory } from '../../models';
 export class LessonsComponent implements OnInit {
   videoForm!: FormGroup;
   categories: Category[] = [];
-  subcategories: Subcategory[] = [];
   courses: Course[] = [];
-  students: any = []; // Initialize as an empty array
-  filteredStudents: any = []; // Initialize as an empty array
-  courseSubcategories: CourseSubcategory[] = [];
+  students: any = []; 
+  filteredStudents: any = []; 
   selectedStudents: any[] = [];
   errorMessage: any;
 
@@ -29,8 +27,6 @@ export class LessonsComponent implements OnInit {
     this.fetchStudents();
     this.fetchCourses();
     this.fetchCategories();
-    this.fetchSubcategories();
-    this.fetchCourseSubcategories();
   }
 
   buildForm() {
@@ -61,22 +57,10 @@ export class LessonsComponent implements OnInit {
     });
   }
 
-  fetchSubcategories() {
-    this.service.getSubcategories().subscribe(subcategories => {
-      this.subcategories = subcategories;
-    });
-  }
-
   fetchCourses() {
     this.service.getCourses().subscribe(courses => {
       this.courses = courses;
       this.videoForm.get('course')?.enable();
-    });
-  }
-
-  fetchCourseSubcategories() {
-    this.service.getCourseSubcategories().subscribe(courseSubcategories => {
-      this.courseSubcategories = courseSubcategories;
     });
   }
 
@@ -85,46 +69,20 @@ export class LessonsComponent implements OnInit {
     this.videoForm.get('category')?.reset();
     this.videoForm.get('subcategory')?.reset();
     this.categories = [];
-    this.subcategories = [];
 
     if (selectedCourse) {
       this.service.getCategories().pipe(
         switchMap(categories => {
           this.categories = categories.filter(category =>
-            this.courseSubcategories.some(cs =>
-              cs.course.courseId === selectedCourse.courseId && cs.subcategory.category.categoryId === category.categoryId
+            this.courses.some(cs =>
+              cs.course_id === selectedCourse.courseId
             )
           );
           this.videoForm.get('category')?.enable();
-          return this.service.getSubcategories();
+          return of(categories);
         }),
-        switchMap(subcategories => {
-          this.subcategories = this.courseSubcategories
-            .filter(cs => cs.course.courseId === selectedCourse.courseId)
-            .map(cs => cs.subcategory);
-          return of(subcategories);
-        })
-      ).subscribe();
-    } else {
+    )} else {
       this.videoForm.get('category')?.disable();
-      this.videoForm.get('subcategory')?.disable();
-    }
-  }
-
-  onCategoryChange() {
-    const selectedCourse = this.videoForm.get('course')?.value;
-    const selectedCategory = this.videoForm.get('category')?.value;
-    this.videoForm.get('subcategory')?.reset();
-    this.subcategories = [];
-
-    if (selectedCourse && selectedCategory) {
-      this.subcategories = this.courseSubcategories.filter(cs =>
-        cs.course.courseId === selectedCourse.courseId &&
-        cs.subcategory.category.categoryId === selectedCategory.categoryId
-      ).map(cs => cs.subcategory);
-      this.videoForm.get('subcategory')?.enable();
-    } else {
-      this.videoForm.get('subcategory')?.disable();
     }
   }
 

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ConfirmDialogModule } from '../../confirm-dialog/confirm-dialog.module';
 import { ConfirmDialogService } from '../../confirm-dialog/confirm-dialog.service';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { Category, Subcategory, Course, CourseSubcategory } from '../../models';
+import { Category, Course} from '../../models';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -25,11 +25,9 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
   isMCQSelected: boolean = false;
   alert!: string;
   categories: Category[] = [];
-  subcategories: Subcategory[] = [];
   courses: Course[] = [];
   students: any = [];
   filteredStudents: any = []; 
-  courseSubcategories: CourseSubcategory[] = [];
   selectedStudents: any[] = [];
 
   constructor(public fb: FormBuilder,public service: EdutechService, private router: Router, private confirmDialogService: ConfirmDialogService) { 
@@ -41,8 +39,6 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
     this.buildForm();
     this.fetchCourses();
     this.fetchCategories();
-    this.fetchSubcategories();
-    this.fetchCourseSubcategories();
     this.fetchStudents();
   }
 
@@ -72,18 +68,6 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
   fetchCategories() {
     this.service.getCategories().subscribe(categories => {
       this.categories = categories;
-    });
-  }
-
-  fetchSubcategories() {
-    this.service.getSubcategories().subscribe(subcategories => {
-      this.subcategories = subcategories;
-    });
-  }
-
-  fetchCourseSubcategories() {
-    this.service.getCourseSubcategories().subscribe(courseSubcategories => {
-      this.courseSubcategories = courseSubcategories;
     });
   }
 
@@ -132,9 +116,8 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
     this.isEditQuestionSelected = true;
     this.service.getQuestionById(id).subscribe((res: any) => {
       this.questionById = res;
-      const selectedCourse = this.courses.find(course => course.courseName === res.course_name);
-      const selectedCategory = this.categories.find(category => category.categoryName === res.category_name);
-      const selectedSubcategory = this.subcategories.find(subcategory => subcategory.subcategoryName === res.subcategory_name);
+      const selectedCourse = this.courses.find(course => course.course_name === res.course_name);
+      const selectedCategory = this.categories.find(category => category.category_name === res.category_name);
       const studentNames = res.student_name;
       const selectedStudents = this.students.filter((student: any) => studentNames.includes(student.first_name));
       this.selectedStudents = selectedStudents;
@@ -151,7 +134,6 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
         q_ans: res.q_ans,
         course: selectedCourse,
         category: selectedCategory,
-        subcategory: selectedSubcategory,
         student: selectedStudents,
         id: this.questionById.id
       });
@@ -178,46 +160,21 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
     this.editForm.get('category')?.reset();
     this.editForm.get('subcategory')?.reset();
     this.categories = [];
-    this.subcategories = [];
 
     if (selectedCourse) {
       this.service.getCategories().pipe(
         switchMap(categories => {
           this.categories = categories.filter(category =>
-            this.courseSubcategories.some(cs =>
-              cs.course.courseId === selectedCourse.courseId && cs.subcategory.category.categoryId === category.categoryId
+            this.courses.some(cs =>
+              cs.course_id === selectedCourse.courseId
             )
           );
           this.editForm.get('category')?.enable();
-          return this.service.getSubcategories();
+          return of(categories);
         }),
-        switchMap(subcategories => {
-          this.subcategories = this.courseSubcategories
-            .filter(cs => cs.course.courseId === selectedCourse.courseId)
-            .map(cs => cs.subcategory);
-          return of(subcategories);
-        })
-      ).subscribe();
-    } else {
+        )}
+        else {
       this.editForm.get('category')?.disable();
-      this.editForm.get('subcategory')?.disable();
-    }
-  }
-
-  onEditCategoryChange() {
-    const selectedCourse = this.editForm.get('course')?.value;
-    const selectedCategory = this.editForm.get('category')?.value;
-    this.editForm.get('subcategory')?.reset();
-    this.subcategories = [];
-
-    if (selectedCourse && selectedCategory) {
-      this.subcategories = this.courseSubcategories.filter(cs =>
-        cs.course.courseId === selectedCourse.courseId &&
-        cs.subcategory.category.categoryId === selectedCategory.categoryId
-      ).map(cs => cs.subcategory);
-      this.editForm.get('subcategory')?.enable();
-    } else {
-      this.editForm.get('subcategory')?.disable();
     }
   }
 
@@ -327,9 +284,7 @@ export class QuestionsListComponent implements OnInit, AfterViewChecked {
     this.editForm.reset();
     this.selectedStudents = [];
     this.filteredStudents = this.students;
-    this.fetchSubcategories();
     this.fetchCategories();
     this.fetchCourses();
-    this.fetchCourseSubcategories();
   }
 }

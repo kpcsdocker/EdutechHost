@@ -4,7 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import {catchError, retry} from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
-import { Category, Subcategory, Course, CourseSubcategory } from './models';
+import { Category, Course } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -196,14 +196,6 @@ export class EdutechService {
 
   public getCategories(): Observable<Category[]>{
     return this.httpclient.get<Category[]>(this.api+"/categories", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
-  }
-
-  public getSubcategories(): Observable<Subcategory[]> {
-    return this.httpclient.get<Subcategory[]>(this.api+"/subcategories", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
-  }
-
-  public getCourseSubcategories(): Observable<CourseSubcategory[]>{
-    return this.httpclient.get<CourseSubcategory[]>(this.api+"/course-subcategories", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public videoUpload(form:FormData){

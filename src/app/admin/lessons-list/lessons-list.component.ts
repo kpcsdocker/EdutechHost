@@ -3,7 +3,7 @@ import { EdutechService } from '../../edutech.service';
 import { ConfirmDialogModule } from '../../confirm-dialog/confirm-dialog.module';
 import { ConfirmDialogService } from '../../confirm-dialog/confirm-dialog.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category, Subcategory, Course, CourseSubcategory } from '../../models';
+import { Category, Course} from '../../models';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -20,11 +20,9 @@ export class LessonsListComponent implements OnInit {
   isEditClick: boolean= false;
   editVideoForm!: FormGroup;
   categories: Category[] = [];
-  subcategories: Subcategory[] = [];
   courses: Course[] = [];
-  students: any = []; // Initialize as an empty array
-  filteredStudents: any = []; // Initialize as an empty array
-  courseSubcategories: CourseSubcategory[] = [];
+  students: any = [];
+  filteredStudents: any = [];
   selectedStudents: any[] = [];
 
   constructor(private service: EdutechService, public fb: FormBuilder,  private confirmDialogService: ConfirmDialogService) { }
@@ -34,8 +32,6 @@ export class LessonsListComponent implements OnInit {
     this.buildEditForm();
     this.fetchCourses();
     this.fetchCategories();
-    this.fetchSubcategories();
-    this.fetchCourseSubcategories();
     this.fetchStudents();
   }
 
@@ -63,18 +59,6 @@ export class LessonsListComponent implements OnInit {
     });
   }
 
-  fetchSubcategories() {
-    this.service.getSubcategories().subscribe(subcategories => {
-      this.subcategories = subcategories;
-    });
-  }
-
-  fetchCourseSubcategories() {
-    this.service.getCourseSubcategories().subscribe(courseSubcategories => {
-      this.courseSubcategories = courseSubcategories;
-    });
-  }
-
   fetchStudents() {
     this.service.getStudents().subscribe(
       data => {
@@ -94,33 +78,15 @@ export class LessonsListComponent implements OnInit {
     this.id=id;
     this.isEditClick = true;
     this.service.getVideosById(id).subscribe((video: any) => {
-      const selectedCourse = this.courses.find(course => course.courseName === video.course_name);
-      const selectedCategory = this.categories.find(category => category.categoryName === video.category_name);
-      const selectedSubcategory = this.subcategories.find(subcategory => subcategory.subcategoryName === video.subcategory_name);
+      const selectedCourse = this.courses.find(course => course.course_name === video.course_name);
+      const selectedCategory = this.categories.find(category => category.category_name === video.category_name);
       const studentNames = video.student_name;
       const selectedStudents = this.students.filter((student: any) => studentNames.includes(student.first_name));
       this.selectedStudents = selectedStudents;
-      // let studentNames: string[];
-      // try {
-      //   studentNames = JSON.parse(video.student_name);
-      //   if (!Array.isArray(studentNames)) {
-      //     studentNames = [studentNames];
-      //   }
-      // } catch (e) {
-      //   studentNames = [video.student_name];
-      // }
-  
-      // console.log('studentNames:', studentNames);
-      // console.log('this.students:', this.students);
-  
-      // this.selectedStudents = this.students.filter((student: any) => studentNames.includes(student.first_name));
-  
-      // console.log('selectedStudents:', this.selectedStudents);
   
       this.editVideoForm.patchValue({
         course: selectedCourse,
         category: selectedCategory,
-        subcategory: selectedSubcategory,
         student: selectedStudents,
         description: video.description,
         video: video.fileName
@@ -139,46 +105,21 @@ export class LessonsListComponent implements OnInit {
     this.editVideoForm.get('category')?.reset();
     this.editVideoForm.get('subcategory')?.reset();
     this.categories = [];
-    this.subcategories = [];
 
     if (selectedCourse) {
       this.service.getCategories().pipe(
         switchMap(categories => {
           this.categories = categories.filter(category =>
-            this.courseSubcategories.some(cs =>
-              cs.course.courseId === selectedCourse.courseId && cs.subcategory.category.categoryId === category.categoryId
+            this.courses.some(cs =>
+              cs.course_id === selectedCourse.courseId
             )
           );
           this.editVideoForm.get('category')?.enable();
-          return this.service.getSubcategories();
+          return of(categories);
         }),
-        switchMap(subcategories => {
-          this.subcategories = this.courseSubcategories
-            .filter(cs => cs.course.courseId === selectedCourse.courseId)
-            .map(cs => cs.subcategory);
-          return of(subcategories);
-        })
-      ).subscribe();
+      )
     } else {
       this.editVideoForm.get('category')?.disable();
-      this.editVideoForm.get('subcategory')?.disable();
-    }
-  }
-
-  onEditCategoryChange() {
-    const selectedCourse = this.editVideoForm.get('course')?.value;
-    const selectedCategory = this.editVideoForm.get('category')?.value;
-    this.editVideoForm.get('subcategory')?.reset();
-    this.subcategories = [];
-
-    if (selectedCourse && selectedCategory) {
-      this.subcategories = this.courseSubcategories.filter(cs =>
-        cs.course.courseId === selectedCourse.courseId &&
-        cs.subcategory.category.categoryId === selectedCategory.categoryId
-      ).map(cs => cs.subcategory);
-      this.editVideoForm.get('subcategory')?.enable();
-    } else {
-      this.editVideoForm.get('subcategory')?.disable();
     }
   }
 
@@ -243,10 +184,8 @@ export class LessonsListComponent implements OnInit {
     this.editVideoForm.reset();
     this.selectedStudents = [];
     this.filteredStudents = this.students;
-    this.fetchSubcategories();
     this.fetchCategories();
     this.fetchCourses();
-    this.fetchCourseSubcategories();
   }
 
   deleteVideo(id:any){

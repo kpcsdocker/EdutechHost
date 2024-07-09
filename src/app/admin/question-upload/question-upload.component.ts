@@ -4,7 +4,7 @@ import { EdutechService } from '../../edutech.service';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Category, Subcategory, Course, CourseSubcategory } from '../../models';
+import { Category, Course} from '../../models';
 
 @Component({
   selector: 'app-question-upload',
@@ -17,11 +17,9 @@ export class QuestionUploadComponent implements OnInit {
   isMCQSelected: boolean = false;
   alert!: string;
   categories: Category[] = [];
-  subcategories: Subcategory[] = [];
   courses: Course[] = [];
   students: any = [];
   filteredStudents: any = [];
-  courseSubcategories: CourseSubcategory[] = [];
   selectedStudents: any[] = [];
   errorMessage: any;
 
@@ -32,8 +30,6 @@ export class QuestionUploadComponent implements OnInit {
     this.fetchStudents();
     this.fetchCourses();
     this.fetchCategories();
-    this.fetchSubcategories();
-    this.fetchCourseSubcategories();
     this.selectOptions();
   }
 
@@ -70,12 +66,6 @@ export class QuestionUploadComponent implements OnInit {
     });
   }
 
-  fetchSubcategories() {
-    this.service.getSubcategories().subscribe(subcategories => {
-      this.subcategories = subcategories;
-    });
-  }
-
   fetchCourses() {
     this.service.getCourses().subscribe(courses => {
       this.courses = courses;
@@ -83,57 +73,24 @@ export class QuestionUploadComponent implements OnInit {
     });
   }
 
-  fetchCourseSubcategories() {
-    this.service.getCourseSubcategories().subscribe(courseSubcategories => {
-      this.courseSubcategories = courseSubcategories;
-    });
-  }
-
   onCourseChange() {
     const selectedCourse = this.questionForm.get('course')?.value;
     this.questionForm.get('category')?.reset();
-    this.questionForm.get('subcategory')?.reset();
     this.categories = [];
-    this.subcategories = [];
 
     if (selectedCourse) {
       this.service.getCategories().pipe(
         switchMap(categories => {
           this.categories = categories.filter(category =>
-            this.courseSubcategories.some(cs =>
-              cs.course.courseId === selectedCourse.courseId && cs.subcategory.category.categoryId === category.categoryId
+            this.courses.some(cs =>
+              cs.course_id === selectedCourse.courseId 
             )
           );
           this.questionForm.get('category')?.enable();
-          return this.service.getSubcategories();
+          return of(categories);
         }),
-        switchMap(subcategories => {
-          this.subcategories = this.courseSubcategories
-            .filter(cs => cs.course.courseId === selectedCourse.courseId)
-            .map(cs => cs.subcategory);
-          return of(subcategories);
-        })
-      ).subscribe();
-    } else {
+    )} else {
       this.questionForm.get('category')?.disable();
-      this.questionForm.get('subcategory')?.disable();
-    }
-  }
-
-  onCategoryChange() {
-    const selectedCourse = this.questionForm.get('course')?.value;
-    const selectedCategory = this.questionForm.get('category')?.value;
-    this.questionForm.get('subcategory')?.reset();
-    this.subcategories = [];
-
-    if (selectedCourse && selectedCategory) {
-      this.subcategories = this.courseSubcategories.filter(cs =>
-        cs.course.courseId === selectedCourse.courseId &&
-        cs.subcategory.category.categoryId === selectedCategory.categoryId
-      ).map(cs => cs.subcategory);
-      this.questionForm.get('subcategory')?.enable();
-    } else {
-      this.questionForm.get('subcategory')?.disable();
     }
   }
 

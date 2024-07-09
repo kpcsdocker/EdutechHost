@@ -64,23 +64,15 @@
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
                           <label for="course" class="form-label required">Choose Course:</label>
                           <select id="course" formControlName="course" (change)="onCourseChange()" class="form-control">
-                            <option *ngFor="let course of courses" [ngValue]="course">{{ course.courseName }}</option>
+                            <option *ngFor="let course of courses" [ngValue]="course">{{ course.course_name }}</option>
                           </select>
                         </div>
                         
                         <!-- Category Selection -->
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
                           <label for="category" class="form-label required">Choose Category:</label>
-                          <select id="category" formControlName="category" (change)="onCategoryChange()" class="form-control" [disabled]="categories.length === 0">
-                            <option *ngFor="let category of categories" [ngValue]="category">{{ category.categoryName }}</option>
-                          </select>
-                        </div>
-                        
-                        <!-- Subcategory Selection -->
-                        <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                          <label for="subcategory" class="form-label required">Choose Subcategory:</label>
-                          <select id="subcategory" formControlName="subcategory" class="form-control" [disabled]="subcategories.length === 0">
-                            <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">{{ subcategory.subcategoryName }}</option>
+                          <select id="category" formControlName="category" class="form-control" [disabled]="categories.length === 0">
+                            <option *ngFor="let category of categories" [ngValue]="category">{{ category.category_name }}</option>
                           </select>
                         </div>
                         

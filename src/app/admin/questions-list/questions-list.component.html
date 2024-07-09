@@ -116,19 +116,13 @@
                   <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
                     <label for="edit-course" class="form-label">Course:</label>
                     <select id="edit-course" formControlName="course" (change)="onEditCourseChange()" class="form-control">
-                      <option *ngFor="let course of courses" [ngValue]="course">{{ course.courseName }}</option>
+                      <option *ngFor="let course of courses" [ngValue]="course">{{ course.course_name }}</option>
                     </select>
                   </div>
                   <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
                     <label for="edit-category" class="form-label">Category:</label>
-                    <select id="edit-category" formControlName="category" (change)="onEditCategoryChange()" class="form-control">
-                      <option *ngFor="let category of categories" [ngValue]="category">{{ category.categoryName }}</option>
-                    </select>
-                  </div>
-                  <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                    <label for="edit-subcategory" class="form-label">Subcategory:</label>
-                    <select id="edit-subcategory" formControlName="subcategory" class="form-control">
-                      <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">{{ subcategory.subcategoryName }}</option>
+                    <select id="edit-category" formControlName="category" class="form-control">
+                      <option *ngFor="let category of categories" [ngValue]="category">{{ category.category_name }}</option>
                     </select>
                   </div>
                   <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">

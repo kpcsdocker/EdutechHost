@@ -1,21 +1,10 @@
 export interface Category {
-  categoryId: number;
-  categoryName: string;
-}
-
-export interface Subcategory {
-  subcategoryId: number;
-  subcategoryName: string;
-  category: Category;
+  category_id: number;
+  category_name: string;
 }
 
 export interface Course {
-  courseId: number;
-  courseName: string;
-}
-
-export interface CourseSubcategory {
-  id: number;
-  course: Course;
-  subcategory: Subcategory;
+  course_id: number;
+  course_name: string;
+  category: Category;
 }
