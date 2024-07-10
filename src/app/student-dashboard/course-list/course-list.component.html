@@ -68,8 +68,8 @@
         <div class="container">
             <div class="row">
                <div class="col-md-1 col-sm-12"></div>
-               <div class="course_box" *ngFor="let course of courses" (click)="selectCourse(course)">
-                       <div class="col-md-1 col-sm-12 left_box">1</div>
+               <div class="course_box" *ngFor="let course of courses; let i = index" (click)="selectCourse(course)">
+                       <div class="col-md-1 col-sm-12 left_box">{{ i + 1 }}</div>
                        <div class="col-md-11 col-sm-12 right_box">
       {{ course.course_name }}
       <p>No of Assignments: {{ course.assignmentCount }}</p>
