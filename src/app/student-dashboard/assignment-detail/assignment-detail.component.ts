@@ -11,11 +11,13 @@ declare var MathJax: any; // Declare MathJax
 export class AssignmentDetailComponent implements OnInit {
   assignments: any;
   isNavOpen = false;
+  course_name: any;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.assignments = history.state.assignment;
+    this.course_name = history.state.course_name;
     console.log(this.assignments);
 
     // Call MathJax after assignments are loaded

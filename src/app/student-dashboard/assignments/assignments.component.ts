@@ -52,7 +52,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   viewAssignmentDetails(assignment: any): void {
-    this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment } });
+    this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment, course_name: this.selectedCourse.course_name } });
   }
 
   openNav() {
