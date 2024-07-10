@@ -23,7 +23,12 @@ export class AssignmentsComponent implements OnInit {
     this.selectedCourse = history.state.course;
     this.name = history.state.name;
     this.assignments = history.state.assignments;
+    this.filterAssignments();
     this.groupAssignmentsByCategoryAndType();
+  }
+
+  filterAssignments(): void {
+    this.filteredAssignments = this.assignments.filter((assignment: any) => assignment.filePath);
   }
 
   groupAssignmentsByCategoryAndType(): void {
@@ -36,7 +41,7 @@ export class AssignmentsComponent implements OnInit {
         this.groupedAssignments[key].push(assignment);
       }
     });
-  }  
+  }
 
   assignmentKeys(): string[] {
     return Object.keys(this.groupedAssignments);
@@ -45,7 +50,7 @@ export class AssignmentsComponent implements OnInit {
   videoPlay(video: any): void {
     this.router.navigate(['/stu-dashboard/video-player'], { state: { video } });
   }
-  
+
   viewAssignmentDetails(assignment: any): void {
     this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment } });
   }
@@ -60,5 +65,9 @@ export class AssignmentsComponent implements OnInit {
     this.isNavOpen = false;
     document.getElementById("mySidenav")!.classList.remove('open');
     document.getElementById("mainContent")!.classList.remove('shift-right');
+  }
+
+  calculateProgress(): number {
+    return (this.filteredAssignments.length / this.assignments.length) * 100;
   }
 }
