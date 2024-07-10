@@ -191,7 +191,7 @@ export class EdutechService {
   }
 
   public getCourses(): Observable<Course[]>{
-    return this.httpclient.get<Course[]>(this.api+"/courses", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get<Course[]>(this.api+"/nested-courses", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public getCategories(): Observable<Category[]>{
