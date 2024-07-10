@@ -2301,7 +2301,7 @@ color: #4400B3;
     }
 .left-container ul li.active{background:#DBE1FF;}
 .center-container{border: 1px solid #D9D9D9;width: 25px!important;
-    position: absolute;
+    position: fixed;
     /*left: 253px;*/
     right: auto;
     margin: 0 auto;

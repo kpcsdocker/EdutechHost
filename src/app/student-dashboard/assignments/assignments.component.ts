@@ -9,7 +9,6 @@ import { EdutechService } from '../../edutech.service';
 })
 export class AssignmentsComponent implements OnInit {
   isNavOpen = false;
-  isNavOpen1 = false;
   selectedCourse: any;
   assignments: any;
   name: any;
@@ -49,18 +48,6 @@ export class AssignmentsComponent implements OnInit {
   
   viewAssignmentDetails(assignment: any): void {
     this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment } });
-  }
-  
-  openNav1() {
-    this.isNavOpen1 = true;
-    document.getElementById("mySidenav1")!.classList.add('open');
-    document.getElementById("mainContent")!.classList.add('shift-left');
-  }
-
-  closeNav1() {
-    this.isNavOpen1 = false;
-    document.getElementById("mySidenav1")!.classList.remove('open');
-    document.getElementById("mainContent")!.classList.remove('shift-left');
   }
 
   openNav() {
