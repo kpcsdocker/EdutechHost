@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router  } from '@angular/router';
 
 declare var MathJax: any; // Declare MathJax
 
@@ -13,7 +13,7 @@ export class AssignmentDetailComponent implements OnInit {
   isNavOpen = false;
   course_name: any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit(): void {
     this.assignments = history.state.assignment;
@@ -42,5 +42,14 @@ export class AssignmentDetailComponent implements OnInit {
     this.isNavOpen = false;
     document.getElementById("mySidenav")!.classList.remove('open');
     document.getElementById("mainContent")!.classList.remove('shift-right');
+  }
+
+  goBack(): void {
+    this.router.navigate(['/stu-dashboard/courses'], {
+      state: {
+        studentDetails: history.state.studentDetails,
+        email: history.state.email
+      }
+    });
   }
 }

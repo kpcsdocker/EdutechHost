@@ -8,9 +8,9 @@ export const environment = {
   apiUrl: 'http://localhost:8088/api',
   mongoUrl: 'http://localhost:8088/mongo',
   postgresUrl: 'http://localhost:8088/postgres',
-  authUrl: 'http://localhost:8088/auth',
+  authUrl: 'http://localhost:8088',
   authMongoUrl: 'http://localhost:8088/auth/mongo',
-  oauth2Url: 'http://localhost:8088/oauth2/authorization/google',
+  oauth2Url: 'http://localhost:4200/oauth2/authorization/google',
   questions: 'http://localhost:8088/questions'
 };
 

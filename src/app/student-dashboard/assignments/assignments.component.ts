@@ -48,11 +48,11 @@ export class AssignmentsComponent implements OnInit {
   }
 
   videoPlay(video: any): void {
-    this.router.navigate(['/stu-dashboard/video-player'], { state: { video } });
+    this.router.navigate(['/stu-dashboard/video-player'], { state: { video, studentDetails: history.state.studentDetails, email: history.state.email  } });
   }
 
   viewAssignmentDetails(assignment: any): void {
-    this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment, course_name: this.selectedCourse.course_name } });
+    this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment, course_name: this.selectedCourse.course_name, studentDetails: history.state.studentDetails, email: history.state.email  } });
   }
 
   openNav() {
@@ -69,5 +69,14 @@ export class AssignmentsComponent implements OnInit {
 
   calculateProgress(): number {
     return (this.filteredAssignments.length / this.assignments.length) * 100;
+  }
+
+  goBack(): void {
+    this.router.navigate(['/stu-dashboard/courses'], {
+      state: {
+        studentDetails: history.state.studentDetails,
+        email: history.state.email
+      }
+    });
   }
 }

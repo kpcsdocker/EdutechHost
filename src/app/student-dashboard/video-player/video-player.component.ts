@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute ,Router} from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { EdutechService } from 'src/app/edutech.service';
 
@@ -13,7 +13,7 @@ export class VideoPlayerComponent implements OnInit {
   selectedVideoUrl: SafeUrl | undefined;
   isNavOpen = false;
 
-  constructor(private route: ActivatedRoute, public sanitizer: DomSanitizer, private service: EdutechService) { }
+  constructor(private route: ActivatedRoute, private router: Router,public sanitizer: DomSanitizer, private service: EdutechService) { }
 
   ngOnInit(): void {
     this.selectedVideo = history.state.video;
@@ -30,5 +30,14 @@ export class VideoPlayerComponent implements OnInit {
     this.isNavOpen = false;
     document.getElementById("mySidenav")!.classList.remove('open');
     document.getElementById("mainContent")!.classList.remove('shift-right');
+  }
+
+  goBack(): void {
+    this.router.navigate(['/stu-dashboard/courses'], {
+      state: {
+        studentDetails: history.state.studentDetails,
+        email: history.state.email
+      }
+    });
   }
 }

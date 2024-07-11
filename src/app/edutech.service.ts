@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import {catchError, retry} from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { Category, Course } from './models';
@@ -15,29 +14,29 @@ export class EdutechService {
   private api: string = environment.apiUrl;
   private mongo: string = environment.mongoUrl;
   private postgres: string = environment.postgresUrl;
-  private auth: string = environment.authUrl;
+  private auth=`${environment.authUrl}/auth`;
   private authmongo: string = environment.authMongoUrl;
   private oauth2: string = environment.oauth2Url;
   private questions: string = environment.questions;
-  private isLoggedInValue: string ="";
-  private isRegistered: string ="";
+  private isLoggedInValue: string = "";
+  private isRegistered: string = "";
   private isSocialLogedin: string = "";
   password!: string;
   email!: string;
   code!: string;
-  
+
   constructor(private httpclient: HttpClient) { }
 
-  public getStudents(){
-    return this.httpclient.get(this.postgres+'/students', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  public getStudents() {
+    return this.httpclient.get(this.postgres + '/students', { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(catchError((err: any) => this.handleErrorPromise(err)));
   }
 
-  login(){
-    window.location.href= this.oauth2;
+  login() {
+    window.location.href = this.oauth2;
   }
 
-  public getAuthUser(){
-    return this.httpclient.get(this.auth+'/user', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  public getAuthUser() {
+    return this.httpclient.get(this.auth + '/user', { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(catchError((err: any) => this.handleErrorPromise(err)));
   }
 
   public mongoStudentSubmit(studentData:FormData){

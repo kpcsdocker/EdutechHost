@@ -93,6 +93,6 @@ export class CourseListComponent implements OnInit {
   selectCourse(course: any): void {
     const courseAssignments = this.courses.find((c:any) => c.course_id === course.course_id)?.assignments || [];
     console.log(courseAssignments);
-    this.router.navigate(['/stu-dashboard/assignments'], { state: { course, name: this.name, assignments: courseAssignments } });
-  }
+    this.router.navigate(['/stu-dashboard/assignments'], { state: { course, name: this.name, assignments: courseAssignments, studentDetails: this.students, email: this.email } });
+  }  
 }
