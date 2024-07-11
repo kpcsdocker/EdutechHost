@@ -110,7 +110,7 @@
                 </li>
               </ul>
             </div>
-            <div>
+            <div *ngIf="!isMCQ(assignment.q_type)">
               <input type="text" name="answer_{{ assignment.id }}" class="form-control" placeholder="Your answer...">
             </div>
           </div>

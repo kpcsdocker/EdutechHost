@@ -12,6 +12,8 @@ export class AssignmentsComponent implements OnInit {
   selectedCourse: any;
   assignments: any;
   name: any;
+  profile:any;
+  social_picture:any;
   groupedAssignments: any = {};
   selectedCategory: string | null = null;
   selectedAssignmentType: string | null = null;
@@ -22,6 +24,8 @@ export class AssignmentsComponent implements OnInit {
   ngOnInit(): void {
     this.selectedCourse = history.state.course;
     this.name = history.state.name;
+    this.profile= history.state.profile;
+    this.social_picture= history.state.social_picture;
     this.assignments = history.state.assignments;
     this.filterAssignments();
     this.groupAssignmentsByCategoryAndType();
