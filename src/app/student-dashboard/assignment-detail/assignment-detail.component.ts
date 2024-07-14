@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router  } from '@angular/router';
+import { EdutechService } from 'src/app/edutech.service';
 
 declare var MathJax: any; // Declare MathJax
 
@@ -12,8 +13,9 @@ export class AssignmentDetailComponent implements OnInit {
   assignments: any;
   isNavOpen = false;
   course_name: any;
+  chatResponse:any;
 
-  constructor(private route: ActivatedRoute,private router: Router) {}
+  constructor(private route: ActivatedRoute,private router: Router,private service: EdutechService) {}
 
   ngOnInit(): void {
     this.assignments = history.state.assignment;
@@ -42,6 +44,18 @@ export class AssignmentDetailComponent implements OnInit {
     this.isNavOpen = false;
     document.getElementById("mySidenav")!.classList.remove('open');
     document.getElementById("mainContent")!.classList.remove('shift-right');
+  }
+
+  sendMessage(message: string): void {
+    this.service.getChatResponse(message).subscribe(
+      response => {
+        this.chatResponse = response.response;
+        console.log('Chat Response:', response.response);
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   }
 
   goBack(): void {

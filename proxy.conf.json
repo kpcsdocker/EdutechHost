@@ -38,5 +38,11 @@
     "target": "http://localhost:8088",
     "secure": false,
     "changeOrigin": true
+  },
+  "/chat": {
+    "target": "http://localhost:5000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }

@@ -18,6 +18,7 @@ export class AssignmentsComponent implements OnInit {
   selectedCategory: string | null = null;
   selectedAssignmentType: string | null = null;
   filteredAssignments: any[] = [];
+  chatResponse:any;
 
   constructor(private eduService: EdutechService, private route: ActivatedRoute, private router: Router) { }
 
@@ -73,6 +74,18 @@ export class AssignmentsComponent implements OnInit {
 
   calculateProgress(): number {
     return (this.filteredAssignments.length / this.assignments.length) * 100;
+  }
+
+  sendMessage(message: string): void {
+    this.eduService.getChatResponse(message).subscribe(
+      response => {
+        this.chatResponse = response.response;
+        console.log('Chat Response:', response.response);
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   }
 
   goBack(): void {

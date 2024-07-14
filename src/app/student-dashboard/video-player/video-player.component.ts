@@ -12,6 +12,7 @@ export class VideoPlayerComponent implements OnInit {
   selectedVideo: any;
   selectedVideoUrl: SafeUrl | undefined;
   isNavOpen = false;
+  chatResponse:any;
 
   constructor(private route: ActivatedRoute, private router: Router,public sanitizer: DomSanitizer, private service: EdutechService) { }
 
@@ -30,6 +31,18 @@ export class VideoPlayerComponent implements OnInit {
     this.isNavOpen = false;
     document.getElementById("mySidenav")!.classList.remove('open');
     document.getElementById("mainContent")!.classList.remove('shift-right');
+  }
+
+  sendMessage(message: string): void {
+    this.service.getChatResponse(message).subscribe(
+      response => {
+        this.chatResponse = response.response;
+        console.log('Chat Response:', response.response);
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   }
 
   goBack(): void {

@@ -14,10 +14,13 @@ export class EdutechService {
   private api: string = environment.apiUrl;
   private mongo: string = environment.mongoUrl;
   private postgres: string = environment.postgresUrl;
-  private auth=`${environment.authUrl}/auth`;
+  private auth: string = environment.authUrl;
+  //private auth: string = "auth";
   private authmongo: string = environment.authMongoUrl;
   private oauth2: string = environment.oauth2Url;
   private questions: string = environment.questions;
+  private chat: string = environment.chatbot;
+  //private chat: string = "chat";
   private isLoggedInValue: string = "";
   private isRegistered: string = "";
   private isSocialLogedin: string = "";
@@ -207,6 +210,15 @@ export class EdutechService {
   return this.httpclient.put(this.api+'/video/'+id, form, { observe: 'response' })
   .pipe(
   catchError((err:any)=>this.handleErrorPromise(err)));
+}
+
+getChatResponse(message: string): Observable<any> {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
+  const body = { message: message };
+
+  return this.httpclient.post<any>(this.chat, body, { headers: headers });
 }
 
  public getVideosList(){

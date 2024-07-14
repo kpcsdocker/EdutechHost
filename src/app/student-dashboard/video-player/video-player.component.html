@@ -102,18 +102,19 @@
     </div>
     <div class="chat-popup" id="myForm">
        <form action="" class="">  
-          <div class="card">
-              <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
-              <div id="message-section">
-                 <div class="message"><span id="bot-response"><img src="assets/images/ravi_chat.png"><br>hi, my name is ravi uncle.<br> how can i help you today?</span></div>
-              </div>
-              <div id="input-section">
-                 <input id="input" type="text" placeholder="" autocomplete="off" autofocus="autofocus" />
-                 <button class="send" onclick="sendMessage()">
-                    <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
-                 </button>
-               </div>
+        <div class="card">
+            <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
+            <div id="message-section">
+               <div *ngIf="chatResponse" class="message"><span id="bot-response"><img src="assets/images/ravi_chat.png"><br>{{ chatResponse }}</span></div>
             </div>
+            <div id="input-section">
+              <input #messageInput type="text" placeholder="Enter your message">
+               <!-- <input id="input" type="text" placeholder="" autocomplete="off" autofocus="autofocus" /> -->
+               <button class="send" (click)="sendMessage(messageInput.value)">
+                  <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
+               </button>
+             </div>
+          </div>
      </form>
     </div>
 </div>
