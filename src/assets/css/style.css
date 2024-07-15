@@ -1,6 +1,5 @@
 
 
-@import url('http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:400,600,700'); 
 @import url('font-awesome.css');  
 @import url('animate.css');
 
@@ -2364,6 +2363,7 @@ color: #4400B3;
       transform: rotate(135deg);
       -webkit-transform: rotate(135deg);
     }
+   .border-box::-webkit-scrollbar-thumb { border-radius: 10px; }
 
 
 /*Responsive*/
@@ -2397,6 +2397,20 @@ color: #4400B3;
   .navbar-default .navbar-nav>.active>a{color: #555 !important;}
   header ul.nav li{margin-bottom: 13px;}
   header ul.nav li a{padding:15px;text-align: center;}
+  /*.course_box{height: 100px!important;}*/
+  .left_box{font-size: 16px!important;
+    padding: 10px!important;
+    line-height: 10px!important;height: auto !important;}
+.right_box{font-size: 18px!important;}
+#call-to-action-2 .right_box p{font-size: 18px!important;}
+.border_box h2{font-size: 16px;}
+.border-box{border-radius: 15px 8px 8px 15px;height:375px;overflow-y: scroll;border-radius: 15px 8px 8px 15px;}
 }
+
+
+@media (min-width: 461px) and (max-width: 768px) {
+	.border-box{border-radius: 15px 8px 8px 15px;height:375px;overflow-y: scroll;border-radius: 15px 8px 8px 15px;}
+}
+
 
 /*Responsive*/

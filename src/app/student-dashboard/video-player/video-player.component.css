@@ -49,9 +49,9 @@
   }
 }
 
-.open {
+/*.open {
   width: 250px !important;
-}
+}*/
 
 .main-content {
   transition: margin-left 0.5s, margin-right 0.5s;

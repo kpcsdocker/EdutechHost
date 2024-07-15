@@ -77,3 +77,6 @@ a.reg{cursor: pointer;text-decoration:none;}
   .onboard {
     padding: 50px 0 0 0 !important;
 }
+.border-box {
+    border-radius: 15px 8px 8px 15px;
+}

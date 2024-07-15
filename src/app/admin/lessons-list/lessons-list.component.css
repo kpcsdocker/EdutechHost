@@ -2,6 +2,7 @@
 .border-box {
     overflow-y: scroll;
     height: 455px;
+    border-radius: 15px 8px 8px 15px;
 }
 .btnn{text-align: center;display:ruby;padding-bottom: 20px!important;}
 #call-to-action-2 .btnn {

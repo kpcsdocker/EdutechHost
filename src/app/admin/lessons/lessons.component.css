@@ -13,6 +13,7 @@ label{color: #380093 !important;
 .border-box {
     overflow-y: scroll;
     height: 455px;
+    border-radius: 15px 8px 8px 15px;
 }
 a.reg{margin: 0 auto;
     text-align: center;
