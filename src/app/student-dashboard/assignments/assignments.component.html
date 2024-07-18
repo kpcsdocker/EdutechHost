@@ -54,30 +54,16 @@
   <!-- end header -->
   <div id="page-content">
     <div class="left-container" id="leftContainer">
-      <div class="toggle-btn" (click)="goBack()"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
-      <ul>
-        <li class="title"><h4>Week 6</h4></li>
-        <label class="filterby">Filter By:</label>
-        <select>
-          <option>None</option>
-          <option>Pending Tasks</option>
-          <option>Completed Tasks</option>
-        </select>
-        <ng-container *ngFor="let assignment of filteredAssignments">
-          <li [class.active]="assignment.isActive">
-            <a (click)="videoPlay(assignment)">
-              <i class="fa fa-youtube-play left_icon" aria-hidden="true"></i>&nbsp;&nbsp;{{ assignment.category_name }} Video 
-              <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-              <div id="progressbar">
-                <div [style.width.%]="assignment.progress"></div>
-              </div>
-            </a>
-          </li>
-        </ng-container>
-        <li><a href="#"><i class="fa fa-clock-o left_icon" aria-hidden="true"></i>&nbsp;&nbsp;Timed Coding Assigment <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
-        <li><a href="#"><i class="fa fa-align-left left_icon" aria-hidden="true"></i>&nbsp;&nbsp;For / While Loops Lesson <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
-        <li><a href="#"><i class="fa fa-pencil left_icon" aria-hidden="true"></i>&nbsp;&nbsp;Iteration Homework <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
-      </ul>
+      <app-assignment-leftreusable
+        [filteredAssignments]="filteredAssignments"
+        [assignments]="assignments"
+        [groupedAssignments]="groupedAssignments"
+        [email]="email"
+        [course_name]="course_name"
+        [studentDetails]="studentDetails"
+        [selectedCourse]="selectedCourse">
+      </app-assignment-leftreusable>
+
     </div>
     <div class="right-container" id="rightContainer">
       <div class="center-container" id="centerContainer">

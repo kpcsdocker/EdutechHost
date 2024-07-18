@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router  } from '@angular/router';
 import { EdutechService } from 'src/app/edutech.service';
+import { AssignmentService } from './../assignment.service'; // Adjust the path as necessary
+import { Subscription } from 'rxjs';
 
 declare var MathJax: any; // Declare MathJax
 
@@ -9,18 +11,42 @@ declare var MathJax: any; // Declare MathJax
   templateUrl: './assignment-detail.component.html',
   styleUrls: ['./assignment-detail.component.css']
 })
-export class AssignmentDetailComponent implements OnInit {
+export class AssignmentDetailComponent implements OnInit , OnDestroy{
   assignments: any;
   isNavOpen = false;
   course_name: any;
-  chatResponse:any;
+  chatResponse: any;
+  filteredAssignments: any;
+  groupedAssignments: any;
+  selectedCourse: any;
+  email: any;
+  studentDetails: any;
+  assignmentSubscription!: Subscription;
 
-  constructor(private route: ActivatedRoute,private router: Router,private service: EdutechService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private service: EdutechService, private assignmentService: AssignmentService) {}
 
   ngOnInit(): void {
+    this.filteredAssignments = history.state.filteredAssignments;
+    this.groupedAssignments = history.state.groupedAssignments;
     this.assignments = history.state.assignment;
+    console.log("details page assignments", this.assignments);
+    this.email = history.state.email;
+    this.studentDetails = history.state.studentDetails;
+    this.selectedCourse = history.state.selectedCourse;
     this.course_name = history.state.course_name;
-    console.log(this.assignments);
+
+    // Subscribe to the selected assignment changes
+    this.assignmentSubscription = this.assignmentService.selectedAssignment$.subscribe(assignment => {
+      if (assignment) {
+        console.log("from service",assignment);
+        this.assignments = assignment;
+        setTimeout(() => {
+          if (MathJax) {
+            MathJax.typeset(); // Ensure MathJax typesets after the content is loaded
+          }
+        }, 0);
+      }
+    });
 
     // Call MathJax after assignments are loaded
     setTimeout(() => {
@@ -28,6 +54,13 @@ export class AssignmentDetailComponent implements OnInit {
         MathJax.typeset(); // Ensure MathJax typesets after the content is loaded
       }
     }, 0);
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from the subscription to avoid memory leaks
+    if (this.assignmentSubscription) {
+      this.assignmentSubscription.unsubscribe();
+    }
   }
 
   isMCQ(qType: string): boolean {

@@ -11,6 +11,8 @@ export class AssignmentsComponent implements OnInit {
   isNavOpen = false;
   selectedCourse: any;
   assignments: any;
+  studentDetails: any;
+  email: any;
   name: any;
   profile:any;
   social_picture:any;
@@ -19,12 +21,17 @@ export class AssignmentsComponent implements OnInit {
   selectedAssignmentType: string | null = null;
   filteredAssignments: any[] = [];
   chatResponse:any;
+  course_name: any;
 
   constructor(private eduService: EdutechService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.selectedCourse = history.state.course;
+    this.course_name = history.state.course.course_name;
+    console.log(this.course_name);
     this.name = history.state.name;
+    this.studentDetails= history.state.studentDetails;
+    this.email = history.state.email;
     this.profile= history.state.profile;
     this.social_picture= history.state.social_picture;
     this.assignments = history.state.assignments;
@@ -53,11 +60,11 @@ export class AssignmentsComponent implements OnInit {
   }
 
   videoPlay(video: any): void {
-    this.router.navigate(['/stu-dashboard/video-player'], { state: { video, studentDetails: history.state.studentDetails, email: history.state.email  } });
+    this.router.navigate(['/stu-dashboard/video-player'], { state: { video, course_name: this.course_name,studentDetails: history.state.studentDetails, email: history.state.email, filteredAssignments: this.filteredAssignments, groupedAssignments: this.groupedAssignments, selectedCourse: this.selectedCourse  } });
   }
 
   viewAssignmentDetails(assignment: any): void {
-    this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment, course_name: this.selectedCourse.course_name, studentDetails: history.state.studentDetails, email: history.state.email  } });
+    this.router.navigate(['/stu-dashboard/assignment-detail'], { state: { assignment, course_name: this.course_name, selectedCourse: this.selectedCourse, studentDetails: history.state.studentDetails, email: history.state.email, filteredAssignments: this.filteredAssignments, groupedAssignments: this.groupedAssignments  } });
   }
 
   openNav() {
@@ -86,14 +93,5 @@ export class AssignmentsComponent implements OnInit {
         console.error('Error:', error);
       }
     );
-  }
-
-  goBack(): void {
-    this.router.navigate(['/stu-dashboard/courses'], {
-      state: {
-        studentDetails: history.state.studentDetails,
-        email: history.state.email
-      }
-    });
   }
 }

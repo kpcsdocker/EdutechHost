@@ -22,6 +22,7 @@ import { ConfirmDialogModule } from './confirm-dialog/confirm-dialog.module';
 import { LessonsComponent } from './admin/lessons/lessons.component';
 import { LessonsListComponent } from './admin/lessons-list/lessons-list.component';
 import { AssignmentDetailComponent } from './student-dashboard/assignment-detail/assignment-detail.component';
+import { AssignmentLeftReusableComponent } from './student-dashboard/assignment-leftreusable/assignment-leftreusable.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AssignmentDetailComponent } from './student-dashboard/assignment-detail
     LessonsListComponent,
     QuestionUploadComponent,
     QuestionsListComponent,
-    AssignmentDetailComponent
+    AssignmentDetailComponent,
+    AssignmentLeftReusableComponent
   ],
   imports: [
     BrowserModule,

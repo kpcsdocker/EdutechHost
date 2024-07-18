@@ -1,0 +1,29 @@
+<div>
+  <div class="toggle-btn" (click)="goBack()"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+    <ul>
+      <li class="title"><h4>{{selectedCourse.course_name}}</h4></li>
+      <label class="filterby">Filter By:</label>
+      <select>
+        <option>None</option>
+        <option>Pending Tasks</option>
+        <option>Completed Tasks</option>
+      </select>
+      <ng-container *ngFor="let assignment of filteredAssignments">
+        <li [class.active]="assignment.isActive">
+          <a (click)="videoPlay(assignment)">
+            <i class="fa fa-youtube-play left_icon" aria-hidden="true"></i>&nbsp;&nbsp;{{ assignment.category_name }} Video 
+            <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+            <div id="progressbar">
+              <div [style.width.%]="assignment.progress"></div>
+            </div>
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngFor="let key of assignmentKeys()">
+        <div (click)="viewAssignmentDetails(groupedAssignments[key])">
+          <li>{{ key.split(':')[0] }} {{ key.split(':')[1] }} </li>
+        </div>
+      </ng-container>
+    </ul>
+  </div>
+  
