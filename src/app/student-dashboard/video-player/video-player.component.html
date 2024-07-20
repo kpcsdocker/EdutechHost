@@ -87,7 +87,8 @@
         <div class="card">
             <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
             <div id="message-section">
-               <div *ngIf="chatResponse" class="message"><span id="bot-response" class="typewriter-text"><img src="assets/images/ravi_chat.png"><br>{{ chatResponse }}</span></div>
+               <div *ngIf="chatResponse" class="message"><span id="bot-response" class="typewriter-text"><img src="assets/images/ravi_chat.png"><br><p>{{ chatResponse }}</p></span>
+                <span class="user_msgs"><img src="assets/images/user.jpg"><br><p>Hi iam user</p></span></div>
             </div>
             <div id="input-section">
               <input #messageInput type="text" placeholder="Enter your message">
