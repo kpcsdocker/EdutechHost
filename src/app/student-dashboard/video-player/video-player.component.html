@@ -36,7 +36,7 @@
         </div>
     </header>
     <!-- end header -->
-     <div id="page-content">
+    <div id="page-content">
         <div class="left-container" id="leftContainer">
             <app-assignment-leftreusable
             [filteredAssignments]="filteredAssignments"
@@ -48,40 +48,34 @@
           </app-assignment-leftreusable>
         </div>
 
-    
-   <div class="right-container" id="rightContainer">
-    <div class="center-container" id="centerContainer">
-        <label class="toggle-arrow">
-  <input type="checkbox" class="real-checkbox">
-  <div class="toggle-button" onclick="togglecenterContainer()"></div>
-</label>
-   <!-- <i class="fa fa-angle-left" aria-hidden="true" ></i> -->
-</div>
-    <section id="call-to-action-2" class="onboard">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div id="mainContent" class="border_box" *ngIf="selectedVideoUrl">
-                        <video controls width="100%" height="400">
-                            <source [src]="selectedVideoUrl" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <div class="border_box">
-                        <h2>{{selectedVideo.fileName}}</h2>
-                        <p>taught by Ravi Sessesty</p>
+        <div class="right-container" id="rightContainer">
+            <div class="center-container" id="centerContainer">
+                <label class="toggle-arrow">
+                    <input type="checkbox" class="real-checkbox">
+                    <div class="toggle-button" onclick="togglecenterContainer()"></div>
+                </label>
+            </div>
+            <section id="call-to-action-2" class="onboard">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div id="mainContent" class="border_box" *ngIf="selectedVideoUrl">
+                                <video #videoPlayer controls width="100%" height="400">
+                                    <source [src]="selectedVideoUrl" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="border_box">
+                                <h2>{{selectedVideo.fileName}}</h2>
+                                <p>taught by Ravi Sessesty</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
-</div>
-
-<!--chat-box-->
-<div class="popup-container" id="popupContainer">
-    <div class="toggle-btn" onclick="togglepopupContainer()">
-       <button class="open-button" onclick="openForm()"><img src="assets/images/ravi_chat.png"></button>
     </div>
+<<<<<<< HEAD
     <div class="chat-popup" id="myForm">
        <form action="" class="">  
         <div class="card">
@@ -102,4 +96,34 @@
     </div>
 </div>
   <!--chat-box-->
+=======
+>>>>>>> bbca315a28ca1b27374bf1a838c98753c72350a8
 
+    <!--chat-box-->
+   <!--  <div class="popup-container" id="popupContainer">
+        <div class="toggle-btn" onclick="togglepopupContainer()">
+            <button class="open-button" onclick="openForm()"><img src="assets/images/ravi_chat.png"></button>
+        </div>
+        <div class="chat-popup" id="myForm">
+            <form action="" class="">
+                <div class="card">
+                    <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
+                    <div id="message-section">
+                        <div *ngIf="chatResponse" class="message">
+                            <span id="bot-response" class="typewriter-text"><img src="assets/images/ravi_chat.png"><br>{{ chatResponse }}</span>
+                        </div>
+                    </div>
+                    <div id="input-section">
+                        <input #messageInput type="text" placeholder="Enter your message">
+                        <button class="send" (click)="sendMessage(messageInput.value)">
+                            <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> -->
+    <!--chat-box-->
+
+</body>
+</html>

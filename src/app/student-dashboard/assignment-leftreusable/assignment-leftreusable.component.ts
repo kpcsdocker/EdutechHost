@@ -19,12 +19,12 @@ export class AssignmentLeftReusableComponent implements OnInit {
   constructor(private router: Router, private assignmentService: AssignmentService) { }
 
   ngOnInit(): void {
+    //to remove previous video data when navigating back and forth
     this.assignmentService.setSelectedAssignment(null);
-    console.log("selectedCourse in AssignmentLeftReusableComponent:", this.selectedCourse);
+    this.assignmentService.setSelectedVideo(null);
   }
 
   videoPlay(video: any): void {
-    console.log("selectedCourse in videoPlay:", this.selectedCourse);
     if (!this.selectedCourse || !this.selectedCourse.course_name) {
       console.error("selectedCourse or course_name is undefined");
       return;
@@ -48,12 +48,9 @@ export class AssignmentLeftReusableComponent implements OnInit {
   }
 
   viewAssignmentDetails(assignment: any): void {
-    console.log("left....",assignment);
     if (this.router.url.includes('/stu-dashboard/assignment-detail')) {
-      console.log("same page details");
       this.assignmentService.setSelectedAssignment(assignment);
     } else {
-      console.log("not from details");
       this.router.navigate(['/stu-dashboard/assignment-detail'], {
         state: {
           assignment,

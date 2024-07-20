@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { EdutechService } from 'src/app/edutech.service';
 import { AssignmentService } from '../assignment.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.css']
 })
-export class VideoPlayerComponent implements OnInit {
+export class VideoPlayerComponent implements OnInit, OnDestroy {
   selectedVideo: any;
   selectedVideoUrl: SafeUrl | undefined;
   isNavOpen = false;
@@ -21,6 +22,8 @@ export class VideoPlayerComponent implements OnInit {
   selectedCourse: any;
   email: any;
   studentDetails: any;
+  private videoSubscription!: Subscription;
+  @ViewChild('videoPlayer', { static: false }) videoPlayer: ElementRef | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,23 +42,31 @@ export class VideoPlayerComponent implements OnInit {
     this.filteredAssignments = history.state.filteredAssignments;
     this.groupedAssignments = history.state.groupedAssignments;
     this.selectedVideo = history.state.video;
-
-    console.log("History state data in ngOnInit of VideoPlayerComponent:", history.state);
-
+    
     if (this.selectedVideo && this.selectedVideo.id) {
-      this.selectedVideoUrl = this.sanitizer.bypassSecurityTrustUrl(this.service.getVideoFile(this.selectedVideo.id));
+      this.updateVideoUrl(this.selectedVideo.id);
     } else {
       console.error("Selected video or video id is undefined");
     }
 
-    // Subscribe to selected video changes
-    this.assignmentService.selectedVideo$.subscribe(video => {
+    // Subscribe to the selected video changes
+    this.videoSubscription = this.assignmentService.selectedVideo$.subscribe(video => {
       if (video) {
         this.selectedVideo = video;
-        this.selectedVideoUrl = this.sanitizer.bypassSecurityTrustUrl(this.service.getVideoFile(this.selectedVideo.id));
-        console.log("Updated selectedVideo from service:", this.selectedVideo);
+        this.updateVideoUrl(this.selectedVideo.id);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.videoSubscription) {
+      this.videoSubscription.unsubscribe();
+    }
+  }
+
+  updateVideoUrl(videoId: string): void {
+    this.selectedVideoUrl = this.sanitizer.bypassSecurityTrustUrl(this.service.getVideoFile(videoId));
+    this.videoPlayer?.nativeElement.load(); // video element reloads the new URL
   }
 
   openNav() {

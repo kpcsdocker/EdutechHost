@@ -29,7 +29,6 @@ export class AssignmentDetailComponent implements OnInit , OnDestroy{
     this.filteredAssignments = history.state.filteredAssignments;
     this.groupedAssignments = history.state.groupedAssignments;
     this.assignments = history.state.assignment;
-    console.log("details page assignments", this.assignments);
     this.email = history.state.email;
     this.studentDetails = history.state.studentDetails;
     this.selectedCourse = history.state.selectedCourse;
@@ -38,7 +37,6 @@ export class AssignmentDetailComponent implements OnInit , OnDestroy{
     // Subscribe to the selected assignment changes
     this.assignmentSubscription = this.assignmentService.selectedAssignment$.subscribe(assignment => {
       if (assignment) {
-        console.log("from service",assignment);
         this.assignments = assignment;
         setTimeout(() => {
           if (MathJax) {
