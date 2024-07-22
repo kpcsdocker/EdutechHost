@@ -10,17 +10,8 @@ import { Category, Course } from './models';
 })
 export class EdutechService {
 
-  private student: string = environment.studentUrl;
-  private api: string = environment.apiUrl;
-  private mongo: string = environment.mongoUrl;
-  private postgres: string = environment.postgresUrl;
-  private auth: string = environment.authUrl;
-  //private auth: string = "auth";
-  private authmongo: string = environment.authMongoUrl;
+  private api: string = environment.api;
   private oauth2: string = environment.oauth2Url;
-  private questions: string = environment.questions;
-  private chat: string = environment.chatbot;
-  //private chat: string = "chat";
   private isLoggedInValue: string = "";
   private isRegistered: string = "";
   private isSocialLogedin: string = "";
@@ -31,7 +22,7 @@ export class EdutechService {
   constructor(private httpclient: HttpClient) { }
 
   public getStudents() {
-    return this.httpclient.get(this.postgres + '/students', { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(catchError((err: any) => this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api + '/postgres/students', { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(catchError((err: any) => this.handleErrorPromise(err)));
   }
 
   login() {
@@ -39,18 +30,18 @@ export class EdutechService {
   }
 
   public getAuthUser() {
-    return this.httpclient.get(this.auth + '/user', { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(catchError((err: any) => this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api + '/auth/user', { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(catchError((err: any) => this.handleErrorPromise(err)));
   }
 
   public mongoStudentSubmit(studentData:FormData){
-    return this.httpclient.post(this.mongo+'/student/register', studentData, { observe: 'response' })
+    return this.httpclient.post(this.api+'/mongo/student/register', studentData, { observe: 'response' })
     .pipe(
       catchError((err:any)=>this.handleErrorPromise(err))
     );
   }
 
   public postgresStudentSubmit(studentData:FormData){
-    return this.httpclient.post(this.postgres+'/student/register', studentData, { observe: 'response' })
+    return this.httpclient.post(this.api+'/postgres/student/register', studentData, { observe: 'response' })
     .pipe(
     catchError((err:any)=>this.handleErrorPromise(err)));
  }
@@ -77,42 +68,42 @@ export class EdutechService {
   }
   
   public sendMail(email:any){
-    return this.httpclient.get(this.api+'/sendVerificationCode/'+email, {responseType: 'text'});
+    return this.httpclient.get(this.api+'/api/sendVerificationCode/'+email, {responseType: 'text'});
   }
   
   public getSocialLogin(){
-    return this.httpclient.get(this.auth, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+'/auth', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
   
   public getSocialLoginById(id:any){
-    return this.httpclient.get(this.auth+"/students/"+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+'/auth/students/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
   
   public updateSocialLogin(id:any,student:any){
-    return this.httpclient.put(this.auth+"/students/"+id,student,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.put(this.api+'/auth/students/'+id,student,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
   
   public postSocialLogin(student:any){
-    return this.httpclient.post(this.auth, student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
+    return this.httpclient.post(this.api+'/auth', student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
     .pipe(
       catchError((err:any)=>this.handleErrorPromise(err))
     );
   }
 
   public postMongoSocialLogin(student:any){
-    return this.httpclient.post(this.authmongo+"/students", student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
+    return this.httpclient.post(this.api+"/auth/mongo/students", student, {headers: new HttpHeaders({'Content-Type':  'application/json'})})
     .pipe(
       catchError((err:any)=>this.handleErrorPromise(err))
     );
   }
 
   public updateMongoSocialLogin(id:any,student:any){
-    return this.httpclient.put(this.authmongo+"/students/"+id,student,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.put(this.api+"/auth/mongo/students/"+id,student,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
   
   verifyCode(email: string, code: string) {
     console.log(email,code);
-    return this.httpclient.get(this.api+'/verifyCode/'+email+'/'+code, { responseType: 'text' });
+    return this.httpclient.get(this.api+'/api/verifyCode/'+email+'/'+code, { responseType: 'text' });
   }
   
   public setVerificationEmail(email:any){
@@ -157,57 +148,57 @@ export class EdutechService {
   }
 
   getQuestionsForStudent(studentId: string){
-    return this.httpclient.get(this.questions+'/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+'/questions/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   getVideosForStudent(studentId: string){
-    return this.httpclient.get(this.api+'/videos/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+'/api/videos/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   getVideoFileUrl(id: string){
-    return this.httpclient.get(this.api+'/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+'/api/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   getVideoFile(id: string): string {
-    return `${this.api}/video/${id}/file`;
+    return `${this.api}/api/video/${id}/file`;
   }
 
   public getQuestions(){
-    return this.httpclient.get(this.questions, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+"/questions", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public getQuestionById(id:any){
-    return this.httpclient.get(this.questions+"/"+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+"/questions/"+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public postQuestions(questions:any){
-    return this.httpclient.post(this.questions, questions, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.post(this.api+"/questions", questions, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public updateQuestion(id:any,question:any){
-    return this.httpclient.put(this.questions+"/"+id,question,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.put(this.api+"/questions/"+id,question,{headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public deleteQuestion(id:any){
-    return this.httpclient.delete(this.questions+'/delete/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.delete(this.api+'/questions/delete/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public getCourses(): Observable<Course[]>{
-    return this.httpclient.get<Course[]>(this.api+"/nested-courses", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get<Course[]>(this.api+"/api/nested-courses", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public getCategories(): Observable<Category[]>{
-    return this.httpclient.get<Category[]>(this.api+"/categories", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get<Category[]>(this.api+"/api/categories", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public videoUpload(form:FormData){
-    return this.httpclient.post(this.api+'/videos/upload', form, { observe: 'response' })
+    return this.httpclient.post(this.api+'/api/videos/upload', form, { observe: 'response' })
     .pipe(
     catchError((err:any)=>this.handleErrorPromise(err)));
  }
 
  public updateVideo(form:FormData,id:any){
-  return this.httpclient.put(this.api+'/video/'+id, form, { observe: 'response' })
+  return this.httpclient.put(this.api+'/api/video/'+id, form, { observe: 'response' })
   .pipe(
   catchError((err:any)=>this.handleErrorPromise(err)));
 }
@@ -218,19 +209,19 @@ getChatResponse(message: string): Observable<any> {
   });
   const body = { message: message };
 
-  return this.httpclient.post<any>(this.chat, body, { headers: headers });
+  return this.httpclient.post<any>(this.api+'/api/send-message', body, { headers: headers });
 }
 
  public getVideosList(){
-  return this.httpclient.get(this.api+'/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  return this.httpclient.get(this.api+'/api/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
  }
 
  public getVideosById(id:any){
-  return this.httpclient.get(this.api+'/video/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  return this.httpclient.get(this.api+'/api/video/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
  }
 
  public deleteVideo(id:any){
-   return this.httpclient.delete(this.api+'/video/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+   return this.httpclient.delete(this.api+'/api/video/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
  }
 
   setLoggedinStatus(isLoggedIn: string): void {
