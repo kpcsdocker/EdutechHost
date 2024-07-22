@@ -75,55 +75,31 @@
             </section>
         </div>
     </div>
-<<<<<<< HEAD
-    <div class="chat-popup" id="myForm">
-       <form action="" class="">  
-        <div class="card">
-            <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
-            <div id="message-section">
-               <div *ngIf="chatResponse" class="message"><span id="bot-response" class="typewriter-text"><img src="assets/images/ravi_chat.png"><br><p>{{ chatResponse }}</p></span>
-                <span class="user_msgs"><img src="assets/images/user.jpg"><br><p>Hi iam user</p></span></div>
-            </div>
-            <div id="input-section">
-              <input #messageInput type="text" placeholder="Enter your message">
-               <!-- <input id="input" type="text" placeholder="" autocomplete="off" autofocus="autofocus" /> -->
-               <button class="send" (click)="sendMessage(messageInput.value)">
-                  <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
-               </button>
-             </div>
-          </div>
-     </form>
+
+    <div class="popup-container" id="popupContainer">
+        <div class="toggle-btn" onclick="togglepopupContainer()">
+           <button class="open-button" onclick="openForm()"><img src="assets/images/ravi_chat.png"></button>
+        </div>
+        <div class="chat-popup" id="myForm">
+           <form action="" class="">  
+              <div class="card">
+                  <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
+                  <div id="message-section">
+                     <div *ngIf="chatResponse" class="message"><span id="bot-response" class="typewriter-text"><img src="assets/images/ravi_chat.png"><br><p>{{ chatResponse }}</p></span>
+                     <span class="user_msgs"><img src="assets/images/user.jpg"><br><p>Hi iam user</p></span></div>
+                  </div>
+                  <div id="input-section">
+                    <input #messageInput type="text" placeholder="Enter your message">
+                     <!-- <input id="input" type="text" placeholder="" autocomplete="off" autofocus="autofocus" /> -->
+                     <button class="send" (click)="sendMessage(messageInput.value)">
+                        <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
+                     </button>
+                   </div>
+                </div>
+         </form>
+        </div>
     </div>
 </div>
   <!--chat-box-->
-=======
->>>>>>> bbca315a28ca1b27374bf1a838c98753c72350a8
-
-    <!--chat-box-->
-   <!--  <div class="popup-container" id="popupContainer">
-        <div class="toggle-btn" onclick="togglepopupContainer()">
-            <button class="open-button" onclick="openForm()"><img src="assets/images/ravi_chat.png"></button>
-        </div>
-        <div class="chat-popup" id="myForm">
-            <form action="" class="">
-                <div class="card">
-                    <button type="button" class="btn cancel" onclick="closeForm()">&times;</button>
-                    <div id="message-section">
-                        <div *ngIf="chatResponse" class="message">
-                            <span id="bot-response" class="typewriter-text"><img src="assets/images/ravi_chat.png"><br>{{ chatResponse }}</span>
-                        </div>
-                    </div>
-                    <div id="input-section">
-                        <input #messageInput type="text" placeholder="Enter your message">
-                        <button class="send" (click)="sendMessage(messageInput.value)">
-                            <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> -->
-    <!--chat-box-->
-
 </body>
 </html>
