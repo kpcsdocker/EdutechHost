@@ -23,6 +23,7 @@ import { LessonsComponent } from './admin/lessons/lessons.component';
 import { LessonsListComponent } from './admin/lessons-list/lessons-list.component';
 import { AssignmentDetailComponent } from './student-dashboard/assignment-detail/assignment-detail.component';
 import { AssignmentLeftReusableComponent } from './student-dashboard/assignment-leftreusable/assignment-leftreusable.component';
+import { AssignmentCodeEditorComponent } from './student-dashboard/assignment-code-editor/assignment-code-editor.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AssignmentLeftReusableComponent } from './student-dashboard/assignment-
     QuestionUploadComponent,
     QuestionsListComponent,
     AssignmentDetailComponent,
-    AssignmentLeftReusableComponent
+    AssignmentLeftReusableComponent,
+    AssignmentCodeEditorComponent
   ],
   imports: [
     BrowserModule,
