@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:8088',
+  api: 'http://localhost:8088/api',
   oauth2Url: 'http://localhost/oauth2/authorization/google'
 };
 

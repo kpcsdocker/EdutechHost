@@ -68,7 +68,7 @@ export class EdutechService {
   }
   
   public sendMail(email:any){
-    return this.httpclient.get(this.api+'/api/sendVerificationCode/'+email, {responseType: 'text'});
+    return this.httpclient.get(this.api+'/sendVerificationCode/'+email, {responseType: 'text'});
   }
   
   public getSocialLogin(){
@@ -103,7 +103,7 @@ export class EdutechService {
   
   verifyCode(email: string, code: string) {
     console.log(email,code);
-    return this.httpclient.get(this.api+'/api/verifyCode/'+email+'/'+code, { responseType: 'text' });
+    return this.httpclient.get(this.api+'/verifyCode/'+email+'/'+code, { responseType: 'text' });
   }
   
   public setVerificationEmail(email:any){
@@ -152,15 +152,15 @@ export class EdutechService {
   }
 
   getVideosForStudent(studentId: string){
-    return this.httpclient.get(this.api+'/api/videos/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+'/videos/student/'+studentId, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   getVideoFileUrl(id: string){
-    return this.httpclient.get(this.api+'/api/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api+'/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   getVideoFile(id: string): string {
-    return `${this.api}/api/video/${id}/file`;
+    return `${this.api}/video/${id}/file`;
   }
 
   public getQuestions(){
@@ -184,21 +184,21 @@ export class EdutechService {
   }
 
   public getCourses(): Observable<Course[]>{
-    return this.httpclient.get<Course[]>(this.api+"/api/nested-courses", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get<Course[]>(this.api+"/nested-courses", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public getCategories(): Observable<Category[]>{
-    return this.httpclient.get<Category[]>(this.api+"/api/categories", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+    return this.httpclient.get<Category[]>(this.api+"/categories", {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
   }
 
   public videoUpload(form:FormData){
-    return this.httpclient.post(this.api+'/api/videos/upload', form, { observe: 'response' })
+    return this.httpclient.post(this.api+'/videos/upload', form, { observe: 'response' })
     .pipe(
     catchError((err:any)=>this.handleErrorPromise(err)));
  }
 
  public updateVideo(form:FormData,id:any){
-  return this.httpclient.put(this.api+'/api/video/'+id, form, { observe: 'response' })
+  return this.httpclient.put(this.api+'/video/'+id, form, { observe: 'response' })
   .pipe(
   catchError((err:any)=>this.handleErrorPromise(err)));
 }
@@ -209,19 +209,19 @@ getChatResponse(message: string): Observable<any> {
   });
   const body = { message: message };
 
-  return this.httpclient.post<any>(this.api+'/api/send-message', body, { headers: headers });
+  return this.httpclient.post<any>(this.api+'/send-message', body, { headers: headers });
 }
 
  public getVideosList(){
-  return this.httpclient.get(this.api+'/api/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  return this.httpclient.get(this.api+'/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
  }
 
  public getVideosById(id:any){
-  return this.httpclient.get(this.api+'/api/video/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+  return this.httpclient.get(this.api+'/video/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
  }
 
  public deleteVideo(id:any){
-   return this.httpclient.delete(this.api+'/api/video/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
+   return this.httpclient.delete(this.api+'/video/'+id, {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
  }
 
   setLoggedinStatus(isLoggedIn: string): void {

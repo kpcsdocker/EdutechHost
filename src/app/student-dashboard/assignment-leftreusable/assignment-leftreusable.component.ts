@@ -81,4 +81,8 @@ export class AssignmentLeftReusableComponent implements OnInit {
       }
     });
   }
+
+  editorPage(){
+    this.router.navigate(['/stu-dashboard/assignment-code-editor']);
+  }
 }
