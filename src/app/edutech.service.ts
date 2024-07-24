@@ -212,6 +212,15 @@ getChatResponse(message: string): Observable<any> {
   return this.httpclient.post<any>(this.api+'/send-message', body, { headers: headers });
 }
 
+getCodeEditorResponse(code: string, language: string): Observable<any> {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
+  const body = { code: code, language: language };
+
+  return this.httpclient.post<any>(this.api+'/code-editor', body, { headers: headers });
+}
+
  public getVideosList(){
   return this.httpclient.get(this.api+'/video/list', {headers: new HttpHeaders({'Content-Type':  'application/json'})}).pipe(catchError((err:any)=>this.handleErrorPromise(err)));
  }

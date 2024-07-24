@@ -15,6 +15,7 @@ export class AssignmentLeftReusableComponent implements OnInit {
   @Input() studentDetails: any = {};
   @Input() selectedCourse: any = '';
   @Input() filteredAssignments: any = '';
+  assignment:any;
 
   constructor(private router: Router, private assignmentService: AssignmentService) { }
 
@@ -48,6 +49,7 @@ export class AssignmentLeftReusableComponent implements OnInit {
   }
 
   viewAssignmentDetails(assignment: any): void {
+    this.assignment = assignment;
     if (this.router.url.includes('/stu-dashboard/assignment-detail')) {
       this.assignmentService.setSelectedAssignment(assignment);
     } else {
@@ -83,6 +85,16 @@ export class AssignmentLeftReusableComponent implements OnInit {
   }
 
   editorPage(){
-    this.router.navigate(['/stu-dashboard/assignment-code-editor']);
+    this.router.navigate(['/stu-dashboard/assignment-code-editor'], {
+      state: {
+        assignment: this.assignment,
+        course_name: this.course_name,
+        selectedCourse: this.selectedCourse,
+        studentDetails: this.studentDetails,
+        email: this.email,
+        filteredAssignments: this.filteredAssignments,
+        groupedAssignments: this.groupedAssignments
+      }
+    });
   }
 }
