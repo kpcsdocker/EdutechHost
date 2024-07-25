@@ -76,10 +76,32 @@
 <section id="call-to-action-2" class="onboard">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div>
+                <div class="col-md-12 col-sm-12 coding-boxz">
+                    <div class="col-md-6 coding-box">
+                        <h2>FizzBuzz</h2>
+                         <div class="courier-prime-regular code_view">
+                             <p>Given an integer n, return a string array answer (1-indexed) where:</p><br>
+                             <ul>
+                                 <li>answer[i] == "FizzBuzz" if i is divisible by 3 and 5</li>
+                                 <li>answer[i] == "Fizz" if i is divisible by only 3</li>
+                                 <li>answer[i] == “Buzz" if i is divisible by only 5</li>
+                                 <li>answer[i] = i if i is not divisible by 3 or 5</li>
+                             </ul>
+                          </div>
+                          <div class="border_box">
+                            <table>
+                                <tr><th colspan="2"><h4>Example #1</h4></th></tr>
+                                <tr><td>input:<br>n = 5</td>
+                                    <td>Output:<br>
+["1","2","Fizz","4","Buzz"]
+</td></tr>
+                            </table>
+                          </div>
+                    </div>
+                    <div class="col-md-6 coding-box-right">
                         <h2>Code Editor</h2>
-                        <textarea [(ngModel)]="code" rows="10" cols="50" placeholder="Enter your code here"></textarea>
+                         <div class="courier-prime-regular code_view">
+                        <textarea [(ngModel)]="code" rows="10" cols="55" placeholder="Enter your code here"></textarea>
                         <br>
                         <select [(ngModel)]="language">
                           <option value="python">Python</option>
@@ -87,13 +109,27 @@
                           <!-- Add more languages as needed -->
                         </select>
                         <br>
-                        <button (click)="executeCode()">Run Code</button>
-                        <br>
-                        <h3>Response:</h3>
-                        <pre>{{ response | json }}</pre>
-                      </div>                      
+                        <button (click)="executeCode()" class="log get_but">Run Code</button>
+                    </div>
+                </div>
             </div>
-        </div>
+                           <div class="w3-bar w3-black">
+                           <button class="w3-bar-item w3-button tablink w3-red active" onclick="openCity(event,'London')">Output</button>
+    <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Paris')">Testcase</button>
+    </div>
+    <div id="London" class="w3-container w3-border city">
+     <h2>
+                        <pre>{{ response | json }}</pre></h2>
+  </div>
+
+  <div id="Paris" class="w3-container w3-border city" style="display:none">
+    <h2></h2>
+   
+  </div>                   
+                         
+                                        
+            </div>
+        
     <!-- </section> -->
 </div>
 <!--chat-box-->

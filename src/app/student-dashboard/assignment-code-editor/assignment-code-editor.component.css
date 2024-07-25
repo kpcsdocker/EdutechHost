@@ -1,0 +1,7 @@
+@media (min-width: 1200px) {
+    .right-container .container {
+        width:95%!important;
+        margin: 0 auto;
+    }
+}
+
