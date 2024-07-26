@@ -2467,7 +2467,7 @@ color: #4400B3;
     padding: 10px;}
     .w3-container h2 pre{background: none!important;
     border: 0!important;
-    color: #fff!important;}
+    color: #fff!important;text-transform: none;}
    .w3-bar-item{background: #fff;
     padding: 5px 15px;
     border-radius: 0 0 15px 15px !important;
