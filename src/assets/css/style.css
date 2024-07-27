@@ -2480,6 +2480,37 @@ color: #4400B3;
     margin: 10px auto 14px auto;
     display: block;padding:5px;}
 
+/* lessons,questions.component.css */
+.dropdown-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.dropdown-options {
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.form-check {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.form-check-input {
+  margin-right: 10px;
+}
+
+.form-check-label {
+  cursor: pointer;
+}
+
+
+
 
 /*Responsive*/
   @media (min-width: 320px) and (max-width: 460px) {

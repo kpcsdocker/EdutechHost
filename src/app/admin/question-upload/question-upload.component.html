@@ -78,12 +78,16 @@
                         
                         <!-- Students Selection -->
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
-                          <label for="student" class="form-label required">Choose Students:</label>
-                          <input type="text" class="form-control" placeholder="Search students..." (input)="onSearch($event)">
-                          <div *ngFor="let student of filteredStudents">
+                          <label for="student" class="form-label required">Select Students:</label>
+                          <input type="text" class="form-control mb-2" placeholder="Search students..." (input)="onSearch($event)">
+                          <div class="dropdown-container">
+                              <div class="dropdown-options">
+                                <div *ngFor="let student of filteredStudents" class="form-check">
                             <input type="checkbox" [checked]="isStudentSelected(student.user_id)" (change)="onStudentSelect($event, student)"> {{ student.first_name }}
                           </div>
                         </div>
+                        </div>
+                      </div>
                         <div class="col-xl-12 col-md-12" style="margin-bottom: 10px;">
                           <label for="course" class="form-label">Difficulty:</label>
                             <select name="diff" id="diff" formControlName="diff" class="form-control">
@@ -133,12 +137,5 @@
                       <div *ngIf="alert" class="alert-danger">
                         {{ alert }}
                       </div>
-                  </form>
-                  </div>
-              </div>
-            </div>
-        </div>
-    </section>
-</div>
-</body>
-</html>
+                  
+                  
