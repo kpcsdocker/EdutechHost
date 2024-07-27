@@ -1,0 +1,26 @@
+version: '3.0'
+
+networks:
+  edutech_network:
+    external: true
+
+services:
+  node-ui-app:
+    container_name: angular-questions_uploader
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - edutech_network
+
+
+
