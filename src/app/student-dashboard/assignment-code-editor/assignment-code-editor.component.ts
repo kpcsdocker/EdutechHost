@@ -58,7 +58,7 @@ export class AssignmentCodeEditorComponent implements OnInit {
   executeCode() {
     this.service.getCodeEditorResponse(this.code, this.language).subscribe(
       (result) => {
-        this.response = result;
+        this.response = result.output;
         console.log('Code execution result:', this.response);
       },
       (error) => {
