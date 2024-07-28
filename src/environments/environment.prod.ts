@@ -1,5 +1,8 @@
+const baseUrl = 'https://edutech.kolac.us';
+
 export const environment = {
   production: true,
-  api: 'https://edutech.kolac.us/api',
-  oauth2Url: 'https://edutech.kolac.us/oauth2/authorization/google'
+  baseUrl: baseUrl,
+  api: `${baseUrl}/api`,
+  oauth2Url: `${baseUrl}/oauth2/authorization/google`
 };

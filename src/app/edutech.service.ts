@@ -30,7 +30,8 @@ export class EdutechService {
   }
 
   public getAuthUser() {
-    return this.httpclient.get(this.api + '/auth/user', { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).pipe(catchError((err: any) => this.handleErrorPromise(err)));
+    return this.httpclient.get(this.api + '/auth/user', { headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    withCredentials: true }).pipe(catchError((err: any) => this.handleErrorPromise(err)));
   }
 
   public mongoStudentSubmit(studentData:FormData){
